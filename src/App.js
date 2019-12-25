@@ -1,27 +1,16 @@
 import React from "react";
-import Login from "./pages/login.jsx";
+import Navbar from "./components/navbar";
+import Login from "./pages/login";
 import Signup from "./pages/signup";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          </ul>
-        </nav>
         <Switch>
           <Route path="/login">
             <Login />

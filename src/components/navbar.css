@@ -1,0 +1,8 @@
+.navbar ul {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li {
+  width: 50px;
+}
