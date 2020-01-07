@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.scss";
 
-import { Landing } from "./pages/Landing/SignInLanding.component";
-import { SignUp } from "./components/SignUp/SignUp.component";
+import { Landing } from "./pages/Landing/Landing.component";
 
 function App() {
   return (
     <Router>
-
       <div className="App">
         {/* <Navbar></Navbar> */}
         <Switch>

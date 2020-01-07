@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import "./SignIn.styles.scss";
-
 import { Link } from "react-router-dom";
-
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useTheme } from '@material-ui/styles';
+
+import "./SignIn.styles.scss";
 
 export const SignIn = () => {
-
   return (
     <div className="SignIn">
       <div className="login-wrapper">
@@ -29,21 +26,19 @@ export const SignIn = () => {
             </Button>
           </div>
 
-          <Link to="/signup">
-            <p className="signup-forgot-text">Don't have an account? Sign up here!</p>
-          </Link>
-
           <Link to="/">
-            <p className="signup-forgot-text">I forgot my password</p>
+            <span className="signup-forgot-text">Don't have an account? Sign up here!</span>
+          </Link>
+          <br />
+          <Link to="/">
+            <span className="signup-forgot-text">I forgot my password</span>
           </Link>
         </form>
       </div>
-
-
-
-
     </div >
   )
-};
+
+
+}
 
 
