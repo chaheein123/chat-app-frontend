@@ -1,0 +1,59 @@
+.SignIn {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  position: relative;
+  top: 50%;
+  left: 28%;
+  transform: translateY(-50%);
+  z-index: 0;
+  height: 65%;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.918);
+  border-radius: 10px;
+  max-width: 400px;
+  min-width: 280px;
+  margin: auto;
+  text-align: center;
+  
+
+  .login-wrapper {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+};
+
+.user-inputs-wrappers {
+  margin-top: 11px;
+
+  .user-inputs {
+    width: 60%;
+  }
+};
+
+.login-button {
+  margin-top: 28px;
+  margin-bottom: 28px;
+};
+
+.login-text {
+  color: white;
+}
+
+.signup-forgot-text{
+  color: blue;
+  font-size: 12px;
+  margin-bottom: 8px;
+
+  &:hover{
+    // cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .SignIn {
+  left: 0;
+  width: 60%;
+  }
+};

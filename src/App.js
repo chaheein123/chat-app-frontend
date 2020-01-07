@@ -1,24 +1,19 @@
 import React from "react";
-import Navbar from "./components/navbar";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import "./App.css";
+import "./App.scss";
+
+import { Landing } from "./pages/Landing/SignInLanding.component";
+import { SignUp } from "./components/SignUp/SignUp.component";
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div>
+
+      <div className="App">
+        {/* <Navbar></Navbar> */}
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/">{/* <Home /> */}</Route>
+          <Route exact path="/" component={Landing} />
         </Switch>
       </div>
     </Router>
