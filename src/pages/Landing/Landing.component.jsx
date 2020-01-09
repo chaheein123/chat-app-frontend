@@ -8,7 +8,6 @@ export const Landing = () => {
         <div className="Landing">
 
             <div className="navbar">
-                {/* <img src="ichatLogo.png" /> */}
                 <div className="navbar-items"><p>Why ichat?</p></div>
                 <div className="navbar-items"><p>Solutions</p></div>
                 <div className="navbar-items"><p>Resources</p></div>
@@ -19,15 +18,6 @@ export const Landing = () => {
             <div className="Landing-background-pic">
                 <SignIn />
             </div>
-
-
-
-
-
-
-
-
-
 
         </div>
     )

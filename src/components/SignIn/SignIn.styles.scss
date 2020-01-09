@@ -1,23 +1,29 @@
 .SignIn {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Palatino Linotype", "Book Antiqua", "Palatino, serif";
   position: relative;
   top: 50%;
   left: 28%;
   transform: translateY(-50%);
   z-index: 0;
-  height: 60%;
+  height: 50%;
+  min-height: 360px;
   width: 30%;
   background-color: rgba(255, 255, 255, 0.918);
   border-radius: 10px;
   max-width: 400px;
   min-width: 280px;
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
-  
+
   .login-wrapper {
     position: relative;
-    top: 5%;
-    // transform: translateY(-50%);
+    top: 50%;
+    transform: translateY(-50%);
+    // background-color: blue;
+    h1 {
+      line-height: 1;
+      color: rgba(50, 50, 50, 0.851);
+    }
   }
 };
 
@@ -30,8 +36,8 @@
 };
 
 .login-button {
-  margin-top: 22px;
-  margin-bottom: 10px;
+  margin-top: 34px;
+  margin-bottom: 16px;
   .login-text {
     color: white;
   }
@@ -41,13 +47,11 @@
   color: blue;
   font-size: 12px;
   margin-bottom: 14px;
-  // display: block;
 
   &:hover{
-    // cursor: pointer;
     text-decoration: underline;
   }
-}
+};
 
 @media only screen and (max-width: 980px) {
   .SignIn {
