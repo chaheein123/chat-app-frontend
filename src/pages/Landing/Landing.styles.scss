@@ -1,5 +1,7 @@
 .Landing {
-  height: 5000px;
+  min-height: 2200px;
+  // height: 3000px;
+  // max-height: 3700px;
   position: relative;
   font-family: Gill Sans, sans-serif;
 
@@ -27,6 +29,10 @@
     }
   };
 
+  .main-navbar2 {
+    display: none;
+  }
+
   .Landing-background-pic {
     background-image: url("../../assets/img/LandingPageBackground.jpg");
     background-size: cover;
@@ -36,10 +42,12 @@
   };
 
   .landing-bottom {
-    // text-align: center;
+    #scroll-why {
+      height: 100px;
+      // width: 100px;
+      border: 1px black solid;
+      display: none;
 
-    *{
-      // border: 1px black solid;
     }
 
     .why-section-wrapper {
@@ -48,7 +56,6 @@
       .checkmark-icons {
         height: 70px;
         width: 70px;
-        // border: 1px black solid;
         background-image: url("../../assets/img/checkmarkicon.png");
         background-size: contain;
 
@@ -56,10 +63,30 @@
 
       .why-section {
         margin-top: 30px;
-        // border: 1px black solid;
+        overflow: auto;
+        
+        .profile-pic {
+          height: 100px;
+          width: 100px;
+          float: left;
+          margin-right: 20px;
+          box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.433);
+        };
+
+        .profile-pic-ian {
+          background-image: url("../../assets/img/Ianprofile.jpg");
+        };
+
+        .profile-pic-dj {
+          background-image: url("../../assets/img/DjProfile.jpg");
+        };
+
+        .div-profile-pic{
+          // float: right;
+          // display: inline;
+        };
       }
     };
-
   };
 };
 
@@ -68,3 +95,28 @@
   width: 70px;
   margin: 100px auto 0 auto;
 };
+
+@media only screen and (max-width: 650px) {
+
+  .Landing {
+    min-height: 2970px;
+
+    .main-navbar {
+      // min-height: 3400px;
+      display: none;
+    };
+
+    .main-navbar2 {
+      display: block;
+
+    };
+
+    .Landing-background-pic {
+      height: 100vh;
+    }
+
+  };
+  
+};
+
+

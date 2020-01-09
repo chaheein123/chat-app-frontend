@@ -10,17 +10,25 @@ export const Landing = () => {
     return (
         <div className="Landing">
             <div className="main-navbar">
-                <div className="navbaritems"><p>Why ichat?</p></div>
+                <div className="navbaritems"><a href="#scroll-why"><p>Why iChat?</p></a></div>
                 <div className="navbaritems"><p>Set Up</p></div>
                 <div className="navbaritems"><p>Pricing</p></div>
-                <div className="navbaritems"><p>Contacts</p></div>
+                <div className="navbaritems"><p>Contact Us</p></div>
             </div>
 
             <div className="Landing-background-pic">
                 <SignIn />
             </div>
 
+            <div className="main-navbar2 main-navbar">
+                <div className="navbaritems"><p>Why iChat?</p></div>
+                <div className="navbaritems"><p>Set Up</p></div>
+                <div className="navbaritems"><p>Pricing</p></div>
+                <div className="navbaritems"><p>Contact Us</p></div>
+            </div>
+
             <div className="landing-bottom">
+                <div id="scroll-why"> </div>
                 <div className="why-section-wrapper">
                     <Container>
                         <Row>
@@ -47,12 +55,10 @@ export const Landing = () => {
 
                 <div className="div-break"></div>
 
-
                 <div className="why-section-wrapper">
                     <h1><center>Setting up in 3 steps</center></h1>
                     <Container>
                         <Row>
-
                             <Col md={4}>
                                 <div className="why-section">
                                     <div className="checkmark-icons"></div>
@@ -85,18 +91,70 @@ export const Landing = () => {
                         </Row>
 
                     </Container>
-
-
                 </div>
 
+                <div className="div-break"></div>
 
+                <div className="why-section-wrapper">
+                    <h1>
+                        <center>
+                            How much does it cost?
+                        </center>
+                    </h1>
 
+                    <Container>
 
+                        <Row>
+                            <Col>
+                                <div className="why-section">
+                                    <p>
+                                        It's cheap. It's free. I don't know why you keep reading this. I would rather sign up during the time I'm reading this. Seriously, just sign up. And log in and use our service. Stop reading and use it. Just use it. Please. We'll decide whether to monetize it from the users or the ads if we even have users. But just sign in. Stop reading and use it. Just use it. Please. We'll decide whether to monetize it from the users or the ads if we even have users. But just sign in.
+                                    </p>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
 
+                <div className="div-break"></div>
 
+                <div className="why-section-wrapper">
+                    <h1>
+                        <center>
+                            Contact Us
+                        </center>
+                    </h1>
+
+                    <Container>
+                        <Row>
+                            <Col md={6}>
+                                <div className="why-section">
+                                    <div className="profile-pic profile-pic-ian">
+                                    </div>
+                                    <div className="div-profile-pic">
+                                        <p>
+                                            Ian is a front end developer, developing in React and Angular frameworks. He loves Javascript. He loves everything about front end development, including HTML, CSS, and the frameworks. He was responsible for developing the front end of this app, employing the socket.io on the client side, React bootstrap, React Material UI, and React.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </Col>
+
+                            <Col md={6}>
+                                <div className="why-section">
+                                    <div className="profile-pic profile-pic-dj">
+                                    </div>
+                                    <div className="div-profile-pic">
+                                        <p>
+                                            DJ is an engineer at Palo Alto Networks. He was responsible for developing the back end of this app in Python. He loves using React as well. He used socket.io in this app in the backend. DJ likes to play with his baby boy in his free time. He sometimes play Starcraft. His favorite food is pizza.
+                                        </p>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
             </div>
-
         </div>
     )
-
 };
