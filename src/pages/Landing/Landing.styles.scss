@@ -1,53 +1,70 @@
 .Landing {
-  height: 100vh;
+  height: 5000px;
   position: relative;
   font-family: Gill Sans, sans-serif;
 
-  .navbar {
-    position: relative;
+  .main-navbar {
     background-color: white;
     z-index: 1;
     height: 60px;
     box-shadow: 0 0 9px rgba(0, 0, 0, 0.157);
     position: sticky;
     top: 0;
-    padding-left: 80px;
+    line-height: 60px;
+    padding-left: 90px;
 
-    // .navbar-logo {
-    //   // display: inline-block;
-    //   // border: 1px black solid;
-    //   height: 80%;
-    //   width: 100px;
-    //   background-image: url("../../assets/img/ichatLogo.png");
-    //   background-size: cover;
-    // }
-
-    .navbar-items {
-      vertical-align: top;
-      margin-right: 30px;
+    .navbaritems {
       display: inline-block;
       position: relative;
       cursor: pointer;
-      line-height: 1;
-      top: 50%;
-      transform: translateY(-50%);
-
-      &:hover {
-        text-decoration: underline;
-      }
-
+      height: 100%;
+      margin-right: 40px;
+      
       p:hover {
         transform: scale(1.08);
+        text-decoration: underline;
       }
     }
-  }
+  };
 
   .Landing-background-pic {
     background-image: url("../../assets/img/LandingPageBackground.jpg");
     background-size: cover;
     background-position: bottom;
-    // height: 90vh;
     height: 91.8vh;
     min-height: 500px;
   };
+
+  .landing-bottom {
+    // text-align: center;
+
+    *{
+      // border: 1px black solid;
+    }
+
+    .why-section-wrapper {
+      margin-top: 40px;
+
+      .checkmark-icons {
+        height: 70px;
+        width: 70px;
+        // border: 1px black solid;
+        background-image: url("../../assets/img/checkmarkicon.png");
+        background-size: contain;
+
+      }
+
+      .why-section {
+        margin-top: 30px;
+        // border: 1px black solid;
+      }
+    };
+
+  };
+};
+
+.div-break {
+  border: 1px rgb(34, 129, 150) solid;
+  width: 70px;
+  margin: 100px auto 0 auto;
 };
