@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+
+import { authService } from "../../services";
 import { Link } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import "./SignIn.styles.scss";
+import "./SignIn.scss";
 
 export const SignIn = () => {
   return (
@@ -21,7 +23,7 @@ export const SignIn = () => {
           </div>
 
           <div className="login-button">
-            <Button variant="contained" color="primary" >
+            <Button variant="contained" color="primary" onClick={() => authService().signup()} >
               <span className="login-text">Log In</span>
             </Button>
           </div>

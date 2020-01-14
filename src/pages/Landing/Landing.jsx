@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './Landing.styles.scss';
-import { SignIn } from "../../components/SignIn/SignIn.component";
+
+import './Landing.scss';
+import { SignIn } from "../../components/SignIn/SignIn";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
