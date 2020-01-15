@@ -17,9 +17,29 @@ export const AppPage = () => {
       <div className="AppPage">
         <MainNavBar />
         <div className="app-body-wrapper">
+          <div className="app-body-flex">
+            <div className="app-body-left">
+              <Switch>
+                <Route exact path="/user" component={Dashboard} />
+                <Route path="/user/message/:id" component={Messages} />
 
-          <Route exact path="/user" component={Dashboard} />
-          <Route exact path="/user/messages" component={Messages} />
+              </Switch>
+
+
+            </div>
+
+            <div className="app-body-right">
+              <Switch>
+                <Route exact path="/user" component={Messages} />
+
+              </Switch>
+
+
+
+
+
+            </div>
+          </div>
 
         </div>
       </div>

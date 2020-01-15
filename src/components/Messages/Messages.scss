@@ -1,0 +1,50 @@
+.Messages {
+  position: absolute;
+  border: 1px black solid;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+
+  .Messages-inboxes {
+    position: relative;
+    height: 90px;
+    width: 100%;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    padding: 14px;
+
+    &:hover {
+      background-color: rgb(235, 228, 228);
+      cursor: pointer;
+    }
+
+    .Messages-inboxes-middle{
+      position: relative;
+      width: 70%;
+    }
+
+    .Messages-inboxes-pics {
+      height: 55px;
+      width: 55px;
+      border-radius: 100px;
+      border: 1px black solid;
+      float: left;
+      margin-right: 4px;
+    }
+
+    .Messages-inboxes-msgContent {
+      color: rgb(78, 77, 77);
+  
+    }
+
+    .Messages-inboxes-sentTime {
+      color: rgb(95, 94, 94);
+      font-size: 12px;
+    }
+
+
+  }
+
+
+}

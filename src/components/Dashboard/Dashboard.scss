@@ -1,12 +1,3 @@
-.app-body-left {
-  p {
-    line-height: 1;
-  }
-};
-
-
-
-
 
 .dashboard-img-div {
   display: inline-block;
@@ -16,46 +7,3 @@
   border-radius: 50%;
 };
 
-.dashboard-top-pins {
-  * {
-    border: 1px black solid;
-  }
-  background-color: yellow;
-  border: 1px black solid;
-  height: 100%;
-  width: 100%;
-  // overflow: scroll;
-
-  .dashboard-top-pins-rows {
-    height: 24%;
-    display: flex;
-    align-items: center;
-
-    .dashboard-top-pins-columns {
-      // height: 100%;
-      position: relative;
-      background-color: purple;
-
-      .dashboard-top-pins-rows-img {
-        // display: inline-block;
-        background-color: pink;
-        border-radius: 100px;
-        height: 40px;
-        width: 40px;
-        float: left;
-
-      }
-  
-      .dashboard-top-pins-rows-convo {
-        // position: absolute;
-        // display: inline-block;
-        float: right;
-        width: 60%;
-        // max-width: 100px;
-  
-      }
-    }
-
-    
-  }
-}
