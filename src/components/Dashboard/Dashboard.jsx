@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Dashboard">
         <div className="dashboard-img-div">
         </div>
         <p>

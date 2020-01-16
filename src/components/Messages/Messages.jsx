@@ -14,7 +14,7 @@ class Messages extends React.Component {
   };
 
   render() {
-    console.log(this.state.chatData, "wefwefwef")
+
     return (
       <div className="Messages">
 
