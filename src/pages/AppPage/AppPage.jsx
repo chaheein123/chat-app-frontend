@@ -18,26 +18,17 @@ class AppPage extends React.Component {
     super(props);
 
     this.state = {
-      // turnedOnId: this.props.history,
 
     }
   };
 
   componentWillReceiveProps(nextProps) {
     console.log("ㅇ아아아아아앙")
-    // console.log(nextProps, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", this.props);
+
   }
-
-
 
   render() {
 
-    // console.log(this.state.turnedOnId, "mamamami");
-    // console.log(Number(this.props.location.pathname.split("/")[3], "mamamamama"));
-
-    // if (this.state.turnedOnId != Number(this.props.location.pathname.split("/")[3], "mamamamama")) {
-
-    // }
     return (
       <Router>
         <div className="AppPage">
