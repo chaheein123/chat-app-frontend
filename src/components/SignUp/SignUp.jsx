@@ -26,7 +26,6 @@ class SignUp extends React.Component {
 
     let signupPromise = new Promise((resolve, reject) => {
 
-      // var errstorage = {};
       if (!this.state.email) {
         this.errstorage["errorEmail"] = "** Please type in your email **";
         reject(this.errstorage);

@@ -10,8 +10,6 @@ class ChatRoom extends React.Component {
     this.state = {
       chatData: DATA,
       sentId: this.props.match.params.id,
-      // pathHistory: this.props.history.location.pathname
-
     }
   };
 
@@ -25,9 +23,7 @@ class ChatRoom extends React.Component {
   }
 
   render() {
-
     return (
-
       <div className="ChatRoom">
         {
           this.state.sentId
@@ -44,7 +40,6 @@ class ChatRoom extends React.Component {
 
           })
         }
-
       </div>
     )
   }

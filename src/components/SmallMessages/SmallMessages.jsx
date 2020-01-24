@@ -24,7 +24,6 @@ class SmallMessages extends React.Component {
   };
 
   render() {
-    console.log("wefwefwefwfwwww", this.state.clickedChatId)
     return (
       <div className="SmallMessages">
         {
