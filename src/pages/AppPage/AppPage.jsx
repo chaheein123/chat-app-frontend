@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./AppPage.scss";
 import axios from "axios";
 
@@ -29,7 +29,33 @@ class AppPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log("yoyoyo this is the real local storage mayne", localStorage);
+
+    // let authPromise = new Promise((resolve, reject) => {
+    //   axios
+    //     .post(
+    //       "http://localhost:5000/auth/authenticate",
+    //       { userToken: localStorage.userToken }
+    //     )
+    //     .then(
+    //       (response) => {
+    //         if (Number(response.data.length) == 1) {
+    //           console.log(response.data.length, "kekeke")
+    //           // resolve()
+    //         }
+    //         else {
+    //           reject()
+    //         }
+    //       }
+    //     )
+    // });
+    // authPromise
+    //   .catch(error => this.props.history.push("/"))
+  }
+
+  render() {
+    if (!localStorage.userToken) {
+      this.props.history.push("/")
+    };
 
     let authPromise = new Promise((resolve, reject) => {
       axios
@@ -50,54 +76,9 @@ class AppPage extends React.Component {
         )
     });
     authPromise
-      // .then(response => console.log("it's a success"))
-      .catch(error => this.props.history.push("/"))
-
-    // axios
-    //   .post(
-    //     "http://localhost:5000/auth/authenticate",
-    //     { userToken }
-    //   )
-    //   .then(
-    //     (response) => {
-    //       if (Number(response.data.length) == 1) {
-    //         console.log(response.data.length, "kekeke")
-    //         return true
-    //       }
-    //       else {
-    //         return false
-    //       }
-    //     }
-    //   )
-
-
-
-
-
-    // let authPromise = new Promise((resolve, reject) => {
-
-
-    //   if (!isAuthenticated(localStorage.userToken)) {
-    //     reject("rejected!");
-    //   }
-    //   else {
-    //     resolve("resolved!!!");
-    //   }
-    // });
-
-    // authPromise
-    //   .then((response) => console.log(response, "yoyo"))
-    //   .catch((error) =>
-    //     this.props.history.push("/")
-    //     // console.log(error, "abcdefg")
-    //   )
-
-
-
-
-  }
-
-  render() {
+      .catch(error =>
+        this.props.history.push("/")
+      )
     return (
       <Router>
         <div className="AppPage">
