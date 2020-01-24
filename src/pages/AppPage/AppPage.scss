@@ -1,0 +1,52 @@
+.AppPage{
+  position: relative;
+
+  .app-body-wrapper {
+    // border: 1px black solid;
+    position: absolute;
+    z-index: -1;
+    margin-left: 60px;
+    width: 90vw;
+    min-width: 600px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100vh;
+    min-height: 400px;
+
+  }
+};
+
+.app-body-flex {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.app-body-left {
+  // border: 1px black solid;
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  background-color: red;
+  p {
+    line-height: 1;
+  }
+  
+}
+
+.app-body-right {
+  // border: 1px black solid;
+  flex: 2;
+  background-color: lightblue;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+
+@media screen and (max-width: 700px) {
+  
+}
+// End of the app-component section
+

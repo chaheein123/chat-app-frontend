@@ -1,28 +1,28 @@
 import React from "react";
-import Navbar from "./components/navbar";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.scss";
+import Landing from "./pages/Landing/Landing";
+import AppPage from "./pages/AppPage/AppPage";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Friends from "./components/Friends/Friends";
+import Messages from "./components/Messages/Messages";
 
-import "./App.css";
+
+// import Dashboard from "../../components/Dashboard/Dashboard";
+// import Friends from "../../components/Friends/Friends";
+
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div>
+      <div className="App">
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/">{/* <Home /> */}</Route>
+          <Route path="/user" component={AppPage} />
+          <Route path="/" component={Landing} />
         </Switch>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

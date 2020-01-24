@@ -1,0 +1,123 @@
+.Landing {
+  min-height: 2200px;
+  // height: 3000px;
+  // max-height: 3700px;
+  position: relative;
+  font-family: Gill Sans, sans-serif;
+
+  .main-navbar {
+    background-color: white;
+    z-index: 1;
+    height: 60px;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.157);
+    position: sticky;
+    top: 0;
+    line-height: 60px;
+    padding-left: 90px;
+
+    .navbaritems {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      height: 100%;
+      margin-right: 40px;
+      
+      p:hover {
+        transform: scale(1.08);
+        text-decoration: underline;
+      }
+    }
+  };
+
+  .main-navbar2 {
+    display: none;
+  }
+
+  .Landing-background-pic {
+    background-image: url("../../assets/img/LandingPageBackground.jpg");
+    background-size: cover;
+    background-position: bottom;
+    height: 91.8vh;
+    min-height: 500px;
+  };
+
+  .landing-bottom {
+    #scroll-why {
+      height: 100px;
+      // width: 100px;
+      border: 1px black solid;
+      display: none;
+
+    }
+
+    .why-section-wrapper {
+      margin-top: 40px;
+
+      .checkmark-icons {
+        height: 70px;
+        width: 70px;
+        background-image: url("../../assets/img/checkmarkicon.png");
+        background-size: contain;
+
+      }
+
+      .why-section {
+        margin-top: 30px;
+        overflow: auto;
+        
+        .profile-pic {
+          height: 100px;
+          width: 100px;
+          float: left;
+          margin-right: 20px;
+          box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.433);
+        };
+
+        .profile-pic-ian {
+          background-image: url("../../assets/img/Ianprofile.jpg");
+        };
+
+        .profile-pic-dj {
+          background-image: url("../../assets/img/DjProfile.jpg");
+        };
+
+        .div-profile-pic{
+          // float: right;
+          // display: inline;
+        };
+      }
+    };
+  };
+};
+
+.div-break {
+  border: 1px rgb(34, 129, 150) solid;
+  width: 70px;
+  margin: 100px auto 0 auto;
+};
+
+@media only screen and (max-width: 650px) {
+
+  .Landing {
+    min-height: 2970px;
+
+    .main-navbar {
+      // min-height: 3400px;
+      display: none;
+    };
+
+    .main-navbar2 {
+      display: block;
+
+    };
+
+    .Landing-background-pic {
+      height: 100vh;
+      position: relative;
+    }
+
+  };
+  
+};
+
+

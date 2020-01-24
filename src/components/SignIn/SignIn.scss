@@ -1,0 +1,63 @@
+.SignIn-SignUp {
+  position: relative;
+  border-radius: 10px;
+  // font-family: "Palatino Linotype", "Book Antiqua", "Palatino, serif";
+  background-color: rgba(255, 255, 255, 0.904);
+  min-width: 320px;
+  width: 33%;
+  min-height: 400px;
+  height: 45%;
+  display: inline-block;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  .SignIn-SignUp-wrapper {
+    h1 {
+      font-weight: lighter;
+    };
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .user-inputs-wrappers {
+      margin-bottom: 5px;
+      .user-inputs {
+        width: 70%;
+      }
+    };
+
+    .login-button {
+      margin-top: 30px;
+
+      .login-button-in {
+        width: 70%;
+        .login-text {
+          color: white;
+          font-weight: bolder;
+        };
+      }
+    };
+
+    .signup-forgot-wrapper {
+      margin-top: 20px;
+    }
+
+    .signup-forgot-text{
+      color: rgb(33, 33, 199);
+    
+      &:hover{
+        text-decoration: underline;
+      }
+    };
+  }
+};
+
+@media only screen and (max-width: 980px) {
+  .SignIn-SignUp {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+};
