@@ -58,23 +58,9 @@ class SmallMessage extends React.Component {
             {this.props.sentTime}
           </div>
         </div>
-
-
-
-
-
       </div>
-
     )
-
-
-
-
-
-
   }
-
-
 };
 
 export default SmallMessage;

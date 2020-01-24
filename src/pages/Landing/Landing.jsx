@@ -19,9 +19,7 @@ class Landing extends React.Component {
 
     render() {
         return (
-            // <Router>
             <Switch>
-
                 <React.Fragment>
                     <Route
                         path="/user"
@@ -36,20 +34,10 @@ class Landing extends React.Component {
                             <div className="navbaritems"><p>Contact Us</p></div>
                         </div>
 
-
                         <div className="Landing-background-pic">
-                            {/* <Router> */}
-                            {/* <Switch> */}
-                            {/* <React.Fragment> */}
                             <Route exact path="/" component={SignIn} />
                             <Route exact path="/signup" component={SignUp} />
-                            {/* </React.Fragment> */}
-
-                            {/* </Switch> */}
-                            {/* </Router> */}
                         </div>
-
-
 
                         <div className="main-navbar2 main-navbar">
                             <div className="navbaritems"><p>Why iChat?</p></div>
@@ -189,8 +177,6 @@ class Landing extends React.Component {
                     </div>
                 </React.Fragment>
             </Switch>
-            // </Router>
-
         )
     }
 };

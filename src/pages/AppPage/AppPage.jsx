@@ -3,10 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import "./AppPage.scss";
 import axios from "axios";
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Friends from "../../components/Friends/Friends";
 import Messages from "../../components/Messages/Messages";
@@ -18,7 +14,6 @@ import { isAuthenticated } from "../../services/auth_service";
 class AppPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
 
     }
@@ -30,26 +25,6 @@ class AppPage extends React.Component {
 
   componentDidMount() {
 
-    // let authPromise = new Promise((resolve, reject) => {
-    //   axios
-    //     .post(
-    //       "http://localhost:5000/auth/authenticate",
-    //       { userToken: localStorage.userToken }
-    //     )
-    //     .then(
-    //       (response) => {
-    //         if (Number(response.data.length) == 1) {
-    //           console.log(response.data.length, "kekeke")
-    //           // resolve()
-    //         }
-    //         else {
-    //           reject()
-    //         }
-    //       }
-    //     )
-    // });
-    // authPromise
-    //   .catch(error => this.props.history.push("/"))
   }
 
   render() {
@@ -65,11 +40,7 @@ class AppPage extends React.Component {
         )
         .then(
           (response) => {
-            if (Number(response.data.length) == 1) {
-              console.log(response.data.length, "kekeke")
-              // resolve()
-            }
-            else {
+            if (Number(response.data.length) != 1) {
               reject()
             }
           }
@@ -97,10 +68,8 @@ class AppPage extends React.Component {
                   <Route exact path="/user" component={Messages} />
                   <Route exact path="/user/message/:id" component={ChatRoom} />
                 </Switch>
-
               </div>
             </div>
-
           </div>
         </div>
       </Router>

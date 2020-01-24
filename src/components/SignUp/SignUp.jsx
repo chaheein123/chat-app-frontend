@@ -19,36 +19,37 @@ class SignUp extends React.Component {
     }
   };
 
+  errstorage = {};
+
   handleSubmit = (event) => {
     event.preventDefault();
 
     let signupPromise = new Promise((resolve, reject) => {
 
-      let errstorage = {};
       if (!this.state.email) {
-        errstorage["errorEmail"] = "** Please type in your email **";
-        reject(errstorage);
+        this.errstorage["errorEmail"] = "** Please type in your email **";
+        reject(this.errstorage);
       }
       else {
         if (!this.state.email.includes("@") || this.state.email.length < 7) {
-          errstorage["errorEmail"] = `** ${this.state.email} is not a valid email **`
-          reject(errstorage);
+          this.errstorage["errorEmail"] = `** ${this.state.email} is not a valid email **`
+          reject(this.errstorage);
         }
       };
 
       if (!this.state.pw) {
-        errstorage["errorPw"] = "** Please type in your password **";
-        reject(errstorage);
+        this.errstorage["errorPw"] = "** Please type in your password **";
+        reject(this.errstorage);
       }
 
       else {
         if (this.state.pw != this.state.confirmpw && (this.state.pw && this.state.confirmpw)) {
-          errstorage["errorPw"] = "** Your passwords don't match **";
-          reject(errstorage);
+          this.errstorage["errorPw"] = "** Your passwords don't match **";
+          reject(this.errstorage);
         };
         if (this.state.pw.length < 8) {
-          errstorage["errorPw"] = "** Your passwords must be longer than 7 characters **";
-          reject(errstorage);
+          this.errstorage["errorPw"] = "** Your passwords must be longer than 7 characters **";
+          reject(this.errstorage);
         }
       };
 
@@ -68,18 +69,22 @@ class SignUp extends React.Component {
             )
             .then(response => {
               if (response.data.errorEmail) {
+                this.errstorage["errorEmail"] = `** ${this.state.email} is already used **`;
+
                 this.setState(
                   {
-                    errorEmail: `** ${response.data.errorEmail} **`
+                    errorEmail: this.errstorage["errorEmail"]
                   }
-                )
-              };
-              console.log("lion king", response.data.token);
-              localStorage.setItem("userToken", response.data.token);
+                );
+                return;
+              }
+              else {
+                localStorage.setItem("userToken", response.data.token);
+                this.props.history.push("/user");
+                return response;
+              }
             })
-            .then(
-              this.props.history.push("/user")
-            )
+
         })
       .catch(
         (error) => {
