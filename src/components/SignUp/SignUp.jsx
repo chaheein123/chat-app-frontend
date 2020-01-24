@@ -47,10 +47,14 @@ class SignUp extends React.Component {
           errstorage["errorPw"] = "** Your passwords don't match **";
           reject(errstorage);
         };
+        if (this.state.pw.length < 8){
+          errstorage["errorPw"] = "** Your passwords must be longer than 7 characters **";
+          reject(errstorage);
+        }
       };
 
       resolve();
-    })
+    });
 
     signupPromise
       .then(
@@ -77,7 +81,10 @@ class SignUp extends React.Component {
         })
       .catch(
         (error) => {
-          console.log(error, "yoyoyo")
+          this.setState({
+            errorEmail: error.errorEmail,
+            errorPw: error.errorPw
+          })
         }
       )
 
