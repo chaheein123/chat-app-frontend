@@ -67,7 +67,6 @@ class AppPage extends React.Component {
           (response) => {
             if (Number(response.data.length) == 1) {
               console.log(response.data.length, "kekeke")
-              // resolve()
             }
             else {
               reject()
