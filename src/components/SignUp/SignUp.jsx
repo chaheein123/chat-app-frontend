@@ -16,7 +16,6 @@ class SignUp extends React.Component {
       confirmpw: "",
       errorEmail: "",
       errorPw: "",
-      // errorConfirm: ""
     }
   };
 
@@ -59,7 +58,6 @@ class SignUp extends React.Component {
     signupPromise
       .then(
         (response) => {
-          // console.log(response);
           axios
             .post(
               "http://localhost:5000/auth/signup",
@@ -76,6 +74,8 @@ class SignUp extends React.Component {
                   }
                 )
               };
+              console.log("lion king", response.data.token);
+              localStorage.setItem("userToken", response.data.token);
             })
             .then(
               this.props.history.push("/user")
@@ -89,11 +89,7 @@ class SignUp extends React.Component {
           })
         }
       )
-
-
   }
-
-
 
   render() {
     return (
