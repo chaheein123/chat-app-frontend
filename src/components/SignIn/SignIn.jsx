@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { authService } from "../../services";
 import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -13,6 +12,10 @@ class SignIn extends React.Component {
     this.state = {
     }
   };
+
+  handleSubmit = () => {
+    console.log("hihi")
+  }
 
   render() {
     return (
@@ -29,7 +32,7 @@ class SignIn extends React.Component {
             </div>
 
             <div className="login-button">
-              <Button className="login-button-in" variant="contained" color="primary" onClick={() => authService().signup()} >
+              <Button className="login-button-in" variant="contained" color="primary" onClick={this.handleSubmit} >
                 <span className="login-text">Log In</span>
               </Button>
             </div>
