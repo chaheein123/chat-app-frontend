@@ -16,7 +16,6 @@ class SignUp extends React.Component {
       confirmpw: "",
       errorEmail: "",
       errorPw: "",
-      // errorConfirm: ""
     }
   };
 
@@ -47,7 +46,7 @@ class SignUp extends React.Component {
           errstorage["errorPw"] = "** Your passwords don't match **";
           reject(errstorage);
         };
-        if (this.state.pw.length < 8){
+        if (this.state.pw.length < 8) {
           errstorage["errorPw"] = "** Your passwords must be longer than 7 characters **";
           reject(errstorage);
         }
@@ -59,7 +58,6 @@ class SignUp extends React.Component {
     signupPromise
       .then(
         (response) => {
-          console.log(response);
           axios
             .post(
               "http://localhost:5000/auth/signup",
@@ -69,7 +67,6 @@ class SignUp extends React.Component {
               }
             )
             .then(response => {
-              console.log(response.data.errorEmail)
               if (response.data.errorEmail) {
                 this.setState(
                   {
@@ -77,7 +74,12 @@ class SignUp extends React.Component {
                   }
                 )
               };
+              console.log("lion king", response.data.token);
+              localStorage.setItem("userToken", response.data.token);
             })
+            .then(
+              this.props.history.push("/user")
+            )
         })
       .catch(
         (error) => {
@@ -87,11 +89,7 @@ class SignUp extends React.Component {
           })
         }
       )
-
-
   }
-
-
 
   render() {
     return (
