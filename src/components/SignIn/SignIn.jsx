@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
@@ -10,12 +11,58 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: "",
+      pw: "",
+      errorEmail: "",
+      errorPw: "",
     }
   };
 
-  handleSubmit = () => {
-    console.log("hihi")
-  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!this.state.email) {
+      this.setState({
+        errorEmail: "Please enter your email"
+      })
+    }
+
+    if (!this.state.pw) {
+      this.setState({
+        errorPw: "Please enter your password"
+      })
+    }
+
+    if (this.state.email && this.state.pw) {
+      axios
+        .post(
+          "http://localhost:5000/auth/login",
+          {
+            email: this.state.email,
+            pw: this.state.pw
+          }
+        )
+        .then(
+          (response) => {
+            if (response.data.errorEmail) {
+              this.setState({ errorEmail: response.data.errorEmail })
+            }
+            if (response.data.errorPw) {
+              this.setState({ errorPw: response.data.errorPw })
+            }
+            if (response.data.token) {
+              localStorage.setItem("userToken", response.data.token);
+              this.props.history.push("/user");
+            }
+          }
+        )
+        .catch(
+          (error) => {
+            this.setState({ errorEmail: "Sorry, something went wrong" })
+          }
+        )
+    }
+  };
 
   render() {
     return (
@@ -23,16 +70,62 @@ class SignIn extends React.Component {
         <div className="SignIn-SignUp-wrapper">
           <h1>Log In</h1>
           <form autoComplete="off">
+            {
+              this.state.errorEmail
+                ?
+                <div className="sign-warning-msg">
+                  {
+                    this.state.errorEmail
+                  }
+                </div>
+                :
+                null
+            }
             <div className="user-inputs-wrappers">
-              <TextField label="Email" className="user-inputs" type="email" />
+              <TextField
+                label="Email"
+                className="user-inputs"
+                type="email"
+                onChange={(event) => this.setState(
+                  {
+                    email: event.target.value,
+                    errorEmail: ""
+                  }
+                )}
+              />
             </div>
+            {
+              this.state.errorPw
+                ?
+                <div className="sign-warning-msg">
+                  {
+                    this.state.errorPw
+                  }
+                </div>
+                :
+                null
+            }
 
             <div className="user-inputs-wrappers">
-              <TextField label="Password" className="user-inputs" type="password" />
+              <TextField
+                label="Password"
+                className="user-inputs"
+                type="password"
+                onChange={(event) => this.setState(
+                  {
+                    pw: event.target.value,
+                    errorPw: ""
+                  })}
+              />
             </div>
 
             <div className="login-button">
-              <Button className="login-button-in" variant="contained" color="primary" onClick={this.handleSubmit} >
+              <Button
+                className="login-button-in"
+                variant="contained"
+                color="primary"
+                onClick={this.handleSubmit}
+              >
                 <span className="login-text">Log In</span>
               </Button>
             </div>
@@ -51,7 +144,7 @@ class SignIn extends React.Component {
         </div>
       </div >
     )
-  }
+  };
 };
 
 export default SignIn;
