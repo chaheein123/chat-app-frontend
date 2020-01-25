@@ -9,7 +9,6 @@ import Messages from "../../components/Messages/Messages";
 import SmallMessages from "../../components/SmallMessages/SmallMessages";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
 import { MainNavBar } from "../../components/MainNavBar/MainNavBar";
-import { isAuthenticated } from "../../services/auth_service";
 
 class AppPage extends React.Component {
   constructor(props) {
@@ -18,14 +17,6 @@ class AppPage extends React.Component {
 
     }
   };
-
-  componentWillReceiveProps(nextProps) {
-
-  }
-
-  componentDidMount() {
-
-  }
 
   render() {
     if (!localStorage.userToken) {
@@ -47,8 +38,11 @@ class AppPage extends React.Component {
         )
     });
     authPromise
-      .catch(error =>
-        this.props.history.push("/")
+      .catch(error => {
+        localStorage.removeItem("userToken");
+        this.props.history.push("/");
+      }
+
       )
     return (
       <Router>
