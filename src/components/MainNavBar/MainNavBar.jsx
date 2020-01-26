@@ -1,7 +1,7 @@
 import React from 'react';
 import "./MainNavBar.scss";
 
-export const MainNavBar = () => {
+export const MainNavBar = (props) => {
   return (
 
     <div className="nav-bar-wrapper">
@@ -24,7 +24,13 @@ export const MainNavBar = () => {
           <p className="nav-icons-texts">Friends</p>
         </div>
 
-        <div className="nav-icon-wrappers">
+        <div
+          className="nav-icon-wrappers"
+          onClick={() => {
+            localStorage.clear();
+            props.history.push("/");
+          }}
+        >
           <div className="nav-icons logout-icon">
           </div>
           <p className="nav-icons-texts">Log Out</p>

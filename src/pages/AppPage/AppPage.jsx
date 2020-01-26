@@ -9,6 +9,7 @@ import Messages from "../../components/Messages/Messages";
 import SmallMessages from "../../components/SmallMessages/SmallMessages";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
 import { MainNavBar } from "../../components/MainNavBar/MainNavBar";
+import Landing from '../Landing/Landing';
 
 class AppPage extends React.Component {
   constructor(props) {
@@ -45,28 +46,27 @@ class AppPage extends React.Component {
 
       )
     return (
-      <Router>
-        <div className="AppPage">
-          <MainNavBar />
-          <div className="app-body-wrapper">
-            <div className="app-body-flex">
-              <div className="app-body-left">
-                <Switch>
+      <Switch>
+        <React.Fragment>
+          <Route exact path="/" component={Landing} />
+          <div className="AppPage">
+            <Route path="/user" component={MainNavBar} />
+            <div className="app-body-wrapper">
+              <div className="app-body-flex">
+                <div className="app-body-left">
                   <Route exact path="/user" component={Dashboard} />
                   <Route exact path="/user/message/:id" component={SmallMessages} />
-                </Switch>
-              </div>
+                </div>
 
-              <div className="app-body-right">
-                <Switch>
+                <div className="app-body-right">
                   <Route exact path="/user" component={Messages} />
                   <Route exact path="/user/message/:id" component={ChatRoom} />
-                </Switch>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Router>
+        </React.Fragment>
+      </Switch>
     )
   }
 };
