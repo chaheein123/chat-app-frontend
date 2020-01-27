@@ -1,0 +1,53 @@
+.FriendsLeft {
+
+  background-color: beige;
+  // height: 100%;
+
+  .friends-search-wrapper {
+    position: sticky;
+    top: 0px;
+    padding: 20px 30px;
+    background-color: green;
+    display: flex;
+
+    .friends-search {
+
+      font-size: 13px;
+      padding: 5px;
+      display: inline-block;
+      flex: 6;
+    }
+
+    .friends-search-button-wrapper {
+      flex: 1;
+      display: inline-block;
+      padding: 5px;
+      background-color: whitesmoke;
+      max-width: 40px;
+      cursor: pointer;
+
+      .friends-search-button {
+        height: 22px;
+      }
+    }
+
+    
+
+
+    // .friends-search-button {
+    //   position: relative;
+    //   display: inline-block;
+    //   background-color: pink;
+    //   max-width:  50px;
+    //   min-width: 40px;
+    //   flex: 1;
+    //   cursor: pointer;
+    //   border-radius: 0 3px 3px 0;
+    //   background-image: url("https://img.icons8.com/android/100/000000/search.png");
+    //   background-size: cover;
+    // }
+  }
+
+
+
+}

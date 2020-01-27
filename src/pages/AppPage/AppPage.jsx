@@ -4,7 +4,8 @@ import "./AppPage.scss";
 import axios from "axios";
 
 import Dashboard from "../../components/Dashboard/Dashboard";
-import Friends from "../../components/Friends/Friends";
+import FriendsLeft from "../../components/Friends/FriendsLeft/FriendsLeft";
+import FriendsRight from "../../components/Friends/FriendsRight/FriendsRight";
 import Messages from "../../components/Messages/Messages";
 import SmallMessages from "../../components/SmallMessages/SmallMessages";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
@@ -55,12 +56,15 @@ class AppPage extends React.Component {
               <div className="app-body-flex">
                 <div className="app-body-left">
                   <Route exact path="/user" component={Dashboard} />
+                  <Route exact path="/user/message" component={SmallMessages} />
                   <Route exact path="/user/message/:id" component={SmallMessages} />
+                  <Route exact path="/user/friend" component={FriendsLeft} />
                 </div>
 
                 <div className="app-body-right">
                   <Route exact path="/user" component={Messages} />
                   <Route exact path="/user/message/:id" component={ChatRoom} />
+                  <Route exact path="/user/friend" component={FriendsRight} />
                 </div>
               </div>
             </div>
