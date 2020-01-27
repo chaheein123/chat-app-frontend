@@ -25,9 +25,6 @@ class FriendsLeft extends React.Component {
               className="friends-search-button"
             />
           </div>
-
-
-
         </div>
 
 
