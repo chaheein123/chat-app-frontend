@@ -13,7 +13,7 @@ class FriendsLeft extends React.Component {
   render() {
     return (
       <div className="FriendsLeft">
-      sss
+
         <div className="friends-search-wrapper">
           <input
             className="friends-search"
