@@ -4,9 +4,7 @@ import "./App.scss";
 import Landing from "./pages/Landing/Landing";
 import AppPage from "./pages/AppPage/AppPage";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Friends from "./components/Friends/Friends";
 import Messages from "./components/Messages/Messages";
-
 
 // import Dashboard from "../../components/Dashboard/Dashboard";
 // import Friends from "../../components/Friends/Friends";
