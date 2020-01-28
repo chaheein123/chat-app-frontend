@@ -1,9 +1,9 @@
 import React from "react";
+import { FriendsSearchOption } from "./FriendsSearchOption/FriendsSearchOption";
 
 import "./FriendsLeft.scss";
 
 import axios from 'axios';
-import { createTypeAnnotationBasedOnTypeof } from "@babel/types";
 
 class FriendsLeft extends React.Component {
   constructor(props) {
@@ -22,11 +22,13 @@ class FriendsLeft extends React.Component {
       "mousedown", (event) => {
         if (
           event.target != this.searchInputRef.current &&
-          event.target.className != "Users-search" &&
+          event.target.className != "search-option-username" &&
+          event.target.className != "search-option-wrapper" &&
+          event.target.className != "search-option-img" &&
           this.state.users.length != 0
         ) {
           this.setState({
-            filteredUsers: []
+            filteredUsers: [],
           })
         }
       }
@@ -34,7 +36,6 @@ class FriendsLeft extends React.Component {
   }
 
   handleSearch = () => {
-    // console.log(this.searchResultsRef.current);
     let usersPromise = new Promise((resolve, reject) => {
       axios
         .get(
@@ -76,7 +77,11 @@ class FriendsLeft extends React.Component {
             onChange={(event) => {
               filteredUsers = [...this.state.users];
               filteredUsers = [...this.state.users].filter(user =>
-                user.useremail.includes(event.target.value)
+                (
+                  user.username.toLowerCase().includes(event.target.value.toLowerCase())
+                  ||
+                  user.useremail.toLowerCase().includes(event.target.value.toLowerCase())
+                )
               );
               this.setState({ filteredUsers })
             }
@@ -99,11 +104,10 @@ class FriendsLeft extends React.Component {
               >
                 {
                   this.state.filteredUsers.map((user) =>
-                    <div
-                      className="Users-search"
-                    >
-                      {user.useremail}
-                    </div>
+                    <FriendsSearchOption
+                      useremail={user.useremail}
+                      username={user.username}
+                    />
                   )
                 }
               </div>
@@ -111,25 +115,6 @@ class FriendsLeft extends React.Component {
               null
           }
 
-
-          {/* {
-            this.state.users.length ?
-              <div
-                className="friends-search-results"
-              >
-                {
-                  this.state.users.map((user) =>
-                    <div
-                      className="Users-search"
-                    >
-                      {user.useremail}
-                    </div>
-                  )
-                }
-              </div>
-              :
-              null
-          } */}
         </div>
       </div>
     )
