@@ -30,6 +30,18 @@
         height: 22px;
       }
     }
+
+    .friends-search-results {
+      display: block;
+      position: absolute;
+      background-color: beige;
+      top:75%;
+      width: 80%;
+      max-height: 240px;
+      overflow: scroll;
+
+
+    }
   }
 
 
