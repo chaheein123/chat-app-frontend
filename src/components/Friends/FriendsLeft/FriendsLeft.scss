@@ -1,7 +1,6 @@
 .FriendsLeft {
 
   background-color: beige;
-  // height: 100%;
 
   .friends-search-wrapper {
     position: sticky;
@@ -30,8 +29,16 @@
         height: 22px;
       }
     }
+
+    .friends-search-results {
+      display: block;
+      position: absolute;
+      background-color: white;
+      top:75%;
+      width: 80%;
+      min-width: 320px;
+      max-height: 440px;
+      overflow: scroll;
+    }
   }
-
-
-
 }
