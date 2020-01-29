@@ -1,5 +1,5 @@
 import React from "react";
-import { FriendsSearchOption } from "./FriendsSearchOption/FriendsSearchOption";
+import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
 
 import "./FriendsLeft.scss";
 
@@ -10,8 +10,8 @@ class FriendsLeft extends React.Component {
     super(props);
     this.state = {
       users: [],
-      isInputEmpty: true,
       filteredUsers: [],
+      requestUsers: null
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
@@ -25,6 +25,7 @@ class FriendsLeft extends React.Component {
           event.target.className != "search-option-username" &&
           event.target.className != "search-option-wrapper" &&
           event.target.className != "search-option-img" &&
+          event.target.className != "search-option-username-span" &&
           this.state.users.length != 0
         ) {
           this.setState({
@@ -38,8 +39,9 @@ class FriendsLeft extends React.Component {
   handleSearch = () => {
     let usersPromise = new Promise((resolve, reject) => {
       axios
-        .get(
-          "http://localhost:5000/auth/findusers"
+        .post(
+          "http://localhost:5000/friends/findusers",
+          { usertoken: localStorage.getItem("userToken") }
         )
         .then(
           (response) => {
@@ -55,13 +57,18 @@ class FriendsLeft extends React.Component {
 
     usersPromise.then(
       (response) => {
+        let requestUsers = new Set();
+        for (let user of response["data"]["requestusers"]) {
+          requestUsers.add(user.friendemail)
+        };
         this.setState({
-          users: response["data"],
-          filteredUsers: response["data"]
+          users: response["data"]["allusers"],
+          filteredUsers: response["data"]["allusers"],
+          requestUsers
         })
       }
     )
-  }
+  };
 
   render() {
     let filteredUsers = [];
@@ -107,6 +114,7 @@ class FriendsLeft extends React.Component {
                     <FriendsSearchOption
                       useremail={user.useremail}
                       username={user.username}
+                      isRequested={this.state.requestUsers.has(user.useremail)}
                     />
                   )
                 }
