@@ -6,7 +6,7 @@
     position: sticky;
     top: 0px;
     padding: 20px 30px;
-    background-color: green;
+    // background-color: green;
     display: flex;
 
     .friends-search {
@@ -31,12 +31,11 @@
     }
 
     .friends-search-results {
-      display: block;
+      display: inline-block;
       position: absolute;
-      background-color: white;
       top:75%;
       width: 80%;
-      min-width: 320px;
+      // min-width: 310px;
       max-height: 440px;
       overflow: scroll;
     }
