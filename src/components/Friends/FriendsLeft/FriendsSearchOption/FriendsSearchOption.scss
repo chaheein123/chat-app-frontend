@@ -1,34 +1,82 @@
 .FriendsSearchOption {
   position: relative;
   width: 100%;
-
-  &:hover {
-    background-color: rgb(214, 224, 222);
-  }
-
-  .search-option-status {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
-    z-index: 3;
-    background-color: rgba(117, 226, 15, 0.884);
-    div {
-      // background-color: black;
-      font-size: 22px;
-      position: relative;
-      display: inline-block;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
+  min-width: 310px;
+  // border: 1px black solid;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.822);
+  font-size: 15px;
+  min-height: 60px;
+  height: auto;
+  max-height: 80px;
 
   .search-option-wrapper {
-    cursor: pointer;
     display: flex;
-    padding: 4px 20px;
-    max-width: 100%;
-  
+    position: absolute;
+    background-color: rgba(227, 233, 233, 0.945);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(185, 243, 209, 0.897);
+    }
+
+    .search-option-request {
+      display: none;
+    }
+
+    &:hover .search-option-request {
+      display: block;
+      background-color: rgba(131, 27, 134, 0.815);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      // top: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: white;
+      }
+    }
+
+    .search-option-not-request {
+      display: none;
+    }
+
+    &:hover .search-option-not-request {
+      display: block;
+      background-color: rgba(48, 238, 105, 0.815);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      // top: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: rgb(0, 0, 0);
+      }
+
+
+
+
+
+
+
+    }
+
     .search-option-img {
       border: 1px black solid;
       border-radius: 100%;
@@ -36,15 +84,43 @@
       width: 40px;
       min-height: 40px;
       min-width: 40px;
-      align-self: center;
+      background-color: beige;
+      margin-left: 5px;
+      margin-right: 5px;
     }
   
     .search-option-username {
-      align-self: center;
-      margin-left: 6px;
-      
+      max-width: 210px;
+      margin-right: 2%;
+      .search-option-username-span {
+        word-wrap    : break-word;
+        overflow-wrap: break-word;
+        white-space: pre-line;
+      }
     }
+  
+    .search-option-checkmark {
+      background-image: url("../../../../assets/img/checkmark.png");
+      background-size: cover;
+      height: 24px;
+      width: 24px;
+      position: relative;
+  
+    }
+
+    // .search-option-request {
+    //   position: absolute;
+    //   margin: auto;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    //   display: none;
+      
+    // }
+  }
+
+  .search-option-wrapper-requested {
     
   }
-}
 
+
+}

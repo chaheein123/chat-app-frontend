@@ -7,51 +7,65 @@ class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isRequested: props.isRequested
+      sentRequest: props.sentRequest
     };
   };
 
-  handleClickOption = (useremail) => {
-    axios
-      .post(
-        "http://localhost:5000/friends/addfriends",
-        { useremail, usertoken: localStorage.getItem("userToken") }
-      )
-      .then((response) => {
-        console.log(response, "this is the response")
-      })
-      .catch((error) => {
-        console.log(error, "this is the error")
-      })
+  sendRequest = (friendemail) => {
+    let requestPromise = new Promise((resolve, reject) => {
+      axios
+        .post(
+          "http://localhost:5000/friends/addfriends",
+          { friendemail, usertoken: localStorage.getItem("userToken") }
+        )
+        .then((response) => {
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error, "this is the error")
+        })
+
+    });
+
+    requestPromise
+      .then(this.setState({ sentRequest: true }))
+  };
+
+  cancelRequest = (friendemail) => {
+    let requestPromise = new Promise((resolve, reject) => {
+      axios
+        .post(
+          "http://localhost:5000/friends/cancelrequest",
+          { friendemail, usertoken: localStorage.getItem("userToken") }
+        )
+        .then((response) => {
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error, "this is the error")
+        })
+    });
+
+    requestPromise
+      .then(this.setState({ sentRequest: false }))
+
+
+
   }
 
   render() {
     return (
       <div
         className="FriendsSearchOption"
-        onClick={this.handleClickOption.bind(null, this.props.useremail)}
       >
-        {/* Make it green when the user already sent the request */}
-        {
-          this.state.isRequested
-            ?
-            <div className="search-option-status">
-              <div>Request sent</div>
-            </div>
-            :
-            null
-        }
-        {/*  */}
-
         <div className="search-option-wrapper">
-          <div className="search-option-img">
 
+          <div className="search-option-img">
           </div>
 
           <div className="search-option-username">
             {
               this.props.username ?
-
                 <span className="search-option-username-span">
                   <strong className="search-option-username-span">{this.props.username}</strong> ({this.props.useremail})
                 </span>
@@ -60,14 +74,44 @@ class FriendsSearchOption extends React.Component {
             }
           </div>
 
+          {
+            this.state.sentRequest
+              ?
+              <div className="search-option-checkmark clickstay">
+              </div>
+              :
+              null
+          }
+          {
+            this.state.sentRequest
+              ?
+              <div
+                className="search-option-request clickstay"
+                onClick={
+                  this.cancelRequest.bind(null, this.props.useremail)
+                }
+              >
+                <p className="clickstay">Click to cancel friend request</p>
+              </div>
+              :
+              <div
+                className="search-option-not-request clickstay"
+                onClick={
+                  this.sendRequest.bind(null, this.props.useremail)
+                }
+              >
+                <p className="clickstay">Click to send friend request</p>
+              </div>
+          }
+
+
+
+
 
         </div>
       </div>
     )
-
-
   }
-
 };
 
 export default FriendsSearchOption;
