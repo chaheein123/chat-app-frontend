@@ -7,7 +7,8 @@ class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentRequest: props.sentRequest
+      sentRequest: props.sentRequest,
+      receivedRequest: props.receivedRequest
     };
   };
 
@@ -48,9 +49,6 @@ class FriendsSearchOption extends React.Component {
 
     requestPromise
       .then(this.setState({ sentRequest: false }))
-
-
-
   }
 
   render() {
@@ -82,6 +80,7 @@ class FriendsSearchOption extends React.Component {
               :
               null
           }
+
           {
             this.state.sentRequest
               ?
@@ -103,11 +102,15 @@ class FriendsSearchOption extends React.Component {
                 <p className="clickstay">Click to send friend request</p>
               </div>
           }
-
-
-
-
-
+          {
+            this.state.receivedRequest
+              ?
+              <div className="search-option-requestreceived clickstay">
+                request received
+              </div>
+              :
+              null
+          }
         </div>
       </div>
     )

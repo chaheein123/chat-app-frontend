@@ -33,7 +33,6 @@ class FriendsLeft extends React.Component {
         }
       }
     )
-
   }
 
   handleSearch = () => {
@@ -60,13 +59,19 @@ class FriendsLeft extends React.Component {
       .then(
         (response) => {
           let requestSentUsers = new Set();
-          for (let user of response["data"]["requestusers"]) {
+          for (let user of response["data"]["requestSentUsers"]) {
             requestSentUsers.add(user.useremail)
+          };
+
+          let requestReceivedUsers = new Set();
+          for (let user of response["data"]["requestReceivedUsers"]) {
+            requestReceivedUsers.add(user.useremail)
           };
           this.setState({
             users: response["data"]["allusers"],
             filteredUsers: response["data"]["allusers"],
-            requestSentUsers
+            requestSentUsers,
+            requestReceivedUsers
           })
         }
       )
@@ -122,6 +127,7 @@ class FriendsLeft extends React.Component {
                       useremail={user.useremail}
                       username={user.username}
                       sentRequest={this.state.requestSentUsers.has(user.useremail)}
+                      receivedRequest={this.state.requestReceivedUsers.has(user.useremail)}
                     />
                   )
                 }
