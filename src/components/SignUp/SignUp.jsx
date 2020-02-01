@@ -19,10 +19,12 @@ class SignUp extends React.Component {
     }
   };
 
-  errstorage = {};
+
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    this.errstorage = {};
 
     let signupPromise = new Promise((resolve, reject) => {
 
