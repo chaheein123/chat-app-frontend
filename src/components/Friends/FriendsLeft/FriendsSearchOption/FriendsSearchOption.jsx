@@ -65,20 +65,20 @@ class FriendsSearchOption extends React.Component {
 
             {
               this.props.username.length ?
-                <span className="search-option-username-span">
+                <div className="search-option-username-span-wrapper">
                   <strong className="search-option-username-span">
                     {this.props.username}
                   </strong>
+                  <p>
+                    {
+                      this.props.useremail.length > 17 ?
+                        this.props.useremail.substring(0, 8) + "..." + this.props.useremail.substring(this.props.useremail.length - 10, this.props.useremail.length + 1)
+                        :
+                        this.props.useremail
 
-                  {
-                    this.props.useremail.length > 17 ?
-                      this.props.useremail.substring(0, 8) + "..." + this.props.useremail.substring(this.props.useremail.length - 10, this.props.useremail.length + 1)
-                      :
-                      this.props.useremail
-
-                  }
-                  {/* ({this.props.useremail}) */}
-                </span>
+                    }
+                  </p>
+                </div>
                 :
                 <strong className="search-option-username-span">
 
@@ -117,11 +117,11 @@ class FriendsSearchOption extends React.Component {
               :
               this.state.receivedRequest ?
                 <div className="search-option-requestreceived clickstay">
-                  <div className="search-option-requestreceived-flex">
-                    <p>blah has sent you friend request</p>
-                    <div>
-                      <button className="request-button request-button-accept">Accept</button>
-                      <button className="request-button request-button-decline">Decline</button>
+                  <div className="search-option-requestreceived-flex clickstay">
+                    {/* <p>blah has sent you friend request</p> */}
+                    <div className="clickstay">
+                      <button className="request-button request-button-accept clickstay">Accept friend request</button>
+                      <button className="request-button request-button-decline clickstay">Decline</button>
                     </div>
                   </div>
 

@@ -85,19 +85,20 @@
         border-radius: 7px;
         border: none;
         margin: 0 4%;
-        padding: 4px;
-        font-size: 11px;
+        padding: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px white solid;
       }
 
       .request-button-accept {
         background-color: rgb(21, 189, 21);
-        border: 1px white solid;
+        
       }
 
       .request-button-decline {
         color: rgb(235, 221, 221);
         background-color: red;
-        border: 1px white solid;
       }
     }
 
@@ -140,8 +141,18 @@
     }
   
     .search-option-username {
+      top: 50%;
       max-width: 210px;
       margin-right: 2%;
+
+      .search-option-username-span-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        p {
+          margin: 0;
+        }
+      }
       .search-option-username-span {
         word-wrap    : break-word;
         overflow-wrap: break-word;
