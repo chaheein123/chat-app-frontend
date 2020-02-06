@@ -27,6 +27,7 @@ class FriendsAPI {
       .then(
         (response) => {
           let requestSentUsers = new Set();
+          console.log(response["data"], "연아야")
           for (let user of response["data"]["requestSentUsers"]) {
             requestSentUsers.add(user.useremail)
           };
@@ -35,11 +36,18 @@ class FriendsAPI {
           for (let user of response["data"]["requestReceivedUsers"]) {
             requestReceivedUsers.add(user.useremail)
           };
+
+          let friends = new Set();
+          for (let user of response["data"]["friends"]) {
+            friends.add(user.useremail)
+          };
+
           THIS.setState({
             users: response["data"]["allusers"],
             filteredUsers: response["data"]["allusers"],
             requestSentUsers,
-            requestReceivedUsers
+            requestReceivedUsers,
+            friends
           })
         }
       )
@@ -87,6 +95,30 @@ class FriendsAPI {
 
     requestPromise
       .then(THIS.setState({ sentRequest: false }))
+  }
+
+  static acceptRequest(friendemail, userid, THIS) {
+    let acceptPromise = new Promise((resolve, reject) => {
+      axios
+        .post(
+          "http://localhost:5000/friends/acceptrequest",
+          { friendemail, userid }
+        )
+        .then((response) => {
+          resolve()
+        })
+        .catch((error) => {
+          console.log(error, "this is the error")
+        })
+    });
+
+    acceptPromise
+      .then(
+        THIS.setState({
+          isFriends: true,
+          sentRequest: false,
+          receivedRequest: false
+        }))
   }
 };
 

@@ -8,13 +8,14 @@ class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentRequest: props.sentRequest,
-      receivedRequest: props.receivedRequest,
-      userid: props.theid
+      sentRequest: this.props.sentRequest,
+      receivedRequest: this.props.receivedRequest,
+      isFriends: this.props.isFriends
     };
   };
 
   render() {
+
     return (
       <div
         className="FriendsSearchOption"
@@ -38,7 +39,6 @@ class FriendsSearchOption extends React.Component {
                         this.props.useremail.substring(0, 8) + "..." + this.props.useremail.substring(this.props.useremail.length - 10, this.props.useremail.length + 1)
                         :
                         this.props.useremail
-
                     }
                   </p>
                 </div>
@@ -51,7 +51,6 @@ class FriendsSearchOption extends React.Component {
                       :
                       this.props.useremail
                   }
-
 
                 </strong>
             }
@@ -68,11 +67,30 @@ class FriendsSearchOption extends React.Component {
           }
 
           {
+            this.state.receivedRequest
+              ?
+              <div className="search-option-pending clickstay">
+              </div>
+              :
+              null
+          }
+
+          {
+            this.state.isFriends
+              ?
+              <div className="search-option-friends clickstay">
+              </div>
+              :
+              null
+          }
+
+          {
+
             this.state.sentRequest ?
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  FriendsAPI.cancelRequest.bind(null, this.props.useremail, this.state.userid, this)
+                  FriendsAPI.cancelRequest.bind(null, this.props.useremail, this.props.theid, this)
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -81,24 +99,29 @@ class FriendsSearchOption extends React.Component {
               this.state.receivedRequest ?
                 <div className="search-option-requestreceived clickstay">
                   <div className="search-option-requestreceived-flex clickstay">
-                    {/* <p>blah has sent you friend request</p> */}
                     <div className="clickstay">
-                      <button className="request-button request-button-accept clickstay">Accept friend request</button>
+                      <button
+                        className="request-button request-button-accept clickstay"
+                        onClick={FriendsAPI.acceptRequest.bind(null, this.props.useremail, this.props.theid, this, )}
+                      >
+                        Accept friend request
+                      </button>
                       <button className="request-button request-button-decline clickstay">Decline</button>
                     </div>
                   </div>
-
-
                 </div>
                 :
-                <div
-                  className="search-option-not-request clickstay"
-                  onClick={
-                    FriendsAPI.sendRequest.bind(null, this.props.useremail, this.state.userid, this)
-                  }
-                >
-                  <p className="clickstay">Click to send friend request</p>
-                </div>
+                this.state.isFriends ?
+                  null
+                  :
+                  <div
+                    className="search-option-not-request clickstay"
+                    onClick={
+                      FriendsAPI.sendRequest.bind(null, this.props.useremail, this.props.theid, this)
+                    }
+                  >
+                    <p className="clickstay">Click to send friend request</p>
+                  </div>
           }
         </div>
       </div>

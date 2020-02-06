@@ -166,22 +166,27 @@
       height: 24px;
       width: 24px;
       position: relative;
-  
     }
 
-    // .search-option-request {
-    //   position: absolute;
-    //   margin: auto;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    //   display: none;
-      
-    // }
+    .search-option-pending {
+      background-image: url("../../../../assets/img/pending.png");
+      background-size: cover;
+      height: 35px;
+      width: 35px;
+      position: relative;
+    }
+
+    .search-option-friends {
+      background-image: url("../../../../assets/img/friends.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      position: relative;
+    }
   }
 
   .search-option-wrapper-requested {
     
   }
-
 
 }

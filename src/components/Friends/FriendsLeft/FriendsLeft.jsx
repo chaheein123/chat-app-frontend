@@ -12,6 +12,7 @@ class FriendsLeft extends React.Component {
       filteredUsers: [],
       requestSentUsers: null,
       requestReceivedUsers: null,
+      friends: null
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
@@ -46,7 +47,7 @@ class FriendsLeft extends React.Component {
             placeholder="Search for people to add"
             onClick={FriendsAPI.findAllUsers.bind(null, this)}
             onChange={(event) => {
-              filteredUsers = [...this.state.users];
+              // filteredUsers = [...this.state.users];
               filteredUsers = [...this.state.users].filter(user =>
                 (
                   user.username.toLowerCase().includes(event.target.value.toLowerCase())
@@ -55,8 +56,7 @@ class FriendsLeft extends React.Component {
                 )
               );
               this.setState({ filteredUsers })
-            }
-            }
+            }}
             ref={this.searchInputRef}
           />
           <div
@@ -76,11 +76,13 @@ class FriendsLeft extends React.Component {
                 {
                   this.state.filteredUsers.map((user) =>
                     <FriendsSearchOption
+                      key={user.useremail}
                       theid={this.props.location.pathname.split("/")[2]}
                       useremail={user.useremail}
                       username={user.username}
                       sentRequest={this.state.requestSentUsers.has(user.useremail)}
                       receivedRequest={this.state.requestReceivedUsers.has(user.useremail)}
+                      isFriends={this.state.friends.has(user.useremail)}
                     />
                   )
                 }
