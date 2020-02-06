@@ -1,14 +1,16 @@
 import React from 'react';
 import "./MainNavBar.scss";
+import NavbarAPI from "../../services/NavbarAPI";
 
 export const MainNavBar = (props) => {
   return (
 
     <div className="nav-bar-wrapper">
       <div className="MainNavBar">
+
         <div
           className="nav-icon-wrappers"
-          onClick={() => props.history.push("/user")}
+          onClick={NavbarAPI.homeClick.bind(null, props)}
         >
           <div className="nav-icons home-icon">
           </div>
@@ -17,9 +19,7 @@ export const MainNavBar = (props) => {
 
         <div
           className="nav-icon-wrappers"
-          onClick={() => {
-            props.history.push("/user/message")
-          }}
+          onClick={NavbarAPI.chatClick.bind(null, props)}
         >
           <div className="nav-icons chat-icon">
           </div>
@@ -28,9 +28,7 @@ export const MainNavBar = (props) => {
 
         <div
           className="nav-icon-wrappers"
-          onClick={() => {
-            props.history.push("/user/friend")
-          }}
+          onClick={NavbarAPI.friendClick.bind(null, props)}
         >
           <div className="nav-icons friends-icon">
           </div>

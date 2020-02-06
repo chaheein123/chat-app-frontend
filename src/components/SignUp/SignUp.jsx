@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import "./SignUp.scss";
+import Authenticate from '../../services/Authenticate';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -19,83 +20,11 @@ class SignUp extends React.Component {
     }
   };
 
-  errstorage = {};
-
   handleSubmit = (event) => {
     event.preventDefault();
-
-    let signupPromise = new Promise((resolve, reject) => {
-
-      if (!this.state.email) {
-        this.errstorage["errorEmail"] = "** Please type in your email **";
-        reject(this.errstorage);
-      }
-      else {
-        if (!this.state.email.includes("@") || this.state.email.length < 7) {
-          this.errstorage["errorEmail"] = `** ${this.state.email} is not a valid email **`
-          reject(this.errstorage);
-        }
-      };
-
-      if (!this.state.pw) {
-        this.errstorage["errorPw"] = "** Please type in your password **";
-        reject(this.errstorage);
-      }
-
-      else {
-        if (this.state.pw != this.state.confirmpw && (this.state.pw && this.state.confirmpw)) {
-          this.errstorage["errorPw"] = "** Your passwords don't match **";
-          reject(this.errstorage);
-        };
-        if (this.state.pw.length < 8) {
-          this.errstorage["errorPw"] = "** Your passwords must be longer than 7 characters **";
-          reject(this.errstorage);
-        }
-      };
-
-      resolve();
-    });
-
-    signupPromise
-      .then(
-        (response) => {
-          axios
-            .post(
-              "http://localhost:5000/auth/signup",
-              {
-                email: this.state.email,
-                pw: this.state.pw
-              }
-            )
-            .then(response => {
-              if (response.data.errorEmail) {
-                this.errstorage["errorEmail"] = `** ${this.state.email} is already used **`;
-
-                this.setState(
-                  {
-                    errorEmail: this.errstorage["errorEmail"]
-                  }
-                );
-                return;
-              }
-              else {
-                localStorage.setItem("userToken", response.data.token);
-                this.props.history.push("/user");
-                return response;
-              }
-            })
-
-        })
-      .catch(
-        (error) => {
-          this.setState({
-            errorEmail: error.errorEmail,
-            errorPw: error.errorPw
-          })
-        }
-      )
+    Authenticate.signup(this);
   }
-
+  
   render() {
     return (
       <div className="SignIn-SignUp">

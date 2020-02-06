@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import Authenticate from "../../services/Authenticate"
 
 import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
@@ -34,33 +34,7 @@ class SignIn extends React.Component {
     }
 
     if (this.state.email && this.state.pw) {
-      axios
-        .post(
-          "http://localhost:5000/auth/login",
-          {
-            email: this.state.email,
-            pw: this.state.pw
-          }
-        )
-        .then(
-          (response) => {
-            if (response.data.errorEmail) {
-              this.setState({ errorEmail: response.data.errorEmail })
-            }
-            if (response.data.errorPw) {
-              this.setState({ errorPw: response.data.errorPw })
-            }
-            if (response.data.token) {
-              localStorage.setItem("userToken", response.data.token);
-              this.props.history.push("/user");
-            }
-          }
-        )
-        .catch(
-          (error) => {
-            this.setState({ errorEmail: "Sorry, something went wrong" })
-          }
-        )
+      Authenticate.login(this.state.email, this.state.pw, this);
     }
   };
 
