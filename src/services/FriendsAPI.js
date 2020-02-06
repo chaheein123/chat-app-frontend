@@ -109,7 +109,7 @@ class FriendsAPI {
         })
         .catch((error) => {
           console.log(error, "this is the error")
-        })
+        });
     });
 
     acceptPromise
@@ -118,7 +118,9 @@ class FriendsAPI {
           isFriends: true,
           sentRequest: false,
           receivedRequest: false
-        }))
+        }));
+
+
   }
 };
 

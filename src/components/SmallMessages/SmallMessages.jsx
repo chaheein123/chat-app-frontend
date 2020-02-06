@@ -13,6 +13,7 @@ class SmallMessages extends React.Component {
     this.state = {
       chatData: DATA,
       clickedChatId: this.props.match.params.id,
+      userid: this.props.match.url.split("/")[2]
     };
   };
 
@@ -24,6 +25,7 @@ class SmallMessages extends React.Component {
   };
 
   render() {
+    console.log(this.state.userid);
     return (
       <div className="SmallMessages">
         {
