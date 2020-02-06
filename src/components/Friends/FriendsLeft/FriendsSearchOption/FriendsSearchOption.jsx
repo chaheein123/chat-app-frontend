@@ -85,7 +85,6 @@ class FriendsSearchOption extends React.Component {
           }
 
           {
-
             this.state.sentRequest ?
               <div
                 className="search-option-request clickstay"
