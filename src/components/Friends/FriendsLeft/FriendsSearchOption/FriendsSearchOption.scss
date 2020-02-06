@@ -47,6 +47,30 @@
       }
     }
 
+    .search-option-friend {
+      display: none;
+    }
+
+    &:hover .search-option-friend {
+      display: block;
+      background-color: rgba(142, 164, 235, 0.719);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      // top: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: black;
+      }
+    }
+
     .search-option-requestreceived {
       display: none;
     }
@@ -116,7 +140,6 @@
       position: absolute;
       margin: auto;
       left: 50%;
-      // top: 50%;
       transform: translateX(-50%);
       
       font-weight: bold;
@@ -179,8 +202,8 @@
     .search-option-friends {
       background-image: url("../../../../assets/img/friends.png");
       background-size: cover;
-      height: 70px;
-      width: 70px;
+      height: 55px;
+      width: 55px;
       position: relative;
     }
   }

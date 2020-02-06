@@ -112,7 +112,11 @@ class FriendsSearchOption extends React.Component {
                 </div>
                 :
                 this.state.isFriends ?
-                  null
+                  <div
+                    className="search-option-friend clickstay"
+                  >
+                    <p className="clickstay">Click to message</p>
+                  </div>
                   :
                   <div
                     className="search-option-not-request clickstay"
