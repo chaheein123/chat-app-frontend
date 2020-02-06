@@ -1,6 +1,7 @@
 import React from 'react';
 
 import "./FriendsSearchOption.scss";
+import FriendsAPI from "../../../../services/FriendsAPI";
 
 import axios from 'axios';
 class FriendsSearchOption extends React.Component {
@@ -8,48 +9,10 @@ class FriendsSearchOption extends React.Component {
     super(props);
     this.state = {
       sentRequest: props.sentRequest,
-      receivedRequest: props.receivedRequest
+      receivedRequest: props.receivedRequest,
+      userid: props.theid
     };
   };
-
-  sendRequest = (friendemail) => {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/addfriends",
-          { friendemail, usertoken: localStorage.getItem("userToken") }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
-
-    });
-
-    requestPromise
-      .then(this.setState({ sentRequest: true }))
-  };
-
-  cancelRequest = (friendemail) => {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/cancelrequest",
-          { friendemail, usertoken: localStorage.getItem("userToken") }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
-    });
-
-    requestPromise
-      .then(this.setState({ sentRequest: false }))
-  }
 
   render() {
     return (
@@ -109,7 +72,7 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  this.cancelRequest.bind(null, this.props.useremail)
+                  FriendsAPI.cancelRequest.bind(null, this.props.useremail, this.state.userid, this)
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -131,7 +94,7 @@ class FriendsSearchOption extends React.Component {
                 <div
                   className="search-option-not-request clickstay"
                   onClick={
-                    this.sendRequest.bind(null, this.props.useremail)
+                    FriendsAPI.sendRequest.bind(null, this.props.useremail, this.state.userid, this)
                   }
                 >
                   <p className="clickstay">Click to send friend request</p>

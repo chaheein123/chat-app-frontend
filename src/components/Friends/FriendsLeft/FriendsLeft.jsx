@@ -1,9 +1,8 @@
 import React from "react";
 import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
+import FriendsAPI from "../../../services/FriendsAPI";
 
 import "./FriendsLeft.scss";
-
-import axios from 'axios';
 
 class FriendsLeft extends React.Component {
   constructor(props) {
@@ -35,53 +34,6 @@ class FriendsLeft extends React.Component {
     )
   }
 
-  handleSearch = () => {
-    let usersPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/findusers",
-          { usertoken: localStorage.getItem("userToken") }
-        )
-        .then(
-          (response) => {
-            resolve(response);
-          }
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-            reject();
-          }
-        )
-    });
-
-    usersPromise
-      .then(
-        (response) => {
-          let requestSentUsers = new Set();
-          for (let user of response["data"]["requestSentUsers"]) {
-            requestSentUsers.add(user.useremail)
-          };
-
-          let requestReceivedUsers = new Set();
-          for (let user of response["data"]["requestReceivedUsers"]) {
-            requestReceivedUsers.add(user.useremail)
-          };
-          this.setState({
-            users: response["data"]["allusers"],
-            filteredUsers: response["data"]["allusers"],
-            requestSentUsers,
-            requestReceivedUsers
-          })
-        }
-      )
-      .catch(
-        (error) => {
-          console.log(error)
-        }
-      )
-  };
-
   render() {
     let filteredUsers = [];
 
@@ -92,7 +44,7 @@ class FriendsLeft extends React.Component {
             className="friends-search"
             type="text"
             placeholder="Search for people to add"
-            onClick={this.handleSearch}
+            onClick={FriendsAPI.findAllUsers.bind(null, this)}
             onChange={(event) => {
               filteredUsers = [...this.state.users];
               filteredUsers = [...this.state.users].filter(user =>
@@ -124,6 +76,7 @@ class FriendsLeft extends React.Component {
                 {
                   this.state.filteredUsers.map((user) =>
                     <FriendsSearchOption
+                      theid={this.props.location.pathname.split("/")[2]}
                       useremail={user.useremail}
                       username={user.username}
                       sentRequest={this.state.requestSentUsers.has(user.useremail)}

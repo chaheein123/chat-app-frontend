@@ -11,6 +11,7 @@ import SmallMessages from "../../components/SmallMessages/SmallMessages";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
 import { MainNavBar } from "../../components/MainNavBar/MainNavBar";
 import Landing from '../Landing/Landing';
+import Authenticate from '../../services/Authenticate';
 
 class AppPage extends React.Component {
   constructor(props) {
@@ -21,31 +22,9 @@ class AppPage extends React.Component {
   };
 
   render() {
-    if (!localStorage.userToken) {
-      this.props.history.push("/")
-    };
 
-    let authPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/auth/authenticate",
-          { userToken: localStorage.userToken }
-        )
-        .then(
-          (response) => {
-            if (Number(response.data.length) != 1) {
-              reject()
-            }
-          }
-        )
-    });
-    authPromise
-      .catch(error => {
-        localStorage.removeItem("userToken");
-        this.props.history.push("/");
-      }
+    Authenticate.authenticate(this);
 
-      )
     return (
       <Switch>
         <React.Fragment>
@@ -55,16 +34,16 @@ class AppPage extends React.Component {
             <div className="app-body-wrapper">
               <div className="app-body-flex">
                 <div className="app-body-left">
-                  <Route exact path="/user" component={Dashboard} />
-                  <Route exact path="/user/message" component={SmallMessages} />
-                  <Route exact path="/user/message/:id" component={SmallMessages} />
-                  <Route exact path="/user/friend" component={FriendsLeft} />
+                  <Route exact path="/user/:id" component={Dashboard} />
+                  <Route exact path="/user/:id/message" component={SmallMessages} />
+                  <Route exact path="/user/:id/message/:msgid" component={SmallMessages} />
+                  <Route exact path="/user/:id/friend" component={FriendsLeft} />
                 </div>
 
                 <div className="app-body-right">
-                  <Route exact path="/user" component={Messages} />
-                  <Route exact path="/user/message/:id" component={ChatRoom} />
-                  <Route exact path="/user/friend" component={FriendsRight} />
+                  <Route exact path="/user/:id" component={Messages} />
+                  <Route exact path="/user/:id/message/:msgid" component={ChatRoom} />
+                  <Route exact path="/user/:id/friend" component={FriendsRight} />
                 </div>
               </div>
             </div>

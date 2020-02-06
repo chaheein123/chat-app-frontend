@@ -24,7 +24,7 @@ class SignUp extends React.Component {
     event.preventDefault();
     Authenticate.signup(this);
   }
-
+  
   render() {
     return (
       <div className="SignIn-SignUp">

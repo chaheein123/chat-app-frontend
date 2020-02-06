@@ -5,6 +5,29 @@ class Authenticate {
 
   }
 
+  // Authenticate
+  static authenticate(THIS) {
+
+    if (!localStorage.userToken) {
+      THIS.props.history.push("/")
+    };
+
+    let userid = THIS.props.location.pathname.split("/")[2];
+
+    axios
+      .post(
+        "http://localhost:5000/auth/authenticate",
+        { userToken: localStorage.userToken, userid }
+      )
+      .catch(
+        (error) => {
+          console.log("error", error);
+          localStorage.clear();
+          THIS.props.history.push("/");
+        }
+      )
+  }
+
   // Log in
   static login(email, pw, THIS) {
     axios
@@ -22,7 +45,7 @@ class Authenticate {
           }
           if (response.data.token) {
             localStorage.setItem("userToken", response.data.token);
-            THIS.props.history.push("/user");
+            THIS.props.history.push(`/user/${response.data.id}`);
           }
         }
       )
@@ -78,9 +101,9 @@ class Authenticate {
             )
             .then(response => {
               if (response.data.errorEmail) {
-                this.errstorage["errorEmail"] = `** ${THIS.state.email} is already used **`;
+                THIS.errstorage["errorEmail"] = `** ${THIS.state.email} is already used **`;
 
-                this.setState(
+                THIS.setState(
                   {
                     errorEmail: THIS.errstorage["errorEmail"]
                   }
@@ -89,11 +112,10 @@ class Authenticate {
               }
               else {
                 localStorage.setItem("userToken", response.data.token);
-                THIS.props.history.push("/user");
+                THIS.props.history.push(`/user/${response.data.id}`);
                 return response;
               }
             })
-
         })
       .catch(
         (error) => {
@@ -104,7 +126,6 @@ class Authenticate {
         }
       )
   }
-
 };
 
 export default Authenticate;
