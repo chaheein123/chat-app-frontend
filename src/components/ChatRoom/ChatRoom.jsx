@@ -9,18 +9,18 @@ class ChatRoom extends React.Component {
 
     this.state = {
       chatData: DATA,
-      sentId: this.props.match.params.id,
+      sentId: this.props.match.params.msgid,
     }
   };
 
   componentWillReceiveProps(nextProps) {
 
-    if (nextProps.match.params.id != this.props.match.params.id) {
+    if (nextProps.match.params.msgid != this.props.match.params.msgid) {
       this.setState({
-        sentId: nextProps.match.params.id
+        sentId: nextProps.match.params.msgid
       })
     };
-  }
+  };
 
   render() {
     return (

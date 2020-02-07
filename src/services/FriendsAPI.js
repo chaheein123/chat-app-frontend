@@ -27,7 +27,6 @@ class FriendsAPI {
       .then(
         (response) => {
           let requestSentUsers = new Set();
-          console.log(response["data"], "연아야")
           for (let user of response["data"]["requestSentUsers"]) {
             requestSentUsers.add(user.useremail)
           };
