@@ -1,7 +1,14 @@
 
+.SmallMessage {
+  &:hover {
+    background-color: rgb(209, 205, 205);
+  }
+}
+
 
 .SmallMessage-inboxes, .SmallMessageTurned{
-  border: 1px black solid;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.664);
+
 
   .SmallMessage-inboxes-pics {
 
@@ -14,16 +21,18 @@
     }
 
     .SmallMessage-inboxes-msgContent {
-      color: rgb(78, 77, 77);
-
+      span {
+        color: rgb(78, 77, 77)
+      }
     }
 
   }
 
   .SmallMessage-inboxes-sentTime {
-    color: rgb(95, 94, 94);
-    font-size: 12px;
-
+    span {
+      color: rgb(95, 94, 94);
+      font-size: 12px;
+    }
   }
 }
 

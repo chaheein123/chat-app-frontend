@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./SmallMessages.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "../../utils/httpClient";
 
 import SmallMessage from "../SmallMessage/SmallMessage";
-import { DATA } from "../../data";
+
+import MessagesAPI from "../../services/MessagesAPI";
 
 class SmallMessages extends React.Component {
   constructor(props) {
@@ -19,18 +19,10 @@ class SmallMessages extends React.Component {
   };
 
   componentDidMount() {
+
     let userid = this.props.location.pathname.split("/")[2];
-    let chatPromise = new Promise((resolve, reject) => {
-      axios
-        .get(`http://localhost:5000/chats/allchats/${userid}`)
-        .then(response => {
-          resolve(response)
-        })
-    });
-    chatPromise
-      .then(response => {
-        this.setState({ chatData: response["data"] })
-      })
+    MessagesAPI.allRecentMessages(userid, this);
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,7 +33,7 @@ class SmallMessages extends React.Component {
   };
 
   render() {
-    console.log(this.state.chatData, "rendered chatdata")
+
     return (
       <div className="SmallMessages">
         {
@@ -51,12 +43,17 @@ class SmallMessages extends React.Component {
             :
             this.state.chatData.map((chat) => {
               return (
-                <Link to={`/user/${this.state.userid}/message/${chat.chatroomid}`}>
+                <Link
+                  to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
+                  className="Applinks"
+                  key={chat.chatroomid}
+                >
 
                   <SmallMessage
                     key={chat.chatroomid}
                     id={chat.chatroomid}
-                    sentTo={chat.username}
+                    userName={chat.username}
+                    userEmail={chat.useremail}
                     msgContent={chat.msgcontent}
                     sentTime={chat.createdat}
                     clickedChatId={this.state.clickedChatId}

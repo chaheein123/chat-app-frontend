@@ -39,8 +39,10 @@
     }
 
     .Messages-inboxes-sentTime {
-      color: rgb(95, 94, 94);
-      font-size: 12px;
+      span {
+        color: rgb(95, 94, 94);
+        font-size: 12px;
+      }
     }
 
 

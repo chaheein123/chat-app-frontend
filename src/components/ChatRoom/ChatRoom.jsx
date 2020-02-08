@@ -8,7 +8,6 @@ class ChatRoom extends React.Component {
     super(props);
 
     this.state = {
-      chatData: DATA,
       sentId: this.props.match.params.msgid,
     }
   };
@@ -28,18 +27,7 @@ class ChatRoom extends React.Component {
         {
           this.state.sentId
         }
-        {
-          this.state.chatData.map((chat) => {
-            if (chat.sentBy == this.state.sentId) {
-              return (
-                <div>
-                  {chat.msgContent}
-                </div>
-              )
-            }
 
-          })
-        }
       </div>
     )
   }

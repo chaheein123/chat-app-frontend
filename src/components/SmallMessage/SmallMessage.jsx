@@ -46,16 +46,28 @@ class SmallMessage extends React.Component {
 
           <div className="SmallMessage-inboxes-middle">
             <div className="SmallMessage-inboxes-sentTo">
-              {this.props.sentTo}
+              {
+                this.props.userName ?
+                  <span>{this.props.userName} ({this.props.userEmail})</span> :
+                  <span>{this.props.userEmail}</span>
+              }
             </div>
 
             <div className="SmallMessage-inboxes-msgContent">
-              {this.props.msgContent}
+              {
+                this.props.msgContent ?
+                  <span>{this.props.msgContent}</span> :
+                  <span>You are now friends</span>
+              }
             </div>
           </div>
 
           <div className="SmallMessage-inboxes-sentTime">
-            {this.props.sentTime}
+            {
+              this.props.sentTime ?
+                <span>{this.props.sentTime}</span> :
+                <span>Start a conversation</span>
+            }
           </div>
         </div>
       </div>

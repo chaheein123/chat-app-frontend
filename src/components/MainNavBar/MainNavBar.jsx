@@ -19,20 +19,20 @@ export const MainNavBar = (props) => {
 
         <div
           className="nav-icon-wrappers"
-          onClick={NavbarAPI.chatClick.bind(null, props)}
-        >
-          <div className="nav-icons chat-icon">
-          </div>
-          <p className="nav-icons-texts">Chats</p>
-        </div>
-
-        <div
-          className="nav-icon-wrappers"
           onClick={NavbarAPI.friendClick.bind(null, props)}
         >
           <div className="nav-icons friends-icon">
           </div>
           <p className="nav-icons-texts">Friends</p>
+        </div>
+
+        <div
+          className="nav-icon-wrappers"
+          onClick={NavbarAPI.chatClick.bind(null, props)}
+        >
+          <div className="nav-icons chat-icon">
+          </div>
+          <p className="nav-icons-texts">Chats</p>
         </div>
 
         <div
