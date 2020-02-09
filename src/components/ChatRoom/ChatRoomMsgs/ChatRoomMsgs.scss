@@ -1,0 +1,44 @@
+
+.ChatRoomMsgs {
+  background-color: pink;
+  position: relative;
+  border: 1px black solid;
+  flex: 5;
+  overflow: scroll;
+
+  .msgs-chatter-wrapper {
+    border: 1px black solid;
+    text-align: left;
+    padding: 15px;
+
+    .msgs-chatter-portrait {
+      display: inline-block;
+      height: 45px;
+      width: 45px;
+      border-radius: 100px;
+      border: 1px black solid;
+    }
+
+    .msgs-chatter-namecontent-wrapper {
+      display: inline-block;
+      margin-left: 8px;
+      vertical-align: top;
+
+      .msgs-chatter-name {
+        width: auto;
+        max-width: 300px;
+        text-align: left;
+        
+        p {
+          line-height: 1;
+          margin-bottom: 0px;
+        }
+      }
+  
+      .msgs-chatter-content {
+        text-align: left;
+        margin-top: 0;
+      }
+    }
+  }
+}
