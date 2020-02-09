@@ -13,15 +13,12 @@
   .search-option-wrapper {
     display: flex;
     position: absolute;
-    background-color: rgba(227, 233, 233, 0.945);
+    // background-color: rgba(227, 233, 233, 0.945);
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: 100%;
     align-items: center;
     cursor: pointer;
-
-    &:hover {
-      background-color: rgba(185, 243, 209, 0.897);
-    }
 
     .search-option-request {
       display: none;
@@ -158,7 +155,6 @@
       width: 40px;
       min-height: 40px;
       min-width: 40px;
-      background-color: beige;
       margin-left: 5px;
       margin-right: 5px;
     }

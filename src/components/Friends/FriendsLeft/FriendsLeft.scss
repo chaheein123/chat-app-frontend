@@ -1,16 +1,14 @@
 .FriendsLeft {
-
-  background-color: beige;
+  // background-color: purple;
+  height: 100%;
 
   .friends-search-wrapper {
     position: sticky;
     top: 0px;
     padding: 20px 30px;
-    // background-color: green;
     display: flex;
 
     .friends-search {
-
       font-size: 13px;
       padding: 5px;
       display: inline-block;
@@ -35,7 +33,6 @@
       position: absolute;
       top:75%;
       width: 80%;
-      // min-width: 310px;
       max-height: 440px;
       overflow: scroll;
     }

@@ -16,14 +16,17 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="Dashboard">
-        <div className="dashboard-img-div">
+
+        <div className="dashboard-img-div-wrapper">
+          <div className="dashboard-img-div">
+          </div>
+          <p>
+            User Name: Ian Cha
+          </p>
+          <p>
+            Email: chaheein@gmail.com
+          </p>
         </div>
-        <p>
-          User Name: Ian Cha
-        </p>
-        <p>
-          Email: chaheein@gmail.com
-        </p>
       </div>
 
     )

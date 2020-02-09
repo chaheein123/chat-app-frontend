@@ -32,33 +32,35 @@ class Messages extends React.Component {
                   key={chat.chatroomid}
                 >
                   <div className="Messages-inboxes">
-                    <div className="Messages-inboxes-pics">
-                    </div>
+                    <div className="Messages-inboxes-backgroundhover">
+                      <div className="Messages-inboxes-pics">
+                      </div>
 
-                    <div className="Messages-inboxes-middle">
-                      <div className="Messages-inboxes-sentTo">
+                      <div className="Messages-inboxes-middle">
+                        <div className="Messages-inboxes-sentTo">
+                          {
+                            chat.username ?
+                              <span>
+                                {chat.username} ({chat.useremail})
+                              </span> :
+                              <span>
+                                {chat.useremail}
+                              </span>
+                          }
+                        </div>
+
+                        <div className="Messages-inboxes-msgContent">
+                          {chat.msgcontent}
+                        </div>
+                      </div>
+
+                      <div className="Messages-inboxes-sentTime">
                         {
-                          chat.username ?
-                            <span>
-                              {chat.username} ({chat.useremail})
-                            </span> :
-                            <span>
-                              {chat.useremail}
-                            </span>
+                          chat.createdat ?
+                            <span>{chat.createdat}</span> :
+                            <span>Start conversation</span>
                         }
                       </div>
-
-                      <div className="Messages-inboxes-msgContent">
-                        {chat.msgcontent}
-                      </div>
-                    </div>
-
-                    <div className="Messages-inboxes-sentTime">
-                      {
-                        chat.createdat ?
-                          <span>{chat.createdat}</span> :
-                          <span>Start conversation</span>
-                      }
                     </div>
                   </div>
                 </Link>

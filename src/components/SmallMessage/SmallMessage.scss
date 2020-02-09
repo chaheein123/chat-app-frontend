@@ -1,14 +1,19 @@
 
 .SmallMessage {
-  &:hover {
-    background-color: rgb(209, 205, 205);
-  }
+  background-image: url("../../assets/img/msgbackground.jpg");
+  background-size: cover;
+  position: relative;
 }
 
+.SmallMessage-inboxes {
+  &:hover {
+    background-color: rgba(245, 220, 244, 0.349);
+  }
+
+}
 
 .SmallMessage-inboxes, .SmallMessageTurned{
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.664);
-
 
   .SmallMessage-inboxes-pics {
 
@@ -37,7 +42,10 @@
 }
 
 .SmallMessageTurned {
-  background-color: green;
+  background-color: rgba(202, 245, 218, 0.623);
+  &:hover {
+    background-color: rgba(202, 245, 218, 0.623);
+  }
 }
 
   

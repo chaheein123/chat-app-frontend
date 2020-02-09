@@ -35,14 +35,14 @@ class SmallMessage extends React.Component {
         className="SmallMessage"
       >
 
+
         <div
           className={
-
-            !this.state.turnedOn ? "SmallMessage-inboxes" : "SmallMessageTurned"
+            !this.state.turnedOn ? "SmallMessage-inboxes" : "SmallMessage-inboxes SmallMessageTurned"
           }
         >
-          <div className="SmallMessage-inboxes-pics">
-          </div>
+          {/* <div className="SmallMessage-inboxes-pics">
+          </div> */}
 
           <div className="SmallMessage-inboxes-middle">
             <div className="SmallMessage-inboxes-sentTo">
