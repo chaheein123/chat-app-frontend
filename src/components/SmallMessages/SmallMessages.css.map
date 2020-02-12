@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,MAAM;CACjB",
+    "sources": [
+        "SmallMessages.scss"
+    ],
+    "names": [],
+    "file": "SmallMessages.css"
+}

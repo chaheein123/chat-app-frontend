@@ -1,0 +1,61 @@
+.Messages {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
+.Messages .Messages-inboxes {
+  position: relative;
+  height: 90px;
+  width: 100%;
+  background-image: url("../../assets/img/msgbackground.jpg");
+  background-size: cover;
+  -webkit-box-shadow: 0px 0px 1px black;
+          box-shadow: 0px 0px 1px black;
+}
+
+.Messages .Messages-inboxes:hover {
+  cursor: pointer;
+  background-color: #f1f1f1;
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover:hover {
+  background-color: rgba(245, 220, 244, 0.349);
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover .Messages-inboxes-middle {
+  position: relative;
+  width: 70%;
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover .Messages-inboxes-pics {
+  height: 55px;
+  width: 55px;
+  border-radius: 100px;
+  border: 1px black solid;
+  float: left;
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover .Messages-inboxes-msgContent {
+  color: #4e4d4d;
+}
+
+.Messages .Messages-inboxes .Messages-inboxes-backgroundhover .Messages-inboxes-sentTime span {
+  color: #5f5e5e;
+  font-size: 12px;
+}
+/*# sourceMappingURL=Messages.css.map */

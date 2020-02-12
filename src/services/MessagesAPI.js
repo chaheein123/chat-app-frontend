@@ -34,6 +34,17 @@ class MessagesAPI {
           })
         }
       })
+  };
+
+  static chatroomMessage(ownId, chatroomId, msg, THIS) {
+    axios
+      .post(
+        "http://localhost:5000/chats/sentmsg",
+        { ownId, chatroomId, msg }
+      )
+      .then(response => THIS.setState({ msgInput: null }))
+      .catch(error => console.log(error))
+
   }
 };
 

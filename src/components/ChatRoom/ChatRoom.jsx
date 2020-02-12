@@ -3,8 +3,9 @@ import "./ChatRoom.scss";
 
 import { ChatRoomTop } from "./ChatRoomTop/ChatRoomTop";
 import { ChatRoomMsgs } from "./ChatRoomMsgs/ChatRoomMsgs";
-import { ChatRoomMessager } from "./ChatRoomMessager/ChatRoomMessager";
+import ChatRoomMessager from "./ChatRoomMessager/ChatRoomMessager";
 
+import io from "socket.io-client";
 import MessagesAPI from "../../services/MessagesAPI";
 
 class ChatRoom extends React.Component {
@@ -18,11 +19,16 @@ class ChatRoom extends React.Component {
       // for the chatrooms below
       chatters: null,
       messages: null,
-    }
+    };
+
+    // this.ENDPOINT = "http://localhost:5000";
   };
 
   componentDidMount() {
-    MessagesAPI.chatroom(this)
+    MessagesAPI.chatroom(this);
+    // let socket = io(this.ENDPOINT);
+    // console.log(socket);
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +41,6 @@ class ChatRoom extends React.Component {
   };
 
   render() {
-    console.log(this.state.messages)
     return (
       <div className="ChatRoom">
 
@@ -47,7 +52,9 @@ class ChatRoom extends React.Component {
           ownId={this.state.ownId}
         />
         <ChatRoomMessager
-
+          chatters={this.state.chatters}
+          chatroomId={this.state.msgId}
+          ownId={this.state.ownId}
         />
       </div>
     )

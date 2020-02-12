@@ -36,5 +36,38 @@
       max-height: 440px;
       overflow: scroll;
     }
+  };
+
+  .friends-recommend-wrapper {
+    .friends-recommend-header {
+      font-size: 21px;
+    }
+    .friends-recommend {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      .friends-recommend-each {
+        text-align: center;
+
+
+        .friends-recommend-img {
+          display: inline-block;
+          border: 1px black solid;
+          width: 55px;
+          height: 55px;
+          border-radius: 100px;
+        }
+        .friends-recommend-texts {
+          width: 102px;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+
+          p {
+            font-size: 12.6px;
+          }
+        }
+      }
+    }
   }
 }

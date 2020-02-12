@@ -118,8 +118,21 @@ class FriendsAPI {
           sentRequest: false,
           receivedRequest: false
         }));
+  };
 
+  static allOtherUsers(THIS) {
+    let userid = THIS.props.location.pathname.split("/")[2];
+    axios
+      .get(`http://localhost:5000/friends/${userid}/allOtherUsers`)
+      .then(response => {
 
+        THIS.setState(
+          {
+            recommendedUsers: response.data.recommendedUsers,
+            pendingUsers: response.data.pendingUsers
+          }
+        )
+      })
   }
 };
 

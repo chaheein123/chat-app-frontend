@@ -1,0 +1,10 @@
+.ChatRoomTop {
+  position: relative;
+  border: 1px black solid;
+  -webkit-box-flex: 0.4;
+      -ms-flex: 0.4;
+          flex: 0.4;
+  max-height: 80px;
+  min-height: 50px;
+}
+/*# sourceMappingURL=ChatRoomTop.css.map */

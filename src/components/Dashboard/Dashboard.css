@@ -1,0 +1,21 @@
+.Dashboard {
+  height: 100%;
+  position: relative;
+}
+
+.Dashboard .dashboard-img-div-wrapper {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Dashboard .dashboard-img-div-wrapper .dashboard-img-div {
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  background-color: pink;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=Dashboard.css.map */

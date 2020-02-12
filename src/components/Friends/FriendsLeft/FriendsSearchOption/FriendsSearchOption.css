@@ -1,0 +1,224 @@
+.FriendsSearchOption {
+  position: relative;
+  width: 100%;
+  min-width: 310px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.822);
+          box-shadow: 0 0 1px rgba(0, 0, 0, 0.822);
+  font-size: 15px;
+  min-height: 60px;
+  height: auto;
+  max-height: 80px;
+  overflow: scroll;
+}
+
+.FriendsSearchOption .search-option-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-request {
+  display: none;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-request {
+  display: block;
+  background-color: rgba(131, 27, 134, 0.815);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-weight: bold;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-request p {
+  position: relative;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  color: white;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-friend {
+  display: none;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-friend {
+  display: block;
+  background-color: rgba(142, 164, 235, 0.719);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-weight: bold;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-friend p {
+  position: relative;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  color: black;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-requestreceived {
+  display: none;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: rgba(60, 66, 68, 0.815);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  text-align: center;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived .search-option-requestreceived-flex {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived p {
+  position: relative;
+  color: white;
+  font-size: 13px;
+  margin: 0 0 4px 0;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived .request-button {
+  border-radius: 7px;
+  border: none;
+  margin: 0 4%;
+  padding: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px white solid;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived .request-button-accept {
+  background-color: #15bd15;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-requestreceived .request-button-decline {
+  color: #ebdddd;
+  background-color: red;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-not-request {
+  display: none;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-not-request {
+  display: block;
+  background-color: rgba(48, 238, 105, 0.815);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-weight: bold;
+}
+
+.FriendsSearchOption .search-option-wrapper:hover .search-option-not-request p {
+  position: relative;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  color: black;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-img {
+  border: 1px black solid;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-username {
+  top: 50%;
+  max-width: 210px;
+  margin-right: 2%;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-username .search-option-username-span-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-username .search-option-username-span-wrapper p {
+  margin: 0;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-username .search-option-username-span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-checkmark {
+  background-image: url("../../../../assets/img/checkmark.png");
+  background-size: cover;
+  height: 24px;
+  width: 24px;
+  position: relative;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-pending {
+  background-image: url("../../../../assets/img/pending.png");
+  background-size: cover;
+  height: 35px;
+  width: 35px;
+  position: relative;
+}
+
+.FriendsSearchOption .search-option-wrapper .search-option-friends {
+  background-image: url("../../../../assets/img/friends.png");
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  position: relative;
+}
+/*# sourceMappingURL=FriendsSearchOption.css.map */

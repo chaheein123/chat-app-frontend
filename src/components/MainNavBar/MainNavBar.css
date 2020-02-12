@@ -1,0 +1,67 @@
+.nav-bar-wrapper {
+  width: 60px;
+  float: left;
+  display: inline-block;
+}
+
+.nav-bar-wrapper .MainNavBar {
+  height: 100vh;
+  width: 60px;
+  -webkit-box-shadow: 0 6px 4px rgba(0, 0, 0, 0.52);
+          box-shadow: 0 6px 4px rgba(0, 0, 0, 0.52);
+  position: fixed;
+  overflow: scroll;
+  background-color: #15b64a;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers {
+  border-radius: 10px;
+  margin-top: 40px;
+  text-align: center;
+  height: 45px;
+  cursor: pointer;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers:hover {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .nav-icons {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .nav-icons-texts {
+  margin: 0;
+  font-size: 15px;
+  line-height: 15px;
+  text-shadow: 1px 1px 1px #026e45;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .home-icon {
+  background-image: url("../../assets/img/HomeIcon.png");
+  background-size: cover;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .chat-icon {
+  background-image: url("../../assets/img/ChatIcon.png");
+  background-size: cover;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .friends-icon {
+  background-image: url("../../assets/img/FriendsIcon.png");
+  background-size: cover;
+}
+
+.nav-bar-wrapper .MainNavBar .nav-icon-wrappers .logout-icon {
+  background-image: url("../../assets/img/LogOutIcon.png");
+  background-size: cover;
+}
+/*# sourceMappingURL=MainNavBar.css.map */

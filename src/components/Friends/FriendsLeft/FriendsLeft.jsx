@@ -12,7 +12,9 @@ class FriendsLeft extends React.Component {
       filteredUsers: [],
       requestSentUsers: null,
       requestReceivedUsers: null,
-      friends: null
+      friends: null,
+      recommendedUsers: null,
+      pendingUsers: null
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
@@ -32,7 +34,9 @@ class FriendsLeft extends React.Component {
           })
         }
       }
-    )
+    );
+
+    FriendsAPI.allOtherUsers(this);
   }
 
   render() {
@@ -47,7 +51,6 @@ class FriendsLeft extends React.Component {
             placeholder="Search for people to add"
             onClick={FriendsAPI.findAllUsers.bind(null, this)}
             onChange={(event) => {
-              // filteredUsers = [...this.state.users];
               filteredUsers = [...this.state.users].filter(user =>
                 (
                   user.username.toLowerCase().includes(event.target.value.toLowerCase())
@@ -92,6 +95,61 @@ class FriendsLeft extends React.Component {
           }
 
         </div>
+
+        {
+          this.state.recommendedUsers ?
+            <div className="friends-recommend-wrapper">
+              <p className="friends-recommend-header">People you may know</p>
+              <div className="friends-recommend">
+                {this.state.recommendedUsers.map((user, index) => {
+                  if (index < 3) {
+                    return (
+                      <div
+                        className="friends-recommend-each"
+                        key={user.useremail}
+                      >
+                        <div className="friends-recommend-img" />
+                        <div className="friends-recommend-texts">
+                          {
+                            user.username ?
+                              <p>{user.username}
+                                ({
+                                  user.useremail.length > 27 ?
+                                    user.useremail.substring(10) + "..." +
+                                    user.useremail.substring(user.useremail.length - 12, user.useremail.length) : user.useremail
+                                })
+                              </p> :
+                              <p>
+                                {
+                                  user.useremail.length > 27 ?
+                                    user.useremail.substring(0, 10) + "..." +
+                                    user.useremail.substring(user.useremail.length - 12, user.useremail.length) : user.useremail
+                                }
+                              </p>
+                          }
+                        </div>
+                      </div>
+                    )
+                  }
+                })}
+              </div>
+            </div> :
+            null
+        }
+
+        {
+          this.state.pendingUsers ?
+            <div className="friends-pending">
+              {this.state.pendingUsers.map(user => {
+                return (
+                  <div key={user.useremail}>
+                    <div className="friends-pending-img" />
+                  </div>
+                )
+              })}
+            </div> :
+            null
+        }
       </div>
     )
   }
