@@ -38,27 +38,27 @@
     }
   };
 
-  .friends-recommend-wrapper {
-    .friends-recommend-header {
+  .friends-recommend-pending-wrapper {
+    .friends-recommend-pending-header {
       font-size: 21px;
     }
-    .friends-recommend {
+    .friends-recommend-pending {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
 
-      .friends-recommend-each {
+      .friends-recommend-pending-each {
         text-align: center;
 
 
-        .friends-recommend-img {
+        .friends-recommend-pending-img {
           display: inline-block;
           border: 1px black solid;
           width: 55px;
           height: 55px;
           border-radius: 100px;
         }
-        .friends-recommend-texts {
+        .friends-recommend-pending-texts {
           width: 102px;
           overflow-wrap: break-word;
           word-wrap: break-word;

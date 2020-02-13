@@ -98,18 +98,18 @@ class FriendsLeft extends React.Component {
 
         {
           this.state.recommendedUsers ?
-            <div className="friends-recommend-wrapper">
-              <p className="friends-recommend-header">People you may know</p>
-              <div className="friends-recommend">
+            <div className="friends-recommend-pending-wrapper">
+              <p className="friends-recommend-pending-header">People you may know</p>
+              <div className="friends-recommend-pending">
                 {this.state.recommendedUsers.map((user, index) => {
                   if (index < 3) {
                     return (
                       <div
-                        className="friends-recommend-each"
+                        className="friends-recommend-pending-each"
                         key={user.useremail}
                       >
-                        <div className="friends-recommend-img" />
-                        <div className="friends-recommend-texts">
+                        <div className="friends-recommend-pending-img" />
+                        <div className="friends-recommend-pending-texts">
                           {
                             user.username ?
                               <p>{user.username}
@@ -139,14 +139,40 @@ class FriendsLeft extends React.Component {
 
         {
           this.state.pendingUsers ?
-            <div className="friends-pending">
-              {this.state.pendingUsers.map(user => {
-                return (
-                  <div key={user.useremail}>
-                    <div className="friends-pending-img" />
-                  </div>
-                )
-              })}
+            <div className="friends-recommend-pending-wrapper">
+              <p className="friends-recommend-pending-header">Requests pending</p>
+              <div className="friends-recommend-pending">
+                {this.state.pendingUsers.map((user) => {
+
+                  return (
+                    <div
+                      className="friends-recommend-pending-each"
+                      key={user.useremail}
+                    >
+                      <div className="friends-recommend-pending-img" />
+                      <div className="friends-recommend-pending-texts">
+                        {
+                          user.username ?
+                            <p>{user.username}
+                              ({
+                                user.useremail.length > 27 ?
+                                  user.useremail.substring(10) + "..." +
+                                  user.useremail.substring(user.useremail.length - 12, user.useremail.length) : user.useremail
+                              })
+                            </p> :
+                            <p>
+                              {
+                                user.useremail.length > 27 ?
+                                  user.useremail.substring(0, 10) + "..." +
+                                  user.useremail.substring(user.useremail.length - 12, user.useremail.length) : user.useremail
+                              }
+                            </p>
+                        }
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div> :
             null
         }
