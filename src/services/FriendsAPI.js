@@ -1,5 +1,6 @@
 import axios from "../utils/httpClient";
 
+
 class FriendsAPI {
 
   static findAllUsers(THIS) {
@@ -7,8 +8,10 @@ class FriendsAPI {
     let usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/findusers",
-          { usertoken: localStorage.getItem("userToken"), userid }
+          "http://localhost:5000/friends/findusers", {
+            usertoken: localStorage.getItem("userToken"),
+            userid
+          }
         )
         .then(
           (response) => {
@@ -61,8 +64,10 @@ class FriendsAPI {
     let requestPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/addfriends",
-          { friendemail, userid }
+          "http://localhost:5000/friends/addfriends", {
+            friendemail,
+            userid
+          }
         )
         .then((response) => {
           resolve()
@@ -74,15 +79,19 @@ class FriendsAPI {
     });
 
     requestPromise
-      .then(THIS.setState({ sentRequest: true }))
+      .then(THIS.setState({
+        sentRequest: true
+      }))
   }
 
   static cancelRequest(friendemail, userid, THIS) {
     let requestPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/cancelrequest",
-          { friendemail, userid }
+          "http://localhost:5000/friends/cancelrequest", {
+            friendemail,
+            userid
+          }
         )
         .then((response) => {
           resolve()
@@ -93,15 +102,19 @@ class FriendsAPI {
     });
 
     requestPromise
-      .then(THIS.setState({ sentRequest: false }))
+      .then(THIS.setState({
+        sentRequest: false
+      }))
   }
 
   static acceptRequest(friendemail, userid, THIS) {
     let acceptPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/acceptrequest",
-          { friendemail, userid }
+          "http://localhost:5000/friends/acceptrequest", {
+            friendemail,
+            userid
+          }
         )
         .then((response) => {
           resolve()
@@ -126,12 +139,10 @@ class FriendsAPI {
       .get(`http://localhost:5000/friends/${userid}/allOtherUsers`)
       .then(response => {
 
-        THIS.setState(
-          {
-            recommendedUsers: response.data.recommendedUsers,
-            pendingUsers: response.data.pendingUsers
-          }
-        )
+        THIS.setState({
+          recommendedUsers: response.data.recommendedUsers,
+          pendingUsers: response.data.pendingUsers
+        })
       })
   }
 };

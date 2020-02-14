@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./ChatRoom.scss";
 
 import { ChatRoomTop } from "./ChatRoomTop/ChatRoomTop";
@@ -18,47 +18,48 @@ class ChatRoom extends React.Component {
 
       // for the chatrooms below
       chatters: null,
-      messages: null,
+      messages: null
     };
 
     // this.ENDPOINT = "http://localhost:5000";
-  };
+  }
 
   componentDidMount() {
+    const socket = io("http://localhost:5000");
+    socket.on("newMessage", ([data]) => {
+      this.setState(prevState => ({
+        messages: prevState.messages ? [...prevState.messages, data] : []
+      }));
+    });
     MessagesAPI.chatroom(this);
     // let socket = io(this.ENDPOINT);
     // console.log(socket);
-
   }
 
   componentWillReceiveProps(nextProps) {
-
     if (nextProps.match.params.msgid != this.props.match.params.msgid) {
-      this.setState({
-        msgId: nextProps.match.params.msgid
-      }, MessagesAPI.chatroom.bind(null, this))
-    };
-  };
+      this.setState(
+        {
+          msgId: nextProps.match.params.msgid
+        },
+        MessagesAPI.chatroom.bind(null, this)
+      );
+    }
+  }
 
   render() {
     return (
       <div className="ChatRoom">
-
-        <ChatRoomTop
-          chatters={this.state.chatters}
-        />
-        <ChatRoomMsgs
-          messages={this.state.messages}
-          ownId={this.state.ownId}
-        />
+        <ChatRoomTop chatters={this.state.chatters} />
+        <ChatRoomMsgs messages={this.state.messages} ownId={this.state.ownId} />
         <ChatRoomMessager
           chatters={this.state.chatters}
           chatroomId={this.state.msgId}
           ownId={this.state.ownId}
         />
       </div>
-    )
+    );
   }
-};
+}
 
 export default ChatRoom;
