@@ -1,16 +1,15 @@
 import axios from "../utils/httpClient";
 
-
 class FriendsAPI {
 
-  static findAllUsers(THIS) {
-    let userid = THIS.props.location.pathname.split("/")[2];
+  static findAllUsers() {
+    console.log(this, "this is this");
+    let userid = this.props.location.pathname.split("/")[2];
     let usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
           "http://localhost:5000/friends/findusers", {
-            usertoken: localStorage.getItem("userToken"),
-            userid
+            usertoken: localStorage.getItem("userToken")
           }
         )
         .then(
@@ -20,7 +19,6 @@ class FriendsAPI {
         )
         .catch(
           (error) => {
-            console.log(error);
             reject();
           }
         )
@@ -44,7 +42,7 @@ class FriendsAPI {
             friends.add(user.useremail)
           };
 
-          THIS.setState({
+          this.setState({
             users: response["data"]["allusers"],
             filteredUsers: response["data"]["allusers"],
             requestSentUsers,
@@ -55,7 +53,9 @@ class FriendsAPI {
       )
       .catch(
         (error) => {
-          console.log(error)
+          console.log(error, "mamamama");
+          console.log(this.props.history);
+          this.props.history.push("/");
         }
       )
   };

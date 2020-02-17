@@ -8,7 +8,6 @@ import Messages from "./components/Messages/Messages";
 // import Dashboard from "../../components/Dashboard/Dashboard";
 // import Friends from "../../components/Friends/Friends";
 
-
 function App() {
   return (
     <Router>
@@ -20,6 +19,6 @@ function App() {
       </div>
     </Router>
   );
-};
+}
 
 export default App;

@@ -6,52 +6,62 @@ class Authenticate {
   }
 
   // Authenticate
-  static authenticate(THIS) {
+  static authenticate() {
 
     if (!localStorage.userToken) {
-      THIS.props.history.push("/")
+      this.props.history.push("/")
     };
 
-    let userid = THIS.props.location.pathname.split("/")[2];
+    let userid = this.props.location.pathname.split("/")[2];
 
     axios
       .post(
-        "http://localhost:5000/auth/authenticate",
-        { userToken: localStorage.userToken, userid }
+        "http://localhost:5000/auth/authenticate", {
+          userToken: localStorage.userToken,
+          userid
+        }
       )
       .catch(
         (error) => {
           console.log("error", error);
           localStorage.clear();
-          THIS.props.history.push("/");
+          this.props.history.push("/");
         }
       )
   }
 
   // Log in
-  static login(email, pw, THIS) {
+  static login(email, pw) {
     axios
       .post(
-        "http://localhost:5000/auth/login",
-        { email, pw }
+        "http://localhost:5000/auth/login", {
+          email,
+          pw
+        }
       )
       .then(
         (response) => {
           if (response.data.errorEmail) {
-            THIS.setState({ errorEmail: response.data.errorEmail })
+            this.setState({
+              errorEmail: response.data.errorEmail
+            })
           }
           if (response.data.errorPw) {
-            THIS.setState({ errorPw: response.data.errorPw })
+            this.setState({
+              errorPw: response.data.errorPw
+            })
           }
           if (response.data.token) {
             localStorage.setItem("userToken", response.data.token);
-            THIS.props.history.push(`/user/${response.data.id}`);
+            this.props.history.push(`/user/${response.data.id}`);
           }
         }
       )
       .catch(
         (error) => {
-          THIS.setState({ errorEmail: "Sorry, something went wrong" })
+          this.setState({
+            errorEmail: "Sorry, something went wrong"
+          })
         }
       )
   };
@@ -63,8 +73,7 @@ class Authenticate {
       if (!THIS.state.email) {
         THIS.errstorage["errorEmail"] = "** Please type in your email **";
         reject(THIS.errstorage);
-      }
-      else {
+      } else {
         if (!THIS.state.email.includes("@") || THIS.state.email.length < 7) {
           THIS.errstorage["errorEmail"] = `** ${THIS.state.email} is not a valid email **`;
           reject(THIS.errstorage)
@@ -74,8 +83,7 @@ class Authenticate {
       if (!THIS.state.pw) {
         THIS.errstorage["errorPw"] = "** Please type in your password **";
         reject(THIS.errstorage);
-      }
-      else {
+      } else {
         if (THIS.state.pw != THIS.state.confirmpw && (THIS.state.pw && THIS.state.confirmpw)) {
           THIS.errstorage["errorPw"] = "** Your passwords don't match **";
           reject(THIS.errstorage);
@@ -93,8 +101,7 @@ class Authenticate {
         (response) => {
           axios
             .post(
-              "http://localhost:5000/auth/signup",
-              {
+              "http://localhost:5000/auth/signup", {
                 email: THIS.state.email,
                 pw: THIS.state.pw
               }
@@ -103,14 +110,11 @@ class Authenticate {
               if (response.data.errorEmail) {
                 THIS.errstorage["errorEmail"] = `** ${THIS.state.email} is already used **`;
 
-                THIS.setState(
-                  {
-                    errorEmail: THIS.errstorage["errorEmail"]
-                  }
-                );
+                THIS.setState({
+                  errorEmail: THIS.errstorage["errorEmail"]
+                });
                 return;
-              }
-              else {
+              } else {
                 localStorage.setItem("userToken", response.data.token);
                 THIS.props.history.push(`/user/${response.data.id}`);
                 return response;
