@@ -3,10 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from "react-router-dom";
 import "./AppPage.scss";
-import axios from "axios";
 
 import Dashboard from "../../components/Dashboard/Dashboard";
 import FriendsLeft from "../../components/Friends/FriendsLeft/FriendsLeft";
@@ -25,14 +23,14 @@ class AppPage extends React.Component {
   }
 
   render() {
-    Authenticate.authenticate.bind(this);
+    Authenticate.authenticate(this);
 
     return (
       <Switch>
         <React.Fragment>
           <Route exact path="/" component={Landing} />
           <div className="AppPage">
-            <Route path="/user" component={MainNavBar} />
+            <Route path="/user/:id" component={MainNavBar} />
             <div className="app-body-wrapper">
               <div className="app-body-flex">
                 <div className="app-body-left">

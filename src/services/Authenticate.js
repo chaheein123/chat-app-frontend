@@ -6,60 +6,60 @@ class Authenticate {
   }
 
   // Authenticate
-  static authenticate() {
+  static authenticate(THIS) {
 
     if (!localStorage.userToken) {
-      this.props.history.push("/")
+      THIS.props.history.push("/")
     };
 
-    let userid = this.props.location.pathname.split("/")[2];
+    let userid = THIS.props.location.pathname.split("/")[2];
 
     axios
       .post(
         "http://localhost:5000/auth/authenticate", {
-          userToken: localStorage.userToken,
-          userid
-        }
+        userToken: localStorage.userToken,
+        userid
+      }
       )
       .catch(
         (error) => {
           console.log("error", error);
           localStorage.clear();
-          this.props.history.push("/");
+          THIS.props.history.push("/");
         }
       )
   }
 
   // Log in
-  static login(email, pw) {
+  static login(THIS, email, pw) {
     axios
       .post(
         "http://localhost:5000/auth/login", {
-          email,
-          pw
-        }
+        email,
+        pw
+      }
       )
       .then(
         (response) => {
           if (response.data.errorEmail) {
-            this.setState({
+            THIS.setState({
               errorEmail: response.data.errorEmail
             })
           }
           if (response.data.errorPw) {
-            this.setState({
+            THIS.setState({
               errorPw: response.data.errorPw
             })
           }
           if (response.data.token) {
             localStorage.setItem("userToken", response.data.token);
-            this.props.history.push(`/user/${response.data.id}`);
+            THIS.props.history.push(`/user/${response.data.id}`);
           }
         }
       )
       .catch(
         (error) => {
-          this.setState({
+          THIS.setState({
             errorEmail: "Sorry, something went wrong"
           })
         }
@@ -102,9 +102,9 @@ class Authenticate {
           axios
             .post(
               "http://localhost:5000/auth/signup", {
-                email: THIS.state.email,
-                pw: THIS.state.pw
-              }
+              email: THIS.state.email,
+              pw: THIS.state.pw
+            }
             )
             .then(response => {
               if (response.data.errorEmail) {

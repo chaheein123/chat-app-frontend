@@ -34,7 +34,7 @@ class SignIn extends React.Component {
     }
 
     if (this.state.email && this.state.pw) {
-      Authenticate.login.bind(this, this.state.email, this.state.pw);
+      Authenticate.login(this, this.state.email, this.state.pw);
     }
   };
 

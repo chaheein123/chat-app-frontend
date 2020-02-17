@@ -89,7 +89,7 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  FriendsAPI.cancelRequest.bind(null, this.props.useremail, this.props.theid, this)
+                  FriendsAPI.cancelRequest.bind(this, this.props.useremail, this.props.theid)
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -101,7 +101,7 @@ class FriendsSearchOption extends React.Component {
                     <div className="clickstay">
                       <button
                         className="request-button request-button-accept clickstay"
-                        onClick={FriendsAPI.acceptRequest.bind(null, this.props.useremail, this.props.theid, this, )}
+                        onClick={FriendsAPI.acceptRequest.bind(this, this.props.useremail, this.props.theid)}
                       >
                         Accept friend request
                       </button>
@@ -120,7 +120,7 @@ class FriendsSearchOption extends React.Component {
                   <div
                     className="search-option-not-request clickstay"
                     onClick={
-                      FriendsAPI.sendRequest.bind(null, this.props.useremail, this.props.theid, this)
+                      FriendsAPI.sendRequest.bind(this, this.props.useremail, this.props.theid)
                     }
                   >
                     <p className="clickstay">Click to send friend request</p>

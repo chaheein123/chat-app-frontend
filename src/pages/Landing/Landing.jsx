@@ -18,9 +18,9 @@ class Landing extends React.Component {
     };
 
     componentDidMount() {
-        if (localStorage["userToken"]) {
-            this.props.history.push("/user");
-        }
+        // if (localStorage["userToken"]) {
+        //     this.props.history.push("/user/");
+        // }
     }
 
     render() {

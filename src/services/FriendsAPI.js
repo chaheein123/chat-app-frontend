@@ -3,14 +3,14 @@ import axios from "../utils/httpClient";
 class FriendsAPI {
 
   static findAllUsers() {
-    console.log(this, "this is this");
     let userid = this.props.location.pathname.split("/")[2];
     let usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
           "http://localhost:5000/friends/findusers", {
-            usertoken: localStorage.getItem("userToken")
-          }
+          usertoken: localStorage.getItem("userToken"),
+          userid
+        }
         )
         .then(
           (response) => {
@@ -53,21 +53,20 @@ class FriendsAPI {
       )
       .catch(
         (error) => {
-          console.log(error, "mamamama");
-          console.log(this.props.history);
           this.props.history.push("/");
         }
       )
   };
 
-  static sendRequest(friendemail, userid, THIS) {
+  static sendRequest(friendemail, userid) {
     let requestPromise = new Promise((resolve, reject) => {
       axios
         .post(
           "http://localhost:5000/friends/addfriends", {
-            friendemail,
-            userid
-          }
+          usertoken: localStorage.getItem("userToken"),
+          friendemail,
+          userid
+        }
         )
         .then((response) => {
           resolve()
@@ -75,23 +74,25 @@ class FriendsAPI {
         .catch((error) => {
           console.log(error, "this is the error")
         })
-
     });
 
     requestPromise
-      .then(THIS.setState({
+      .then(this.setState({
         sentRequest: true
       }))
   }
 
-  static cancelRequest(friendemail, userid, THIS) {
+  static cancelRequest(friendemail, userid) {
     let requestPromise = new Promise((resolve, reject) => {
       axios
-        .post(
+        .delete(
           "http://localhost:5000/friends/cancelrequest", {
+          data: {
+            usertoken: localStorage.getItem("userToken"),
             friendemail,
             userid
           }
+        }
         )
         .then((response) => {
           resolve()
@@ -102,19 +103,20 @@ class FriendsAPI {
     });
 
     requestPromise
-      .then(THIS.setState({
+      .then(this.setState({
         sentRequest: false
       }))
   }
 
-  static acceptRequest(friendemail, userid, THIS) {
+  static acceptRequest(friendemail, userid) {
     let acceptPromise = new Promise((resolve, reject) => {
       axios
-        .post(
+        .put(
           "http://localhost:5000/friends/acceptrequest", {
-            friendemail,
-            userid
-          }
+          usertoken: localStorage.getItem("userToken"),
+          friendemail,
+          userid
+        }
         )
         .then((response) => {
           resolve()
@@ -126,7 +128,7 @@ class FriendsAPI {
 
     acceptPromise
       .then(
-        THIS.setState({
+        this.setState({
           isFriends: true,
           sentRequest: false,
           receivedRequest: false
