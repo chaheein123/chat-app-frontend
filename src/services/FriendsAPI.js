@@ -58,7 +58,7 @@ class FriendsAPI {
       )
   };
 
-  static sendRequest(friendemail, userid) {
+  static sendRequest(friendemail, userid, index) {
     let requestPromise = new Promise((resolve, reject) => {
       axios
         .post(
@@ -77,9 +77,21 @@ class FriendsAPI {
     });
 
     requestPromise
-      .then(this.setState({
-        sentRequest: true
-      }))
+      .then(
+        this.setState({
+          sentRequest: true
+        })
+      );
+
+    if (index >= 0) {
+      let recommendedUsers = [...this.state.recommendedUsers];
+      recommendedUsers.splice(index, 1);
+      this.setState({
+        recommendedUsers
+      })
+    }
+
+
   }
 
   static cancelRequest(friendemail, userid) {
@@ -144,7 +156,7 @@ class FriendsAPI {
         THIS.setState({
           recommendedUsers: response.data.recommendedUsers,
           pendingUsers: response.data.pendingUsers
-        })
+        }, () => { console.log(THIS.state.recommendedUsers) })
       })
   }
 };

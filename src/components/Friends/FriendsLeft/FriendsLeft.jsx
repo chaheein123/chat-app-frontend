@@ -18,6 +18,7 @@ class FriendsLeft extends React.Component {
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
+
   }
 
   componentDidMount() {
@@ -100,7 +101,12 @@ class FriendsLeft extends React.Component {
                       className="friends-recommend-pending-each"
                       key={user.useremail}
                     >
-                      <div className="friends-recommend-pending-img" />
+                      <div
+                        className="friends-recommend-pending-img"
+                        onClick={
+                          FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
+                        }
+                      />
                       <div className="friends-recommend-pending-texts">
                         {user.username ? (
                           <p>
