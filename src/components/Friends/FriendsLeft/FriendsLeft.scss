@@ -1,12 +1,14 @@
 .FriendsLeft {
-  // background-color: purple;
   height: 100%;
+  position: relative;
+  z-index: 0;
 
   .friends-search-wrapper {
     position: sticky;
     top: 0px;
     padding: 20px 30px;
     display: flex;
+    z-index: 2;
 
     .friends-search {
       font-size: 13px;
@@ -43,33 +45,47 @@
 
     .friends-recommend-pending-header {
       font-size: 21px;
+      margin-bottom: 30px;
     }
     .friends-recommend-pending {
       margin-top: 24px;
-      // display: flex;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       text-align: center;
 
-      // flex-direction: row;
-      // justify-content: space-evenly;
-
       .friends-recommend-pending-each {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // position: relative;
 
         .friends-recommend-pending-img {
+          position: relative;
           cursor: pointer;
-          display: inline-block;
           border: 1px black solid;
           width: 55px;
           height: 55px;
           border-radius: 100px;
+
+          // &:hover:before {
+          //   content: "Add me";
+          //   transform: translateX(-50%);
+          //   position: absolute;
+          //   color: white;
+          //   background-color: rgba(37, 36, 36, 0.473);
+          //   width: 130%;
+          //   height: 60%;
+          //   top: -65%;
+          //   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 59% 75%, 52% 100%, 43% 75%, 0% 75%);
+          // }
         }
+
         .friends-recommend-pending-texts {
-          display: inline-block;
           width: 102px;
           overflow-wrap: break-word;
           word-wrap: break-word;
+          margin-top: 6px;
 
           p {
             font-size: 12.6px;

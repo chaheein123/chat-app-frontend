@@ -152,7 +152,10 @@ class FriendsLeft extends React.Component {
                     className="friends-recommend-pending-each"
                     key={user.useremail}
                   >
-                    <div className="friends-recommend-pending-img" />
+                    <div
+                      className="friends-recommend-pending-img"
+                      onClick={FriendsAPI.acceptRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2])}
+                    />
                     <div className="friends-recommend-pending-texts">
                       {user.username ? (
                         <p>
