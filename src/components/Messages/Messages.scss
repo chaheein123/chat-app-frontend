@@ -1,0 +1,66 @@
+.Messages {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+
+  .Messages-inboxes {
+    position: relative;
+    height: 90px;
+    width: 100%;
+    background-image: url("../../assets/img/msgbackground.jpg");
+    background-size: cover;
+    box-shadow: 0px 0px 1px black;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(241, 241, 241);
+    }
+
+    .Messages-inboxes-backgroundhover{
+      display: flex;
+      align-items: center;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      padding: 0 16px;
+
+      &:hover {
+        background-color: rgba(245, 220, 244, 0.349);
+      }
+
+      .Messages-inboxes-middle{
+        position: relative;
+        width: 70%;
+      }
+  
+      .Messages-inboxes-pics {
+        height: 55px;
+        width: 55px;
+        border-radius: 100px;
+        border: 1px black solid;
+        float: left;
+      }
+  
+      .Messages-inboxes-msgContent {
+        color: rgb(78, 77, 77);
+    
+      }
+  
+      .Messages-inboxes-sentTime {
+        // margin-right: 16px;
+        span {
+          color: rgb(95, 94, 94);
+          font-size: 12px;
+        }
+      }
+
+
+
+    }
+
+    
+
+
+  }
+}

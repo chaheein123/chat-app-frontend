@@ -1,0 +1,69 @@
+.nav-bar-wrapper {
+  // height: 100vh;
+  width: 60px;
+  float: left;
+  display: inline-block;
+
+  .MainNavBar {
+    height: 100vh;
+    width: 60px;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.52);
+    position: fixed;
+    overflow: scroll;
+    background-color: rgb(21, 182, 74);
+
+    .nav-icon-wrappers {
+
+      border-radius: 10px;
+      margin-top: 40px;
+      text-align: center;
+      height: 45px;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.06);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      .nav-icons {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+      }
+
+      .nav-icons-texts {
+        margin:0;
+        font-size: 15px;
+        line-height: 15px;
+        text-shadow: 1px 1px 1px rgb(2, 110, 69);
+      }
+
+      .home-icon {
+        background-image: url("../../assets/img/HomeIcon.png");
+        background-size: cover;
+      }
+
+      .chat-icon {
+        background-image: url("../../assets/img/ChatIcon.png");
+        background-size: cover;
+      }
+
+      .friends-icon {
+        background-image: url("../../assets/img/FriendsIcon.png");
+        background-size: cover;
+      }
+
+      .logout-icon {
+        background-image: url("../../assets/img/LogOutIcon.png");
+        background-size: cover;
+      }
+    }
+  };
+};
+
+// div {
+//   border: 1px black solid;
+// }

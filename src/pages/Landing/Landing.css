@@ -1,0 +1,106 @@
+.Landing {
+  min-height: 2200px;
+  position: relative;
+  font-family: Gill Sans, sans-serif;
+}
+
+.Landing .main-navbar {
+  background-color: white;
+  z-index: 1;
+  height: 60px;
+  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.157);
+          box-shadow: 0 0 9px rgba(0, 0, 0, 0.157);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  line-height: 60px;
+  padding-left: 90px;
+}
+
+.Landing .main-navbar .navbaritems {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  margin-right: 40px;
+}
+
+.Landing .main-navbar .navbaritems p:hover {
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+  text-decoration: underline;
+}
+
+.Landing .main-navbar2 {
+  display: none;
+}
+
+.Landing .Landing-background-pic {
+  background-image: url("../../assets/img/LandingPageBackground.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 91.8vh;
+  min-height: 500px;
+}
+
+.Landing .landing-bottom #scroll-why {
+  height: 100px;
+  border: 1px black solid;
+  display: none;
+}
+
+.Landing .landing-bottom .why-section-wrapper {
+  margin-top: 40px;
+}
+
+.Landing .landing-bottom .why-section-wrapper .checkmark-icons {
+  height: 70px;
+  width: 70px;
+  background-image: url("../../assets/img/checkmarkicon.png");
+  background-size: contain;
+}
+
+.Landing .landing-bottom .why-section-wrapper .why-section {
+  margin-top: 30px;
+  overflow: auto;
+}
+
+.Landing .landing-bottom .why-section-wrapper .why-section .profile-pic {
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+  -webkit-box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.433);
+          box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.433);
+}
+
+.Landing .landing-bottom .why-section-wrapper .why-section .profile-pic-ian {
+  background-image: url("../../assets/img/Ianprofile.jpg");
+}
+
+.Landing .landing-bottom .why-section-wrapper .why-section .profile-pic-dj {
+  background-image: url("../../assets/img/DjProfile.jpg");
+}
+
+.div-break {
+  border: 1px #228196 solid;
+  width: 70px;
+  margin: 100px auto 0 auto;
+}
+
+@media only screen and (max-width: 650px) {
+  .Landing {
+    min-height: 2970px;
+  }
+  .Landing .main-navbar {
+    display: none;
+  }
+  .Landing .main-navbar2 {
+    display: block;
+  }
+  .Landing .Landing-background-pic {
+    height: 100vh;
+    position: relative;
+  }
+}
+/*# sourceMappingURL=Landing.css.map */

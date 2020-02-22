@@ -1,0 +1,19 @@
+.Dashboard {
+  height: 100%;
+  position: relative;
+  
+  .dashboard-img-div-wrapper {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    .dashboard-img-div {
+      display: inline-block;
+      height: 160px;
+      width: 160px;
+      border-radius: 50%;
+      background-color: pink;
+      margin-bottom: 20px;
+    };
+  }
+}

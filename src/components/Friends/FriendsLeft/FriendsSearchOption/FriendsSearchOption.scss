@@ -1,0 +1,209 @@
+.FriendsSearchOption {
+  position: relative;
+  width: 100%;
+  min-width: 310px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.822);
+  font-size: 15px;
+  min-height: 60px;
+  height: auto;
+  max-height: 80px;
+  overflow: scroll;
+
+  .search-option-wrapper {
+    background-color: white;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+
+    .search-option-request {
+      display: none;
+    }
+
+    &:hover .search-option-request {
+      display: block;
+      background-color: rgba(131, 27, 134, 0.815);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      // top: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: white;
+      }
+    }
+
+    .search-option-friend {
+      display: none;
+    }
+
+    &:hover .search-option-friend {
+      display: block;
+      background-color: rgba(142, 164, 235, 0.719);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      // top: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: black;
+      }
+    }
+
+    .search-option-requestreceived {
+      display: none;
+    }
+
+    &:hover .search-option-requestreceived {
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(60, 66, 68, 0.815);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      // font-weight: bold;
+      text-align: center;
+
+      .search-option-requestreceived-flex {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        // height: 100%;
+
+      }
+      p {
+        position: relative;
+        color: white;
+        font-size: 13px;
+        // border: 1px white solid;
+        margin: 0 0 4px 0;
+      }
+     
+      .request-button {
+        border-radius: 7px;
+        border: none;
+        margin: 0 4%;
+        padding: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px white solid;
+      }
+
+      .request-button-accept {
+        background-color: rgb(21, 189, 21);
+        
+      }
+
+      .request-button-decline {
+        color: rgb(235, 221, 221);
+        background-color: red;
+      }
+    }
+
+
+
+    .search-option-not-request {
+      display: none;
+    }
+
+    &:hover .search-option-not-request {
+      display: block;
+      background-color: rgba(48, 238, 105, 0.815);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      
+      font-weight: bold;
+      p {
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: rgb(0, 0, 0);
+      }
+    }
+
+    .search-option-img {
+      border: 1px black solid;
+      border-radius: 100%;
+      height: 40px;
+      width: 40px;
+      min-height: 40px;
+      min-width: 40px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  
+    .search-option-username {
+      top: 50%;
+      max-width: 210px;
+      margin-right: 2%;
+
+      .search-option-username-span-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        p {
+          margin: 0;
+        }
+      }
+      .search-option-username-span {
+        word-wrap    : break-word;
+        overflow-wrap: break-word;
+        white-space: pre-line;
+      }
+    }
+  
+    .search-option-checkmark {
+      background-image: url("../../../../assets/img/checkmark.png");
+      background-size: cover;
+      height: 24px;
+      width: 24px;
+      position: relative;
+    }
+
+    .search-option-pending {
+      background-image: url("../../../../assets/img/pending.png");
+      background-size: cover;
+      height: 35px;
+      width: 35px;
+      position: relative;
+    }
+
+    .search-option-friends {
+      background-image: url("../../../../assets/img/friends.png");
+      background-size: cover;
+      height: 55px;
+      width: 55px;
+      position: relative;
+    }
+  }
+
+  .search-option-wrapper-requested {
+    
+  }
+
+}

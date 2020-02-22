@@ -1,0 +1,52 @@
+.AppPage{
+  position: relative;
+
+  .app-body-wrapper {
+    // border: 1px black solid;
+    position: absolute;
+    z-index: -1;
+    margin-left: 60px;
+    width: 90vw;
+    min-width: 1040px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100vh;
+    min-height: 400px;
+
+  }
+};
+
+.app-body-flex {
+  position: relative;
+  display: flex;
+  // align-items: center;
+  height: 100%;
+}
+
+.app-body-left {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  overflow: scroll;
+  p {
+    line-height: 1;
+  };
+  background-image: url("../../assets/img/dashboardbackground.jpg");
+  background-size: cover;
+  
+}
+
+.app-body-right {
+  flex: 2;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  background-color: rgb(248, 246, 246);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.719);
+}
+
+@media screen and (max-width: 700px) {
+  
+}
+// End of the app-component section
+
