@@ -6,9 +6,17 @@ class MessagesAPI {
 
     let chatPromise = new Promise((resolve, reject) => {
       axios
-        .get(`http://localhost:5000/chats/allchats/${userid}`)
+        .get("http://localhost:5000/chats/allchats", {
+          params: {
+            usertoken: localStorage.getItem("userToken"),
+            ownId: userid
+          }
+        })
         .then(response => {
           resolve(response)
+        })
+        .catch(error => {
+          THIS.props.history.push("/")
         })
     });
     chatPromise
@@ -18,10 +26,13 @@ class MessagesAPI {
   };
 
   static chatroom(THIS) {
-
     let chatPromise = new Promise((resolve, reject) => {
       axios
-        .get(`http://localhost:5000/chats/${THIS.state.ownId}/chatroom/${THIS.state.msgId}`)
+        .get(`http://localhost:5000/chats/${THIS.state.ownId}/chatroom/${THIS.state.msgId}`, {
+          params: {
+            usertoken: localStorage.getItem("userToken")
+          }
+        })
         .then(response => resolve(response))
     });
 
@@ -37,14 +48,17 @@ class MessagesAPI {
   };
 
   static chatroomMessage(ownId, chatroomId, msg, THIS) {
+
     axios
       .post(
         "http://localhost:5000/chats/sentmsg",
-        { ownId, chatroomId, msg }
+        {
+          ownId, chatroomId, msg,
+          usertoken: localStorage.getItem("userToken")
+        }
       )
       .then(response => THIS.setState({ msgInput: null }))
       .catch(error => console.log(error))
-
   }
 };
 

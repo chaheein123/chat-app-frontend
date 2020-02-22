@@ -20,20 +20,23 @@ class ChatRoom extends React.Component {
       chatters: null,
       messages: null
     };
-
-    // this.ENDPOINT = "http://localhost:5000";
-  }
+    this.socket = null;
+  };
 
   componentDidMount() {
-    const socket = io("http://localhost:5000");
-    socket.on("newMessage", ([data]) => {
-      this.setState(prevState => ({
-        messages: prevState.messages ? [...prevState.messages, data] : []
-      }));
+    this.socket = io("http://localhost:5000");
+    this.socket.on("chatroomIdRequest", () => {
+      this.socket.emit("sendingChatroomId", this.state.msgId)
     });
+
+    this.socket.on("sendMsg", data => {
+      let { messages } = this.state;
+      messages.push(data);
+      this.setState({
+        messages
+      })
+    })
     MessagesAPI.chatroom(this);
-    // let socket = io(this.ENDPOINT);
-    // console.log(socket);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,9 +45,28 @@ class ChatRoom extends React.Component {
         {
           msgId: nextProps.match.params.msgid
         },
-        MessagesAPI.chatroom.bind(null, this)
+        () => {
+          MessagesAPI.chatroom(this);
+          this.socket.disconnect();
+          this.socket = io("http://localhost:5000");
+          this.socket.on("chatroomIdRequest", () => {
+            this.socket.emit("sendingChatroomId", this.state.msgId)
+          });
+
+          this.socket.on("sendMsg", data => {
+            let { messages } = this.state;
+            messages.push(data);
+            this.setState({
+              messages
+            })
+          })
+        }
       );
     }
+  };
+
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {
@@ -56,6 +78,7 @@ class ChatRoom extends React.Component {
           chatters={this.state.chatters}
           chatroomId={this.state.msgId}
           ownId={this.state.ownId}
+          theSocket={this.socket}
         />
       </div>
     );

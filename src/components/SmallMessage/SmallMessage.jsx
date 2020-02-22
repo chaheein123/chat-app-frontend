@@ -34,16 +34,11 @@ class SmallMessage extends React.Component {
       <div
         className="SmallMessage"
       >
-
-
         <div
           className={
             !this.state.turnedOn ? "SmallMessage-inboxes" : "SmallMessage-inboxes SmallMessageTurned"
           }
         >
-          {/* <div className="SmallMessage-inboxes-pics">
-          </div> */}
-
           <div className="SmallMessage-inboxes-middle">
             <div className="SmallMessage-inboxes-sentTo">
               {
@@ -56,7 +51,13 @@ class SmallMessage extends React.Component {
             <div className="SmallMessage-inboxes-msgContent">
               {
                 this.props.msgContent ?
-                  <span>{this.props.msgContent}</span> :
+                  <span>
+                    {
+                      this.props.msgContent.length < 52 ?
+                        this.props.msgContent :
+                        this.props.msgContent.substring(0, 40) + " ..."
+                    }
+                  </span> :
                   <span>You are now friends</span>
               }
             </div>

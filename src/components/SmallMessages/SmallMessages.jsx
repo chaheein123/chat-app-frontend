@@ -37,24 +37,24 @@ class SmallMessages extends React.Component {
         {!this.state.chatData
           ? null
           : this.state.chatData.map(chat => {
-              return (
-                <Link
-                  to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
-                  className="Applinks"
+            return (
+              <Link
+                to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
+                className="Applinks"
+                key={chat.chatroomid}
+              >
+                <SmallMessage
                   key={chat.chatroomid}
-                >
-                  <SmallMessage
-                    key={chat.chatroomid}
-                    id={chat.chatroomid}
-                    userName={chat.username}
-                    userEmail={chat.useremail}
-                    msgContent={chat.msgcontent}
-                    sentTime={chat.createdat}
-                    clickedChatId={this.state.clickedChatId}
-                  />
-                </Link>
-              );
-            })}
+                  id={chat.chatroomid}
+                  userName={chat.username}
+                  userEmail={chat.useremail}
+                  msgContent={chat.msgcontent}
+                  sentTime={chat.createdat}
+                  clickedChatId={this.state.clickedChatId}
+                />
+              </Link>
+            );
+          })}
       </div>
     );
   }

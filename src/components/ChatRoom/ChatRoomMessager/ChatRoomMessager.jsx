@@ -14,16 +14,15 @@ class ChatRoomMessager extends React.Component {
     this.formRef = React.createRef();
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     this.textareaRef.current.focus();
+
   }
 
   render() {
     return (
       <div className="ChatRoomMessager">
-        <form
-
-        >
+        <form>
           <textarea
             ref={this.textareaRef}
             className="chatroom-textarea"

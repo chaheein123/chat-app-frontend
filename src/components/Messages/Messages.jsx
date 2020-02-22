@@ -50,7 +50,14 @@ class Messages extends React.Component {
                         </div>
 
                         <div className="Messages-inboxes-msgContent">
-                          {chat.msgcontent}
+                          {
+                            chat.msgcontent ?
+                              chat.msgcontent.length > 50 ?
+                                chat.msgcontent.substring(0, 44) + " ..." :
+                                chat.msgcontent
+                              :
+                              null
+                          }
                         </div>
                       </div>
 
