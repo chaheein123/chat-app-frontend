@@ -18,7 +18,6 @@ class FriendsLeft extends React.Component {
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
-
   }
 
   componentDidMount() {
@@ -146,7 +145,7 @@ class FriendsLeft extends React.Component {
           <div className="friends-recommend-pending-wrapper">
             <p className="friends-recommend-pending-header">Requests pending</p>
             <div className="friends-recommend-pending">
-              {this.state.pendingUsers.map(user => {
+              {this.state.pendingUsers.map((user,index) => {
                 return (
                   <div
                     className="friends-recommend-pending-each"
@@ -154,7 +153,7 @@ class FriendsLeft extends React.Component {
                   >
                     <div
                       className="friends-recommend-pending-img"
-                      onClick={FriendsAPI.acceptRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2])}
+                      onClick={FriendsAPI.acceptRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)}
                     />
                     <div className="friends-recommend-pending-texts">
                       {user.username ? (

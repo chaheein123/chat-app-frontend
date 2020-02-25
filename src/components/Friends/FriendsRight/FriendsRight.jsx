@@ -6,9 +6,13 @@ class FriendsRight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      
     }
   };
+
+  componentDidMount(){
+    console.log("hi")
+  }
 
   render() {
     return (

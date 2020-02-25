@@ -1,6 +1,8 @@
 import React from 'react';
 import "./SmallMessage.scss";
 
+import io from "socket.io-client";
+
 class SmallMessage extends React.Component {
   constructor(props) {
     super(props);
@@ -8,13 +10,28 @@ class SmallMessage extends React.Component {
     this.state = {
       id: this.props.id,
       turnedOn: false,
-    }
+      msgContent: this.props.msgContent,
+      createdAt: this.props.sentTime
+    };
+    this.socket = null;
   }
 
   componentDidMount() {
     if (this.state.id == this.props.clickedChatId) {
       this.setState({ turnedOn: true })
     }
+
+    this.socket = io("http://localhost:5000");
+    this.socket.on("chatroomIdRequest", () => {
+      this.socket.emit("sendingChatroomId", this.state.id)
+    });
+
+    this.socket.on("sendMsg", data => {
+      this.setState({
+        msgContent: data.msgcontent,
+        createdAt: data.createdat
+      })
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,12 +67,12 @@ class SmallMessage extends React.Component {
 
             <div className="SmallMessage-inboxes-msgContent">
               {
-                this.props.msgContent ?
+                this.state.msgContent ?
                   <span>
                     {
-                      this.props.msgContent.length < 52 ?
-                        this.props.msgContent :
-                        this.props.msgContent.substring(0, 40) + " ..."
+                      this.state.msgContent.length < 52 ?
+                        this.state.msgContent :
+                        this.state.msgContent.substring(0, 40) + " ..."
                     }
                   </span> :
                   <span>You are now friends</span>
@@ -65,8 +82,8 @@ class SmallMessage extends React.Component {
 
           <div className="SmallMessage-inboxes-sentTime">
             {
-              this.props.sentTime ?
-                <span>{this.props.sentTime}</span> :
+              this.state.createdAt ?
+                <span>{this.state.createdAt}</span> :
                 <span>Start a conversation</span>
             }
           </div>
