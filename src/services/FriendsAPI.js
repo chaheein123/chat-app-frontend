@@ -90,8 +90,6 @@ class FriendsAPI {
         recommendedUsers
       })
     }
-
-
   }
 
   static cancelRequest(friendemail, userid) {
@@ -120,7 +118,7 @@ class FriendsAPI {
       }))
   }
 
-  static acceptRequest(friendemail, userid) {
+  static acceptRequest(friendemail, userid,index) {
     let acceptPromise = new Promise((resolve, reject) => {
       axios
         .put(
@@ -145,6 +143,13 @@ class FriendsAPI {
           sentRequest: false,
           receivedRequest: false
         }));
+    if (index >= 0) {
+      let pendingUsers = [...this.state.pendingUsers];
+      pendingUsers.splice(index,1);
+      this.setState({
+        pendingUsers
+      })
+    }
   };
 
   static allOtherUsers(THIS) {
@@ -156,7 +161,7 @@ class FriendsAPI {
         THIS.setState({
           recommendedUsers: response.data.recommendedUsers,
           pendingUsers: response.data.pendingUsers
-        }, () => { console.log(THIS.state.recommendedUsers) })
+        })
       })
   }
 };
