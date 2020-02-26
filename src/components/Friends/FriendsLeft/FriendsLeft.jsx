@@ -18,7 +18,7 @@ class FriendsLeft extends React.Component {
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
-  }
+  };
 
   componentDidMount() {
     document.addEventListener("mousedown", event => {
@@ -37,19 +37,36 @@ class FriendsLeft extends React.Component {
   };
 
   sendRequest = (useremail) => {
-    let recommendedUsers = new Set(this.state.recommendedUsers);
-    // console.log(recommendedUsers);
-    // console.log(useremail, "what a good day~~~");
 
+    FriendsAPI.sendRequest(useremail, this.props.location.pathname.split("/")[2]).then(() => {
 
+      let requestSentUsers = this.state.requestSentUsers;
+      requestSentUsers.add(useremail);
 
+      let friendIndex = this.state.recommendedUsers.findIndex(user => user["useremail"] == useremail)
+      if (friendIndex != 1) {
+        let recommendedUsers = this.state.recommendedUsers;
+        recommendedUsers.splice(friendIndex, 1);
+        this.setState({
+          requestSentUsers,
+          recommendedUsers
+        });
+      } else {
+        this.setState({
+          requestSentUsers
+        })
+      }
+    })
+  };
 
-    if (recommendedUsers.has(useremail)) {
-
-    }
-
-
-    // FriendsAPI.sendRequest(useremail, this.props.location.pathname.split("/")[2])
+  cancelRequest = (useremail) => {
+    FriendsAPI.cancelRequest(useremail, this.props.location.pathname.split("/")[2]).then(() => {
+      let requestSentUsers = this.state.requestSentUsers;
+      requestSentUsers.delete(useremail);
+      this.setState({
+        requestSentUsers
+      })
+    })
   }
 
   render() {
@@ -98,6 +115,7 @@ class FriendsLeft extends React.Component {
                   )}
                   isFriends={this.state.friends.has(user.useremail)}
                   sendRequest={this.sendRequest.bind(this, user.useremail)}
+                  cancelRequest={this.cancelRequest.bind(this, user.useremail)}
                 />
               ))}
             </div>

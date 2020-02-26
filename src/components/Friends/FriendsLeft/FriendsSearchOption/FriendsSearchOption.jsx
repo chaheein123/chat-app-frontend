@@ -13,6 +13,14 @@ class FriendsSearchOption extends React.Component {
     };
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      sentRequest: nextProps.sentRequest,
+      receivedRequest: nextProps.receivedRequest,
+      isFriends: nextProps.isFriends
+    })
+  }
+
   render() {
 
     return (
@@ -88,7 +96,8 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  FriendsAPI.cancelRequest.bind(this, this.props.useremail, this.props.theid)
+                  // FriendsAPI.cancelRequest.bind(this, this.props.useremail, this.props.theid)
+                  this.props.cancelRequest
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -119,7 +128,6 @@ class FriendsSearchOption extends React.Component {
                   <div
                     className="search-option-not-request clickstay"
                     onClick={
-                      // FriendsAPI.sendRequest.bind(this, this.props.useremail, this.props.theid)
                       this.props.sendRequest
                     }
                   >
