@@ -41,10 +41,16 @@ class Messages extends React.Component {
                           {
                             chat.username ?
                               <span>
-                                {chat.username} ({chat.useremail})
+                                {chat.username} ({chat.useremail.length > 30 ?
+                                  chat.useremail.substring(0, 14) + "..." + chat.useremail.substring(chat.useremail.length - 15, chat.useremail.length) :
+                                  chat.useremail})
                               </span> :
                               <span>
-                                {chat.useremail}
+                                {
+                                  chat.useremail.length > 30 ?
+                                    chat.useremail.substring(0, 14) + "..." + chat.useremail.substring(chat.useremail.length - 15, chat.useremail.length) :
+                                    chat.useremail
+                                }
                               </span>
                           }
                         </div>

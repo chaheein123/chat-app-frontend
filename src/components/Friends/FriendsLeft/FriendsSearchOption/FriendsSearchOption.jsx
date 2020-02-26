@@ -3,7 +3,6 @@ import React from 'react';
 import "./FriendsSearchOption.scss";
 import FriendsAPI from "../../../../services/FriendsAPI";
 
-import axios from 'axios';
 class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
@@ -120,7 +119,8 @@ class FriendsSearchOption extends React.Component {
                   <div
                     className="search-option-not-request clickstay"
                     onClick={
-                      FriendsAPI.sendRequest.bind(this, this.props.useremail, this.props.theid)
+                      // FriendsAPI.sendRequest.bind(this, this.props.useremail, this.props.theid)
+                      this.props.sendRequest
                     }
                   >
                     <p className="clickstay">Click to send friend request</p>

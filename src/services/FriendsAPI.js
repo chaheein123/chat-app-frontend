@@ -58,7 +58,7 @@ class FriendsAPI {
       )
   };
 
-  static sendRequest(friendemail, userid, index) {
+  static async sendRequest(friendemail, userid, index) {
     let requestPromise = new Promise((resolve, reject) => {
       axios
         .post(
@@ -83,13 +83,13 @@ class FriendsAPI {
         })
       );
 
-    if (index >= 0) {
-      let recommendedUsers = [...this.state.recommendedUsers];
-      recommendedUsers.splice(index, 1);
-      this.setState({
-        recommendedUsers
-      })
-    }
+    // if (index >= 0) {
+    //   let recommendedUsers = [...this.state.recommendedUsers];
+    //   recommendedUsers.splice(index, 1);
+    //   this.setState({
+    //     recommendedUsers
+    //   })
+    // }
   }
 
   static cancelRequest(friendemail, userid) {
@@ -118,7 +118,7 @@ class FriendsAPI {
       }))
   }
 
-  static acceptRequest(friendemail, userid,index) {
+  static acceptRequest(friendemail, userid, index) {
     let acceptPromise = new Promise((resolve, reject) => {
       axios
         .put(
@@ -145,7 +145,7 @@ class FriendsAPI {
         }));
     if (index >= 0) {
       let pendingUsers = [...this.state.pendingUsers];
-      pendingUsers.splice(index,1);
+      pendingUsers.splice(index, 1);
       this.setState({
         pendingUsers
       })
@@ -163,7 +163,18 @@ class FriendsAPI {
           pendingUsers: response.data.pendingUsers
         })
       })
-  }
+  };
+
+  static async findAllFriends(ownId) {
+    let allFriends = await axios
+      .get("http://localhost:5000/friends/allFriends", {
+        params: {
+          ownId,
+          userToken: localStorage.getItem("userToken")
+        }
+      });
+    return allFriends
+  };
 };
 
 export default FriendsAPI;

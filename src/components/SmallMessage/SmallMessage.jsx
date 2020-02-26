@@ -60,8 +60,17 @@ class SmallMessage extends React.Component {
             <div className="SmallMessage-inboxes-sentTo">
               {
                 this.props.userName ?
-                  <span>{this.props.userName} ({this.props.userEmail})</span> :
-                  <span>{this.props.userEmail}</span>
+                  <span>{this.props.userName}
+                    ({
+                      this.props.userEmail.length > 30 ? this.props.userEmail.substring(0, 14) + "..." + this.props.userEmail.substring(this.props.userEmail.length - 15, this.props.length) :
+                        this.props.userEmail
+                    })
+                  </span>
+                  :
+                  <span>{
+                    this.props.userEmail.length > 30 ? this.props.userEmail.substring(0, 14) + "..." + this.props.userEmail.substring(this.props.userEmail.length - 15, this.props.length) :
+                      this.props.userEmail
+                  }</span>
               }
             </div>
 

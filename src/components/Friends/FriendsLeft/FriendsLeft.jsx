@@ -34,6 +34,22 @@ class FriendsLeft extends React.Component {
     });
 
     FriendsAPI.allOtherUsers(this);
+  };
+
+  sendRequest = (useremail) => {
+    let recommendedUsers = new Set(this.state.recommendedUsers);
+    // console.log(recommendedUsers);
+    // console.log(useremail, "what a good day~~~");
+
+
+
+
+    if (recommendedUsers.has(useremail)) {
+
+    }
+
+
+    // FriendsAPI.sendRequest(useremail, this.props.location.pathname.split("/")[2])
   }
 
   render() {
@@ -81,6 +97,7 @@ class FriendsLeft extends React.Component {
                     user.useremail
                   )}
                   isFriends={this.state.friends.has(user.useremail)}
+                  sendRequest={this.sendRequest.bind(this, user.useremail)}
                 />
               ))}
             </div>
@@ -145,7 +162,7 @@ class FriendsLeft extends React.Component {
           <div className="friends-recommend-pending-wrapper">
             <p className="friends-recommend-pending-header">Requests pending</p>
             <div className="friends-recommend-pending">
-              {this.state.pendingUsers.map((user,index) => {
+              {this.state.pendingUsers.map((user, index) => {
                 return (
                   <div
                     className="friends-recommend-pending-each"
