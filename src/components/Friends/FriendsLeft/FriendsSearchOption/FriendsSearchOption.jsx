@@ -96,7 +96,6 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  // FriendsAPI.cancelRequest.bind(this, this.props.useremail, this.props.theid)
                   this.props.cancelRequest
                 }
               >

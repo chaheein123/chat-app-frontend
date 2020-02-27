@@ -176,7 +176,7 @@ class FriendsLeft extends React.Component {
           </div>
         ) : null}
 
-        {this.state.pendingUsers ? (
+        {this.state.pendingUsers && this.state.pendingUsers.length > 0 ? (
           <div className="friends-recommend-pending-wrapper">
             <p className="friends-recommend-pending-header">Requests pending</p>
             <div className="friends-recommend-pending">

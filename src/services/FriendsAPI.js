@@ -86,14 +86,6 @@ class FriendsAPI {
           userid
         }
       })
-
-
-
-
-    // requestPromise
-    //   .then(this.setState({
-    //     sentRequest: false
-    //   }))
   }
 
   static acceptRequest(friendemail, userid, index) {
