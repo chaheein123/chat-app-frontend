@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./Messages.scss";
+import Message from "./Message/Message";
 
 import MessagesAPI from "../../services/MessagesAPI";
+
+import "./Messages.scss";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -15,10 +17,8 @@ class Messages extends React.Component {
   };
 
   componentDidMount() {
-
     MessagesAPI.allRecentMessages(this.state.userid, this);
-
-  }
+  };
 
   render() {
     return (
@@ -33,56 +33,17 @@ class Messages extends React.Component {
                   className="Applinks"
                   key={chat.chatroomid}
                 >
-                  <div className="Messages-inboxes">
-                    <div className="Messages-inboxes-backgroundhover">
-                      <div className="Messages-inboxes-pics">
-                      </div>
-
-                      <div className="Messages-inboxes-middle">
-                        <div className="Messages-inboxes-sentTo">
-                          {
-                            chat.username ?
-                              <span>
-                                {chat.username} ({chat.useremail.length > 30 ?
-                                  chat.useremail.substring(0, 14) + "..." + chat.useremail.substring(chat.useremail.length - 15, chat.useremail.length) :
-                                  chat.useremail})
-                              </span> :
-                              <span>
-                                {
-                                  chat.useremail.length > 30 ?
-                                    chat.useremail.substring(0, 14) + "..." + chat.useremail.substring(chat.useremail.length - 15, chat.useremail.length) :
-                                    chat.useremail
-                                }
-                              </span>
-                          }
-                        </div>
-
-                        <div className="Messages-inboxes-msgContent">
-                          {
-                            chat.msgcontent ?
-                              chat.msgcontent.length > 50 ?
-                                chat.msgcontent.substring(0, 44) + " ..." :
-                                chat.msgcontent
-                              :
-                              null
-                          }
-                        </div>
-                      </div>
-
-                      <div className="Messages-inboxes-sentTime">
-                        {
-                          chat.createdat ?
-                            <span>{chat.createdat}</span> :
-                            <span>Start conversation</span>
-                        }
-                      </div>
-                    </div>
-                  </div>
+                  <Message
+                    key={chat.chatroomid}
+                    chat={chat}
+                    ownId={this.state.userid}
+                  />
                 </Link>
               )
             }) :
             null
         }
+
       </div>
     )
   }

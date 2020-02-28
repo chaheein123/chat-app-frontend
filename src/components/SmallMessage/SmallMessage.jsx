@@ -4,6 +4,8 @@ import MessagesAPI from "../../services/MessagesAPI";
 
 import io from "socket.io-client";
 
+import Badge from '@material-ui/core/Badge';
+
 class SmallMessage extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,6 @@ class SmallMessage extends React.Component {
     });
 
     this.socket.on("receivedMsg", (data) => {
-      console.log(this.state.turnedOn);
       if (this.state.ownId != data && !this.state.turnedOn) {
         this.setState({
           unreadMsgs: this.state.unreadMsgs + 1
@@ -67,8 +68,8 @@ class SmallMessage extends React.Component {
     }
   };
 
-  componentWillUpdate() {
-
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {
@@ -99,9 +100,6 @@ class SmallMessage extends React.Component {
                       this.props.userEmail
                   }</span>
               }
-              {
-                this.state.unreadMsgs
-              }
             </div>
 
             <div className="SmallMessage-inboxes-msgContent">
@@ -113,7 +111,8 @@ class SmallMessage extends React.Component {
                         this.state.msgContent :
                         this.state.msgContent.substring(0, 40) + " ..."
                     }
-                  </span> :
+                  </span>
+                  :
                   <span>You are now friends</span>
               }
             </div>

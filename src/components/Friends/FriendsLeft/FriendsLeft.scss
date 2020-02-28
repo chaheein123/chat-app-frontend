@@ -68,20 +68,6 @@
           width: 55px;
           height: 55px;
           border-radius: 100px;
-
-          &:hover:before {
-            content: "Add me";
-            transform: translateX(-50%);
-            position: absolute;
-            // vertical-align: middle;
-            // line-height: 1.2;
-            color: white;
-            background-color: rgba(37, 36, 36, 0.473);
-            width: 150%;
-            height: 72%;
-            top: -70%;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 59% 75%, 52% 100%, 43% 75%, 0% 75%);
-          }
         }
 
         .friends-recommend-pending-texts {

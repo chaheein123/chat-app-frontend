@@ -3,6 +3,7 @@ import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
 import FriendsAPI from "../../../services/FriendsAPI";
 
 import "./FriendsLeft.scss";
+import Tooltip from '@material-ui/core/Tooltip';
 
 class FriendsLeft extends React.Component {
   constructor(props) {
@@ -135,12 +136,14 @@ class FriendsLeft extends React.Component {
                       className="friends-recommend-pending-each"
                       key={user.useremail}
                     >
-                      <div
-                        className="friends-recommend-pending-img"
-                        onClick={
-                          FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
-                        }
-                      />
+                      <Tooltip title="Add" placement="top" arrow>
+                        <div
+                          className="friends-recommend-pending-img"
+                          onClick={
+                            FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
+                          }
+                        />
+                      </Tooltip>
                       <div className="friends-recommend-pending-texts">
                         {user.username ? (
                           <p>
