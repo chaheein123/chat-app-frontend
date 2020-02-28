@@ -5,6 +5,18 @@ import MessagesAPI from "../../services/MessagesAPI";
 import io from "socket.io-client";
 
 import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+
+const StyledBadge = withStyles(theme => ({
+  badge: {
+    right: -16,
+    top: 9,
+    border: '2px solid rgb(172, 169, 169)',
+    padding: '0 4px',
+    backgroundColor: 'rgb(245, 158, 172)',
+    fontWeight: 'bolder'
+  },
+}))(Badge);
 
 class SmallMessage extends React.Component {
   constructor(props) {
@@ -70,7 +82,7 @@ class SmallMessage extends React.Component {
 
   componentWillUnmount() {
     this.socket.disconnect();
-  }
+  };
 
   render() {
 
@@ -105,13 +117,17 @@ class SmallMessage extends React.Component {
             <div className="SmallMessage-inboxes-msgContent">
               {
                 this.state.msgContent ?
-                  <span>
-                    {
-                      this.state.msgContent.length < 52 ?
-                        this.state.msgContent :
-                        this.state.msgContent.substring(0, 40) + " ..."
-                    }
-                  </span>
+                  <StyledBadge
+                    badgeContent={this.state.unreadMsgs}
+                  >
+                    <span>
+                      {
+                        this.state.msgContent.length < 37 ?
+                          this.state.msgContent :
+                          this.state.msgContent.substring(0, 34) + " ..."
+                      }
+                    </span>
+                  </StyledBadge>
                   :
                   <span>You are now friends</span>
               }

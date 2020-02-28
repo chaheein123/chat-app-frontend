@@ -20,12 +20,12 @@ class Dashboard extends React.Component {
         <div className="dashboard-img-div-wrapper">
           <div className="dashboard-img-div">
           </div>
-          <p>
+          {/* <p>
             User Name: Ian Cha
           </p>
           <p>
             Email: chaheein@gmail.com
-          </p>
+          </p> */}
         </div>
       </div>
 

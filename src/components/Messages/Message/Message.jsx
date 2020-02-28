@@ -5,6 +5,20 @@ import MessagesAPI from "../../../services/MessagesAPI";
 
 import "./Message.scss";
 
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+
+const StyledBadge = withStyles(theme => ({
+  badge: {
+    right: -16,
+    top: 9,
+    border: '2px solid rgb(172, 169, 169)',
+    padding: '0 4px',
+    backgroundColor: 'rgb(245, 158, 172)',
+    fontWeight: 'bolder'
+  },
+}))(Badge);
+
 class Message extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +48,7 @@ class Message extends React.Component {
 
     this.socket.on("receivedMsg", (data) => {
       if (this.state.ownId != data) {
+        this.props.reorderMsg();
         this.setState({
           unreadMsgs: this.state.unreadMsgs + 1
         })
@@ -65,9 +80,6 @@ class Message extends React.Component {
             <div className="Messages-inboxes-middle">
               <div className="Messages-inboxes-sentTo">
                 {
-                  this.state.unreadMsgs
-                }
-                {
                   this.props.chat.username ?
                     <span>
                       {this.props.chat.username} ({this.props.chat.useremail.length > 30 ?
@@ -88,8 +100,16 @@ class Message extends React.Component {
                 {
                   this.state.msgContent ?
                     this.state.msgContent.length > 50 ?
-                      this.state.msgContent.substring(0, 44) + " ..." :
-                      this.state.msgContent
+                      <StyledBadge
+                        badgeContent={this.state.unreadMsgs}
+                      >
+                        {this.state.msgContent.substring(0, 44) + " ..."}
+                      </StyledBadge> :
+                      <StyledBadge
+                        badgeContent={this.state.unreadMsgs}
+                      >
+                        {this.state.msgContent}
+                      </StyledBadge>
                     :
                     null
                 }
