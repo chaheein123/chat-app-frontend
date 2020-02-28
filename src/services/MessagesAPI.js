@@ -59,6 +59,18 @@ class MessagesAPI {
       )
       .then(response => THIS.setState({ msgInput: null }))
       .catch(error => console.log(error))
+  };
+
+  static async updateMsgRead(msgId, ownId) {
+    return await axios
+      .get(`http://localhost:5000/chats/chatroomId/${msgId}/ownId/${ownId}`)
+  };
+
+  static async readMsg(msgId, ownId) {
+    await axios.put(`http://localhost:5000/chats/chatroomId/${msgId}/ownId/${ownId}`);
+    this.setState({
+      unreadMsgs: 0
+    })
   }
 };
 

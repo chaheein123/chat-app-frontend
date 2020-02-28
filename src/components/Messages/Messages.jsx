@@ -15,7 +15,9 @@ class Messages extends React.Component {
   };
 
   componentDidMount() {
+
     MessagesAPI.allRecentMessages(this.state.userid, this);
+
   }
 
   render() {

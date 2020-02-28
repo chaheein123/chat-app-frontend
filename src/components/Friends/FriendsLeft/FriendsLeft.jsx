@@ -44,7 +44,7 @@ class FriendsLeft extends React.Component {
       requestSentUsers.add(useremail);
 
       let friendIndex = this.state.recommendedUsers.findIndex(user => user["useremail"] == useremail)
-      if (friendIndex != 1) {
+      if (friendIndex != -1) {
         let recommendedUsers = this.state.recommendedUsers;
         recommendedUsers.splice(friendIndex, 1);
         this.setState({
