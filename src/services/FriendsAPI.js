@@ -58,67 +58,37 @@ class FriendsAPI {
       )
   };
 
-  static sendRequest(friendemail, userid, index) {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/addfriends", {
+  static async sendRequest(friendemail, userid, index) {
+    if (index >= 0) {
+      let recommendedUsers = [...this.state.recommendedUsers];
+      recommendedUsers.splice(index, 1);
+      await this.setState({
+        recommendedUsers
+      })
+    }
+
+    return await axios
+      .post(
+        "http://localhost:5000/friends/addfriends", {
+        usertoken: localStorage.getItem("userToken"),
+        friendemail,
+        userid
+      })
+  }
+
+  static async cancelRequest(friendemail, userid) {
+    return axios
+      .delete(
+        "http://localhost:5000/friends/cancelrequest", {
+        data: {
           usertoken: localStorage.getItem("userToken"),
           friendemail,
           userid
         }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
-    });
-
-    requestPromise
-      .then(
-        this.setState({
-          sentRequest: true
-        })
-      );
-
-    if (index >= 0) {
-      let recommendedUsers = [...this.state.recommendedUsers];
-      recommendedUsers.splice(index, 1);
-      this.setState({
-        recommendedUsers
       })
-    }
   }
 
-  static cancelRequest(friendemail, userid) {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .delete(
-          "http://localhost:5000/friends/cancelrequest", {
-          data: {
-            usertoken: localStorage.getItem("userToken"),
-            friendemail,
-            userid
-          }
-        }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
-    });
-
-    requestPromise
-      .then(this.setState({
-        sentRequest: false
-      }))
-  }
-
-  static acceptRequest(friendemail, userid,index) {
+  static acceptRequest(friendemail, userid, index) {
     let acceptPromise = new Promise((resolve, reject) => {
       axios
         .put(
@@ -145,7 +115,7 @@ class FriendsAPI {
         }));
     if (index >= 0) {
       let pendingUsers = [...this.state.pendingUsers];
-      pendingUsers.splice(index,1);
+      pendingUsers.splice(index, 1);
       this.setState({
         pendingUsers
       })
@@ -163,7 +133,18 @@ class FriendsAPI {
           pendingUsers: response.data.pendingUsers
         })
       })
-  }
+  };
+
+  static async findAllFriends(ownId) {
+    let allFriends = await axios
+      .get("http://localhost:5000/friends/allFriends", {
+        params: {
+          ownId,
+          userToken: localStorage.getItem("userToken")
+        }
+      });
+    return allFriends
+  };
 };
 
 export default FriendsAPI;

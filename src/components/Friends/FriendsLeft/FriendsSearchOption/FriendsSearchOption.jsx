@@ -3,7 +3,6 @@ import React from 'react';
 import "./FriendsSearchOption.scss";
 import FriendsAPI from "../../../../services/FriendsAPI";
 
-import axios from 'axios';
 class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +12,14 @@ class FriendsSearchOption extends React.Component {
       isFriends: this.props.isFriends
     };
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      sentRequest: nextProps.sentRequest,
+      receivedRequest: nextProps.receivedRequest,
+      isFriends: nextProps.isFriends
+    })
+  }
 
   render() {
 
@@ -89,7 +96,7 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  FriendsAPI.cancelRequest.bind(this, this.props.useremail, this.props.theid)
+                  this.props.cancelRequest
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -120,7 +127,7 @@ class FriendsSearchOption extends React.Component {
                   <div
                     className="search-option-not-request clickstay"
                     onClick={
-                      FriendsAPI.sendRequest.bind(this, this.props.useremail, this.props.theid)
+                      this.props.sendRequest
                     }
                   >
                     <p className="clickstay">Click to send friend request</p>

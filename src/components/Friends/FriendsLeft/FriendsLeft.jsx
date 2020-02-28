@@ -3,6 +3,7 @@ import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
 import FriendsAPI from "../../../services/FriendsAPI";
 
 import "./FriendsLeft.scss";
+import Tooltip from '@material-ui/core/Tooltip';
 
 class FriendsLeft extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class FriendsLeft extends React.Component {
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
-  }
+  };
 
   componentDidMount() {
     document.addEventListener("mousedown", event => {
@@ -34,6 +35,39 @@ class FriendsLeft extends React.Component {
     });
 
     FriendsAPI.allOtherUsers(this);
+  };
+
+  sendRequest = (useremail) => {
+
+    FriendsAPI.sendRequest(useremail, this.props.location.pathname.split("/")[2]).then(() => {
+
+      let requestSentUsers = this.state.requestSentUsers;
+      requestSentUsers.add(useremail);
+
+      let friendIndex = this.state.recommendedUsers.findIndex(user => user["useremail"] == useremail)
+      if (friendIndex != -1) {
+        let recommendedUsers = this.state.recommendedUsers;
+        recommendedUsers.splice(friendIndex, 1);
+        this.setState({
+          requestSentUsers,
+          recommendedUsers
+        });
+      } else {
+        this.setState({
+          requestSentUsers
+        })
+      }
+    })
+  };
+
+  cancelRequest = (useremail) => {
+    FriendsAPI.cancelRequest(useremail, this.props.location.pathname.split("/")[2]).then(() => {
+      let requestSentUsers = this.state.requestSentUsers;
+      requestSentUsers.delete(useremail);
+      this.setState({
+        requestSentUsers
+      })
+    })
   }
 
   render() {
@@ -81,6 +115,8 @@ class FriendsLeft extends React.Component {
                     user.useremail
                   )}
                   isFriends={this.state.friends.has(user.useremail)}
+                  sendRequest={this.sendRequest.bind(this, user.useremail)}
+                  cancelRequest={this.cancelRequest.bind(this, user.useremail)}
                 />
               ))}
             </div>
@@ -100,12 +136,14 @@ class FriendsLeft extends React.Component {
                       className="friends-recommend-pending-each"
                       key={user.useremail}
                     >
-                      <div
-                        className="friends-recommend-pending-img"
-                        onClick={
-                          FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
-                        }
-                      />
+                      <Tooltip title="Add" placement="top" arrow>
+                        <div
+                          className="friends-recommend-pending-img"
+                          onClick={
+                            FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
+                          }
+                        />
+                      </Tooltip>
                       <div className="friends-recommend-pending-texts">
                         {user.username ? (
                           <p>
@@ -141,11 +179,11 @@ class FriendsLeft extends React.Component {
           </div>
         ) : null}
 
-        {this.state.pendingUsers ? (
+        {this.state.pendingUsers && this.state.pendingUsers.length > 0 ? (
           <div className="friends-recommend-pending-wrapper">
             <p className="friends-recommend-pending-header">Requests pending</p>
             <div className="friends-recommend-pending">
-              {this.state.pendingUsers.map((user,index) => {
+              {this.state.pendingUsers.map((user, index) => {
                 return (
                   <div
                     className="friends-recommend-pending-each"

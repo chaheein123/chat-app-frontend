@@ -51,6 +51,7 @@ class SmallMessages extends React.Component {
                   msgContent={chat.msgcontent}
                   sentTime={chat.createdat}
                   clickedChatId={this.state.clickedChatId}
+                  ownId={this.props.match.params.id}
                 />
               </Link>
             );

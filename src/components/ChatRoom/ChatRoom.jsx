@@ -35,7 +35,8 @@ class ChatRoom extends React.Component {
       this.setState({
         messages
       })
-    })
+    });
+
     MessagesAPI.chatroom(this);
   }
 

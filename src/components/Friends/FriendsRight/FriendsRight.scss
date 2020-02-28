@@ -1,0 +1,38 @@
+.friendsright-header {
+  margin: 30px 0;
+  color: rgba(0, 0, 0, 0.918);
+  font-weight: normal;
+}
+
+.FriendsRight {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+  .friendsright-each {
+    margin-bottom: 18px;
+    overflow: hidden;
+    
+    .friendsright-each-img {
+      display: inline-block;
+      border: 1px black solid;
+      border-radius: 100px;
+      width: 90px;
+      height: 90px;
+    }
+
+    .friendsright-name {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      width: 90%;
+      display: inline-block;
+    }
+  }
+}
+
+.friendsright-add {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.856);
+}

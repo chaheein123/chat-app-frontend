@@ -1,7 +1,10 @@
 import React from 'react';
 import "./SmallMessage.scss";
+import MessagesAPI from "../../services/MessagesAPI";
 
 import io from "socket.io-client";
+
+import Badge from '@material-ui/core/Badge';
 
 class SmallMessage extends React.Component {
   constructor(props) {
@@ -11,16 +14,28 @@ class SmallMessage extends React.Component {
       id: this.props.id,
       turnedOn: false,
       msgContent: this.props.msgContent,
-      createdAt: this.props.sentTime
+      createdAt: this.props.sentTime,
+      unreadMsgs: 0,
+      ownId: this.props.ownId
     };
     this.socket = null;
   }
 
   componentDidMount() {
+
+    MessagesAPI
+      .updateMsgRead(this.state.id, this.state.ownId)
+      .then(response => {
+        this.setState({
+          unreadMsgs: Number(response.data.total)
+        })
+      });
+
     if (this.state.id == this.props.clickedChatId) {
       this.setState({ turnedOn: true })
-    }
+    };
 
+    // Sockets
     this.socket = io("http://localhost:5000");
     this.socket.on("chatroomIdRequest", () => {
       this.socket.emit("sendingChatroomId", this.state.id)
@@ -29,10 +44,18 @@ class SmallMessage extends React.Component {
     this.socket.on("sendMsg", data => {
       this.setState({
         msgContent: data.msgcontent,
-        createdAt: data.createdat
+        createdAt: data.createdat,
       })
     });
-  }
+
+    this.socket.on("receivedMsg", (data) => {
+      if (this.state.ownId != data && !this.state.turnedOn) {
+        this.setState({
+          unreadMsgs: this.state.unreadMsgs + 1
+        })
+      }
+    })
+  };
 
   componentWillReceiveProps(nextProps) {
 
@@ -43,6 +66,10 @@ class SmallMessage extends React.Component {
     else {
       this.setState({ turnedOn: false })
     }
+  };
+
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {
@@ -50,6 +77,7 @@ class SmallMessage extends React.Component {
     return (
       <div
         className="SmallMessage"
+        onClick={MessagesAPI.readMsg.bind(this, this.state.id, this.state.ownId)}
       >
         <div
           className={
@@ -60,8 +88,17 @@ class SmallMessage extends React.Component {
             <div className="SmallMessage-inboxes-sentTo">
               {
                 this.props.userName ?
-                  <span>{this.props.userName} ({this.props.userEmail})</span> :
-                  <span>{this.props.userEmail}</span>
+                  <span>{this.props.userName}
+                    ({
+                      this.props.userEmail.length > 30 ? this.props.userEmail.substring(0, 14) + "..." + this.props.userEmail.substring(this.props.userEmail.length - 15, this.props.length) :
+                        this.props.userEmail
+                    })
+                  </span>
+                  :
+                  <span>{
+                    this.props.userEmail.length > 30 ? this.props.userEmail.substring(0, 14) + "..." + this.props.userEmail.substring(this.props.userEmail.length - 15, this.props.length) :
+                      this.props.userEmail
+                  }</span>
               }
             </div>
 
@@ -74,7 +111,8 @@ class SmallMessage extends React.Component {
                         this.state.msgContent :
                         this.state.msgContent.substring(0, 40) + " ..."
                     }
-                  </span> :
+                  </span>
+                  :
                   <span>You are now friends</span>
               }
             </div>
