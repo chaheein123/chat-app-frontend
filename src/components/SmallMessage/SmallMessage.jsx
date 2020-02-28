@@ -60,12 +60,13 @@ class SmallMessage extends React.Component {
       })
     });
 
-    this.socket.on("receivedMsg", (data) => {
+    this.socket.on("receivedMsg", async (data) => {
       if (this.state.ownId != data && !this.state.turnedOn) {
-        this.setState({
+        await this.setState({
           unreadMsgs: this.state.unreadMsgs + 1
         })
-      }
+      };
+      this.props.reorderMsg(this.state.id)
     })
   };
 

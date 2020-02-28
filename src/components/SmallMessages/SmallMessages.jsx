@@ -18,6 +18,21 @@ class SmallMessages extends React.Component {
       clickedChatId: this.props.match.params.msgid,
       userid: this.props.match.params.id
     };
+  };
+
+  reorderMsg = (chatroomId) => {
+    console.log(chatroomId);
+    console.log(this.state.chatData);
+    let chatData = this.state.chatData;
+    let chatIndex = chatData.findIndex(chat => chat.chatroomid == chatroomId);
+
+    let temp = chatData[chatIndex];
+    chatData.splice(chatIndex, 1);
+    chatData.unshift(temp);
+
+    this.setState({
+      chatData
+    })
   }
 
   componentDidMount() {
@@ -52,6 +67,7 @@ class SmallMessages extends React.Component {
                   sentTime={chat.createdat}
                   clickedChatId={this.state.clickedChatId}
                   ownId={this.props.match.params.id}
+                  reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
                 />
               </Link>
             );
