@@ -37,7 +37,6 @@ class ChatRoom extends React.Component {
       })
     });
 
-
     MessagesAPI.chatroom(this);
   }
 
