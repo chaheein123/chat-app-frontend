@@ -88,38 +88,16 @@ class FriendsAPI {
       })
   }
 
-  static acceptRequest(friendemail, userid, index) {
-    let acceptPromise = new Promise((resolve, reject) => {
-      axios
-        .put(
-          "http://localhost:5000/friends/acceptrequest", {
-          usertoken: localStorage.getItem("userToken"),
-          friendemail,
-          userid
-        }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        });
-    });
+  static async acceptRequest(friendemail, userid) {
 
-    acceptPromise
-      .then(
-        this.setState({
-          isFriends: true,
-          sentRequest: false,
-          receivedRequest: false
-        }));
-    if (index >= 0) {
-      let pendingUsers = [...this.state.pendingUsers];
-      pendingUsers.splice(index, 1);
-      this.setState({
-        pendingUsers
-      })
-    }
+    return await axios
+      .put(
+        "http://localhost:5000/friends/acceptrequest", {
+        usertoken: localStorage.getItem("userToken"),
+        friendemail,
+        userid
+      });
+
   };
 
   static allOtherUsers(THIS) {

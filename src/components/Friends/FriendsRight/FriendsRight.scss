@@ -30,9 +30,10 @@
 }
 
 .friendsright-add {
-  position: relative;
+  position: absolute;
+  display: inline-block;
+  // border: 1px black solid;
   top: 50%;
-  transform: translateY(-50%);
-  font-weight: normal;
+  transform: translate(-50%,-50%);
   color: rgba(0, 0, 0, 0.856);
 }

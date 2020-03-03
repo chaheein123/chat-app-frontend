@@ -1,4 +1,5 @@
 import React from "react";
+import io from "socket.io-client";
 
 import "./FriendsRight.scss";
 import { Link } from 'react-router-dom';
@@ -10,10 +11,25 @@ class FriendsRight extends React.Component {
     super(props);
     this.state = {
       allFriends: null
-    }
+    };
+
+    this.socket = null;
   };
 
   componentDidMount() {
+
+    this.socket = io("http://localhost:5000/friendsIo");
+    this.socket.on("requestIdFromServer", () => {
+      this.socket.emit("idToServer", this.props.match.params.id);
+    });
+
+    this.socket.on("acceptedRequest", data => {
+      let allFriends = [...this.state.allFriends];
+      allFriends.push(data);
+      this.setState({
+        allFriends
+      })
+    })
 
     let ownId = this.props.match.params.id;
     FriendsAPI.findAllFriends(ownId)
@@ -25,6 +41,10 @@ class FriendsRight extends React.Component {
       .catch((error) => {
         this.props.history.push("/")
       });
+  };
+
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {

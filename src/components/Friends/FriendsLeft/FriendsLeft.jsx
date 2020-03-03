@@ -1,4 +1,5 @@
 import React from "react";
+import io from "socket.io-client";
 import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
 import FriendsAPI from "../../../services/FriendsAPI";
 
@@ -19,6 +20,7 @@ class FriendsLeft extends React.Component {
     };
     this.searchInputRef = React.createRef();
     this.searchResultRef = React.createRef();
+    this.socket = null;
   };
 
   componentDidMount() {
@@ -34,8 +36,14 @@ class FriendsLeft extends React.Component {
       }
     });
 
+    // this.socket = io("http://localhost:5000/friendsIo");
+
     FriendsAPI.allOtherUsers(this);
   };
+
+  componentWillUnmount() {
+    // this.socket.disconnect();
+  }
 
   sendRequest = (useremail) => {
 
@@ -68,6 +76,42 @@ class FriendsLeft extends React.Component {
         requestSentUsers
       })
     })
+  };
+
+  acceptRequest = (useremail, index) => {
+
+    // this.socket.emit("acceptFriends", useremail);
+
+    if (index >= 0) {
+
+      FriendsAPI
+        .acceptRequest(useremail, this.props.location.pathname.split("/")[2])
+        .then(() => {
+          let pendingUsers = [...this.state.pendingUsers];
+          pendingUsers.splice(index, 1);
+          this.setState({
+            pendingUsers
+          })
+        })
+    } else {
+      FriendsAPI
+        .acceptRequest(useremail, this.props.location.pathname.split("/")[2])
+        .then(() => {
+          let friends = this.state.friends;
+          friends.add(useremail);
+          let friendIndex = this.state.pendingUsers.findIndex(user => user.useremail == useremail);
+          let pendingUsers = this.state.pendingUsers;
+          pendingUsers.splice(friendIndex, 1);
+          let requestReceivedUsers = this.state.requestReceivedUsers;
+          requestReceivedUsers.delete(useremail);
+
+          this.setState({
+            friends,
+            pendingUsers,
+            requestReceivedUsers
+          })
+        })
+    }
   }
 
   render() {
@@ -117,6 +161,7 @@ class FriendsLeft extends React.Component {
                   isFriends={this.state.friends.has(user.useremail)}
                   sendRequest={this.sendRequest.bind(this, user.useremail)}
                   cancelRequest={this.cancelRequest.bind(this, user.useremail)}
+                  acceptRequest={this.acceptRequest.bind(this, user.useremail)}
                 />
               ))}
             </div>
@@ -191,7 +236,7 @@ class FriendsLeft extends React.Component {
                   >
                     <div
                       className="friends-recommend-pending-img"
-                      onClick={FriendsAPI.acceptRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)}
+                      onClick={this.acceptRequest.bind(this, user.useremail, index)}
                     />
                     <div className="friends-recommend-pending-texts">
                       {user.username ? (

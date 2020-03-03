@@ -17,7 +17,7 @@ class FriendsSearchOption extends React.Component {
     this.setState({
       sentRequest: nextProps.sentRequest,
       receivedRequest: nextProps.receivedRequest,
-      isFriends: nextProps.isFriends
+      isFriends: nextProps.isFriends,
     })
   }
 
@@ -108,7 +108,7 @@ class FriendsSearchOption extends React.Component {
                     <div className="clickstay">
                       <button
                         className="request-button request-button-accept clickstay"
-                        onClick={FriendsAPI.acceptRequest.bind(this, this.props.useremail, this.props.theid)}
+                        onClick={this.props.acceptRequest}
                       >
                         Accept friend request
                       </button>

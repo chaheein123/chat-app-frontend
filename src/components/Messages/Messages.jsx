@@ -18,7 +18,6 @@ class Messages extends React.Component {
   };
 
   componentDidMount() {
-
     MessagesAPI.allRecentMessages(this.state.userid, this);
   };
 
@@ -41,26 +40,30 @@ class Messages extends React.Component {
       <div className="Messages">
 
         {
-          this.state.chatData ?
-            this.state.chatData.map((chat) => {
-              return (
-                <Link
-                  to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
-                  className="Applinks"
-                  key={chat.chatroomid}
-                >
-                  <Message
-                    key={chat.chatroomid}
-                    chat={chat}
-                    ownId={this.state.userid}
-                    reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
-                  />
-                </Link>
-              )
-            }) :
-            null
-        }
+          !this.state.chatData ?
+            null :
+            !this.state.chatData.length ?
+              <div className="messages-nofriends">
+                Add friends to chat
+              </div> :
 
+              this.state.chatData.map((chat) => {
+                return (
+                  <Link
+                    to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
+                    className="Applinks"
+                    key={chat.chatroomid}
+                  >
+                    <Message
+                      key={chat.chatroomid}
+                      chat={chat}
+                      ownId={this.state.userid}
+                      reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
+                    />
+                  </Link>
+                )
+              })
+        }
       </div>
     )
   }

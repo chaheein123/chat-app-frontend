@@ -14,15 +14,13 @@ class SmallMessages extends React.Component {
     super(props);
 
     this.state = {
-      chatData: null,
+      chatData: [],
       clickedChatId: this.props.match.params.msgid,
       userid: this.props.match.params.id
     };
   };
 
   reorderMsg = (chatroomId) => {
-    console.log(chatroomId);
-    console.log(this.state.chatData);
     let chatData = this.state.chatData;
     let chatIndex = chatData.findIndex(chat => chat.chatroomid == chatroomId);
 
@@ -49,8 +47,10 @@ class SmallMessages extends React.Component {
   render() {
     return (
       <div className="SmallMessages">
-        {!this.state.chatData
-          ? null
+        {!this.state.chatData.length
+          ? <div className="smallmessages-nofriends">
+            Add friends to chat
+            </div>
           : this.state.chatData.map(chat => {
             return (
               <Link
