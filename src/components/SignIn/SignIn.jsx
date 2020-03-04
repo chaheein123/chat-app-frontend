@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Authenticate from "../../services/Authenticate"
+import React, { useState } from "react";
+import Authenticate from "../../services/Authenticate";
 
 import { Link } from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 import "./SignIn.scss";
 
@@ -14,27 +14,27 @@ class SignIn extends React.Component {
       email: "",
       pw: "",
       errorEmail: "",
-      errorPw: "",
-    }
-  };
+      errorPw: ""
+    };
+  }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
     if (!this.state.email) {
       this.setState({
         errorEmail: "Please enter your email"
-      })
+      });
     }
 
     if (!this.state.pw) {
       this.setState({
         errorPw: "Please enter your password"
-      })
+      });
     }
 
     if (this.state.email && this.state.pw) {
-      Authenticate.login(this.state.email, this.state.pw, this);
+      Authenticate.login(this, this.state.email, this.state.pw);
     }
   };
 
@@ -44,52 +44,37 @@ class SignIn extends React.Component {
         <div className="SignIn-SignUp-wrapper">
           <h1>Log In</h1>
           <form autoComplete="off">
-            {
-              this.state.errorEmail
-                ?
-                <div className="sign-warning-msg">
-                  {
-                    this.state.errorEmail
-                  }
-                </div>
-                :
-                null
-            }
+            {this.state.errorEmail ? (
+              <div className="sign-warning-msg">{this.state.errorEmail}</div>
+            ) : null}
             <div className="user-inputs-wrappers">
               <TextField
                 label="Email"
                 className="user-inputs"
                 type="email"
-                onChange={(event) => this.setState(
-                  {
+                onChange={event =>
+                  this.setState({
                     email: event.target.value,
                     errorEmail: ""
-                  }
-                )}
+                  })
+                }
               />
             </div>
-            {
-              this.state.errorPw
-                ?
-                <div className="sign-warning-msg">
-                  {
-                    this.state.errorPw
-                  }
-                </div>
-                :
-                null
-            }
+            {this.state.errorPw ? (
+              <div className="sign-warning-msg">{this.state.errorPw}</div>
+            ) : null}
 
             <div className="user-inputs-wrappers">
               <TextField
                 label="Password"
                 className="user-inputs"
                 type="password"
-                onChange={(event) => this.setState(
-                  {
+                onChange={event =>
+                  this.setState({
                     pw: event.target.value,
                     errorPw: ""
-                  })}
+                  })
+                }
               />
             </div>
 
@@ -116,9 +101,9 @@ class SignIn extends React.Component {
             </Link>
           </div>
         </div>
-      </div >
-    )
-  };
-};
+      </div>
+    );
+  }
+}
 
 export default SignIn;

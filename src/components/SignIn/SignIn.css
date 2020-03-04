@@ -1,0 +1,69 @@
+.SignIn-SignUp {
+  position: relative;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.904);
+  min-width: 320px;
+  width: 33%;
+  min-height: 400px;
+  height: 45%;
+  display: inline-block;
+  top: 50%;
+  left: 80%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper h1 {
+  font-weight: lighter;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .user-inputs-wrappers {
+  margin-bottom: 5px;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .user-inputs-wrappers .user-inputs {
+  width: 70%;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .login-button {
+  margin-top: 30px;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .login-button .login-button-in {
+  width: 70%;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .login-button .login-button-in .login-text {
+  color: white;
+  font-weight: bolder;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .signup-forgot-wrapper {
+  margin-top: 20px;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .signup-forgot-text {
+  color: #2121c7;
+}
+
+.SignIn-SignUp .SignIn-SignUp-wrapper .signup-forgot-text:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 980px) {
+  .SignIn-SignUp {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+}
+/*# sourceMappingURL=SignIn.css.map */

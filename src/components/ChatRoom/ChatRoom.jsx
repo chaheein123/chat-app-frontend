@@ -1,48 +1,88 @@
-import React from 'react';
+import React from "react";
 import "./ChatRoom.scss";
 
-import { DATA } from "../../data";
+import { ChatRoomTop } from "./ChatRoomTop/ChatRoomTop";
+import { ChatRoomMsgs } from "./ChatRoomMsgs/ChatRoomMsgs";
+import ChatRoomMessager from "./ChatRoomMessager/ChatRoomMessager";
+
+import io from "socket.io-client";
+import MessagesAPI from "../../services/MessagesAPI";
 
 class ChatRoom extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      chatData: DATA,
-      sentId: this.props.match.params.id,
+      msgId: this.props.match.params.msgid,
+      ownId: this.props.match.params.id,
+
+      // for the chatrooms below
+      chatters: null,
+      messages: null
+    };
+    this.socket = null;
+  };
+
+  componentDidMount() {
+    this.socket = io("http://localhost:5000");
+    this.socket.on("chatroomIdRequest", () => {
+      this.socket.emit("sendingChatroomId", this.state.msgId)
+    });
+
+    this.socket.on("sendMsg", data => {
+      let { messages } = this.state;
+      messages.push(data);
+      this.setState({
+        messages
+      })
+    });
+
+    MessagesAPI.chatroom(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.msgid != this.props.match.params.msgid) {
+      this.setState(
+        {
+          msgId: nextProps.match.params.msgid
+        },
+        () => {
+          MessagesAPI.chatroom(this);
+          this.socket.disconnect();
+          this.socket = io("http://localhost:5000");
+          this.socket.on("chatroomIdRequest", () => {
+            this.socket.emit("sendingChatroomId", this.state.msgId)
+          });
+
+          this.socket.on("sendMsg", data => {
+            let { messages } = this.state;
+            messages.push(data);
+            this.setState({
+              messages
+            })
+          })
+        }
+      );
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-
-    if (nextProps.match.params.id != this.props.match.params.id) {
-      this.setState({
-        sentId: nextProps.match.params.id
-      })
-    };
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {
     return (
       <div className="ChatRoom">
-        {
-          this.state.sentId
-        }
-        {
-          this.state.chatData.map((chat) => {
-            if (chat.sentBy == this.state.sentId) {
-              return (
-                <div>
-                  {chat.msgContent}
-                </div>
-              )
-            }
-
-          })
-        }
+        <ChatRoomTop chatters={this.state.chatters} />
+        <ChatRoomMsgs messages={this.state.messages} ownId={this.state.ownId} />
+        <ChatRoomMessager
+          chatters={this.state.chatters}
+          chatroomId={this.state.msgId}
+          ownId={this.state.ownId}
+        />
       </div>
-    )
+    );
   }
-};
+}
 
 export default ChatRoom;

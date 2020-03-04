@@ -1,0 +1,51 @@
+.AppPage {
+  position: relative;
+}
+
+.AppPage .app-body-wrapper {
+  position: absolute;
+  z-index: -1;
+  margin-left: 60px;
+  width: 90vw;
+  min-width: 870px;
+  display: inline-block;
+  vertical-align: top;
+  height: 100vh;
+  min-height: 400px;
+}
+
+.app-body-flex {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.app-body-left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  text-align: center;
+  overflow: scroll;
+  background-image: url("../../assets/img/dashboardbackground.jpg");
+  background-size: cover;
+}
+
+.app-body-left p {
+  line-height: 1;
+}
+
+.app-body-right {
+  -webkit-box-flex: 1.6;
+      -ms-flex: 1.6;
+          flex: 1.6;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  background-color: #f8f6f6;
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.719);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.719);
+}
+/*# sourceMappingURL=AppPage.css.map */

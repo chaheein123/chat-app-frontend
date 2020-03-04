@@ -1,3 +1,5 @@
+import axios from "../utils/httpClient";
+
 class NavbarAPI {
 
   static homeClick(PROPS) {
@@ -14,6 +16,7 @@ class NavbarAPI {
     let userid = PROPS.location.pathname.split("/")[2];
     PROPS.history.push(`/user/${userid}/friend`)
   }
+
 };
 
 export default NavbarAPI;

@@ -2,13 +2,15 @@ import axios from "../utils/httpClient";
 
 class FriendsAPI {
 
-  static findAllUsers(THIS) {
-    let userid = THIS.props.location.pathname.split("/")[2];
+  static findAllUsers() {
+    let userid = this.props.location.pathname.split("/")[2];
     let usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/findusers",
-          { usertoken: localStorage.getItem("userToken"), userid }
+          "http://localhost:5000/friends/findusers", {
+          usertoken: localStorage.getItem("userToken"),
+          userid
+        }
         )
         .then(
           (response) => {
@@ -17,7 +19,6 @@ class FriendsAPI {
         )
         .catch(
           (error) => {
-            console.log(error);
             reject();
           }
         )
@@ -27,7 +28,6 @@ class FriendsAPI {
       .then(
         (response) => {
           let requestSentUsers = new Set();
-          console.log(response["data"], "연아야")
           for (let user of response["data"]["requestSentUsers"]) {
             requestSentUsers.add(user.useremail)
           };
@@ -42,7 +42,7 @@ class FriendsAPI {
             friends.add(user.useremail)
           };
 
-          THIS.setState({
+          this.setState({
             users: response["data"]["allusers"],
             filteredUsers: response["data"]["allusers"],
             requestSentUsers,
@@ -53,75 +53,76 @@ class FriendsAPI {
       )
       .catch(
         (error) => {
-          console.log(error)
+          this.props.history.push("/");
         }
       )
   };
 
-  static sendRequest(friendemail, userid, THIS) {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/addfriends",
-          { friendemail, userid }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
+  static async sendRequest(friendemail, userid, index) {
+    if (index >= 0) {
+      let recommendedUsers = [...this.state.recommendedUsers];
+      recommendedUsers.splice(index, 1);
+      await this.setState({
+        recommendedUsers
+      })
+    }
 
-    });
-
-    requestPromise
-      .then(THIS.setState({ sentRequest: true }))
+    return await axios
+      .post(
+        "http://localhost:5000/friends/addfriends", {
+        usertoken: localStorage.getItem("userToken"),
+        friendemail,
+        userid
+      })
   }
 
-  static cancelRequest(friendemail, userid, THIS) {
-    let requestPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/cancelrequest",
-          { friendemail, userid }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        })
-    });
-
-    requestPromise
-      .then(THIS.setState({ sentRequest: false }))
+  static async cancelRequest(friendemail, userid) {
+    return axios
+      .delete(
+        "http://localhost:5000/friends/cancelrequest", {
+        data: {
+          usertoken: localStorage.getItem("userToken"),
+          friendemail,
+          userid
+        }
+      })
   }
 
-  static acceptRequest(friendemail, userid, THIS) {
-    let acceptPromise = new Promise((resolve, reject) => {
-      axios
-        .post(
-          "http://localhost:5000/friends/acceptrequest",
-          { friendemail, userid }
-        )
-        .then((response) => {
-          resolve()
-        })
-        .catch((error) => {
-          console.log(error, "this is the error")
-        });
-    });
+  static async acceptRequest(friendemail, userid) {
 
-    acceptPromise
-      .then(
+    return await axios
+      .put(
+        "http://localhost:5000/friends/acceptrequest", {
+        usertoken: localStorage.getItem("userToken"),
+        friendemail,
+        userid
+      });
+
+  };
+
+  static allOtherUsers(THIS) {
+    let userid = THIS.props.location.pathname.split("/")[2];
+    axios
+      .get(`http://localhost:5000/friends/${userid}/allOtherUsers`)
+      .then(response => {
+
         THIS.setState({
-          isFriends: true,
-          sentRequest: false,
-          receivedRequest: false
-        }));
+          recommendedUsers: response.data.recommendedUsers,
+          pendingUsers: response.data.pendingUsers
+        })
+      })
+  };
 
-
-  }
+  static async findAllFriends(ownId) {
+    let allFriends = await axios
+      .get("http://localhost:5000/friends/allFriends", {
+        params: {
+          ownId,
+          userToken: localStorage.getItem("userToken")
+        }
+      });
+    return allFriends
+  };
 };
 
 export default FriendsAPI;

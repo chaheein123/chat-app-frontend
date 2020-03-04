@@ -1,54 +1,86 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import io from "socket.io-client";
+
 import "./SmallMessages.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SmallMessage from "../SmallMessage/SmallMessage";
-import { DATA } from "../../data";
+
+import MessagesAPI from "../../services/MessagesAPI";
 
 class SmallMessages extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      chatData: DATA,
-      clickedChatId: this.props.match.params.id,
-      userid: this.props.match.url.split("/")[2]
+      chatData: null,
+      clickedChatId: this.props.match.params.msgid,
+      userid: this.props.match.params.id
     };
   };
 
-  componentWillReceiveProps(nextProps) {
+  reorderMsg = (chatroomId) => {
+    let chatData = this.state.chatData;
+    let chatIndex = chatData.findIndex(chat => chat.chatroomid == chatroomId);
+
+    let temp = chatData[chatIndex];
+    chatData.splice(chatIndex, 1);
+    chatData.unshift(temp);
 
     this.setState({
-      clickedChatId: nextProps.match.params.id
+      chatData
     })
-  };
+  }
+
+  componentDidMount() {
+    let userid = this.props.location.pathname.split("/")[2];
+    MessagesAPI.allRecentMessages(userid, this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      clickedChatId: nextProps.match.params.msgid
+    });
+  }
 
   render() {
-    console.log(this.state.userid);
     return (
       <div className="SmallMessages">
-        {
-          this.state.chatData.map((chat, index) => {
-            return (
-              <Link to={`/user/message/${chat.id}`}>
+        {this.state.chatData ?
 
-                <SmallMessage
-                  key={index}
-                  id={chat.id}
-                  sentTo={chat.sentTo}
-                  msgContent={chat.msgContent}
-                  sentTime={chat.sentTime}
-                  clickedChatId={this.state.clickedChatId}
-                />
+          this.state.chatData.length > 0 ?
 
-              </Link>
-            )
-          })
+            this.state.chatData.map(chat => {
+              return (
+                <Link
+                  to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
+                  className="Applinks"
+                  key={chat.chatroomid}
+                >
+                  <SmallMessage
+                    key={chat.chatroomid}
+                    id={chat.chatroomid}
+                    userName={chat.username}
+                    userEmail={chat.useremail}
+                    msgContent={chat.msgcontent}
+                    sentTime={chat.createdat}
+                    clickedChatId={this.state.clickedChatId}
+                    ownId={this.props.match.params.id}
+                    reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
+                  />
+                </Link>
+              );
+            }) :
+
+            <div className="smallmessages-nofriends">
+              Add friends to chat
+            </div> :
+          null
         }
       </div>
-    )
+    );
   }
-};
+}
 
 export default SmallMessages;

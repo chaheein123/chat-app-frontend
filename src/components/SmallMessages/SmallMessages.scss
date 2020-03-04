@@ -1,6 +1,15 @@
 .SmallMessages {
   height: 100%;
-  // background-color: pink;
   overflow: scroll;
+
+  .smallmessages-nofriends { 
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+
+  }
+
+
 
 }

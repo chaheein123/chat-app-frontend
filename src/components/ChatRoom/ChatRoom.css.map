@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACR,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "ChatRoom.scss"
+    ],
+    "names": [],
+    "file": "ChatRoom.css"
+}

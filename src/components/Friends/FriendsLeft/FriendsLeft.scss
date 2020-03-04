@@ -1,16 +1,16 @@
 .FriendsLeft {
-
-  background-color: beige;
+  height: 100%;
+  position: relative;
+  z-index: 0;
 
   .friends-search-wrapper {
     position: sticky;
     top: 0px;
     padding: 20px 30px;
-    // background-color: green;
     display: flex;
+    z-index: 2;
 
     .friends-search {
-
       font-size: 13px;
       padding: 5px;
       display: inline-block;
@@ -35,9 +35,58 @@
       position: absolute;
       top:75%;
       width: 80%;
-      // min-width: 310px;
       max-height: 440px;
       overflow: scroll;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.863);
+    }
+  };
+
+  .friends-recommend-pending-wrapper {
+    margin-top: 40px;
+
+    .friends-recommend-pending-header {
+      font-size: 21px;
+      margin-bottom: 30px;
+    }
+    .friends-recommend-pending {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      text-align: center;
+
+      .friends-recommend-pending-each {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .friends-recommend-pending-img-wrapper {
+          position: relative;
+          width: 55px;
+          height: 55px;
+          border-radius: 100px;
+          box-shadow: 1px 1px 3px rgba(105, 105, 105, 0.774);
+
+          .friends-recommend-pending-img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: 100%;
+
+          }
+        }
+
+        .friends-recommend-pending-texts {
+          width: 102px;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          margin-top: 6px;
+
+          p {
+            font-size: 12.6px;
+          }
+        }
+      }
     }
   }
 }

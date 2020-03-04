@@ -3,16 +3,25 @@ import React from 'react';
 import "./FriendsSearchOption.scss";
 import FriendsAPI from "../../../../services/FriendsAPI";
 
-import axios from 'axios';
 class FriendsSearchOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sentRequest: this.props.sentRequest,
       receivedRequest: this.props.receivedRequest,
-      isFriends: this.props.isFriends
+      isFriends: this.props.isFriends,
+      imgUrl: this.props.imgUrl
     };
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      sentRequest: nextProps.sentRequest,
+      receivedRequest: nextProps.receivedRequest,
+      isFriends: nextProps.isFriends,
+      imgUrl: nextProps.imgUrl,
+    })
+  }
 
   render() {
 
@@ -22,7 +31,8 @@ class FriendsSearchOption extends React.Component {
       >
         <div className="search-option-wrapper">
 
-          <div className="search-option-img">
+          <div className="search-option-img-wrapper">
+            <img src={this.state.imgUrl} className="search-option-img" />
           </div>
 
           <div className="search-option-username">
@@ -89,7 +99,7 @@ class FriendsSearchOption extends React.Component {
               <div
                 className="search-option-request clickstay"
                 onClick={
-                  FriendsAPI.cancelRequest.bind(null, this.props.useremail, this.props.theid, this)
+                  this.props.cancelRequest
                 }
               >
                 <p className="clickstay">Click to cancel friend request</p>
@@ -101,7 +111,7 @@ class FriendsSearchOption extends React.Component {
                     <div className="clickstay">
                       <button
                         className="request-button request-button-accept clickstay"
-                        onClick={FriendsAPI.acceptRequest.bind(null, this.props.useremail, this.props.theid, this, )}
+                        onClick={this.props.acceptRequest}
                       >
                         Accept friend request
                       </button>
@@ -120,7 +130,7 @@ class FriendsSearchOption extends React.Component {
                   <div
                     className="search-option-not-request clickstay"
                     onClick={
-                      FriendsAPI.sendRequest.bind(null, this.props.useremail, this.props.theid, this)
+                      this.props.sendRequest
                     }
                   >
                     <p className="clickstay">Click to send friend request</p>
