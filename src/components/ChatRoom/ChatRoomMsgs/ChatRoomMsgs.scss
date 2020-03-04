@@ -71,7 +71,9 @@
       height: 45px;
       width: 45px;
       border-radius: 100px;
-      border: 1px black solid;
+      box-shadow: 0 0 1px black;
+      background-image: url("../../../assets/portrait/userImg.png");
+      background-size: cover;
     }
 
     .msgs-own-namecontent-wrapper {

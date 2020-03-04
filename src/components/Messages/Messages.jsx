@@ -59,6 +59,7 @@ class Messages extends React.Component {
                       chat={chat}
                       ownId={this.state.userid}
                       reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
+                      imgUrl={chat.imgurl}
                     />
                   </Link>
                 )

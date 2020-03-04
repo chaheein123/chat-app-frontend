@@ -64,10 +64,12 @@
         .friends-recommend-pending-img {
           position: relative;
           cursor: pointer;
-          border: 1px black solid;
           width: 55px;
           height: 55px;
           border-radius: 100px;
+          // background-image: url("../../../assets/portrait/userImg.png");
+          background-size: cover;
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.774);
         }
 
         .friends-recommend-pending-texts {

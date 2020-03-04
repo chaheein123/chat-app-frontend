@@ -27,7 +27,8 @@ class Message extends React.Component {
       msgContent: this.props.chat.msgcontent,
       createdAt: this.props.chat.createdat,
       unreadMsgs: 0,
-      ownId: this.props.ownId
+      ownId: this.props.ownId,
+      imgUrl: this.props.imgUrl
     };
 
     this.socket = null;
@@ -75,8 +76,13 @@ class Message extends React.Component {
         <div className="Messages-inboxes">
           <div className="Messages-inboxes-backgroundhover">
             <div className="Messages-inboxes-pics">
-            </div>
+              {
+                this.state.imgUrl ?
+                  <img className="message-portrait" src={this.state.imgUrl} /> :
+                  null
+              }
 
+            </div>
             <div className="Messages-inboxes-middle">
               <div className="Messages-inboxes-sentTo">
                 {

@@ -75,6 +75,7 @@
   width: 45px;
   border-radius: 100px;
   border: 1px black solid;
+  background-color: purple;
 }
 
 .ChatRoomMsgs .msgs-own-wrapper .msgs-own-namecontent-wrapper {
