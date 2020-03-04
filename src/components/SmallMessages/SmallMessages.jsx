@@ -14,7 +14,7 @@ class SmallMessages extends React.Component {
     super(props);
 
     this.state = {
-      chatData: [],
+      chatData: null,
       clickedChatId: this.props.match.params.msgid,
       userid: this.props.match.params.id
     };
@@ -47,31 +47,37 @@ class SmallMessages extends React.Component {
   render() {
     return (
       <div className="SmallMessages">
-        {!this.state.chatData.length
-          ? <div className="smallmessages-nofriends">
-            Add friends to chat
-            </div>
-          : this.state.chatData.map(chat => {
-            return (
-              <Link
-                to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
-                className="Applinks"
-                key={chat.chatroomid}
-              >
-                <SmallMessage
+        {this.state.chatData ?
+
+          this.state.chatData.length > 0 ?
+
+            this.state.chatData.map(chat => {
+              return (
+                <Link
+                  to={`/user/${this.state.userid}/message/${chat.chatroomid}`}
+                  className="Applinks"
                   key={chat.chatroomid}
-                  id={chat.chatroomid}
-                  userName={chat.username}
-                  userEmail={chat.useremail}
-                  msgContent={chat.msgcontent}
-                  sentTime={chat.createdat}
-                  clickedChatId={this.state.clickedChatId}
-                  ownId={this.props.match.params.id}
-                  reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
-                />
-              </Link>
-            );
-          })}
+                >
+                  <SmallMessage
+                    key={chat.chatroomid}
+                    id={chat.chatroomid}
+                    userName={chat.username}
+                    userEmail={chat.useremail}
+                    msgContent={chat.msgcontent}
+                    sentTime={chat.createdat}
+                    clickedChatId={this.state.clickedChatId}
+                    ownId={this.props.match.params.id}
+                    reorderMsg={this.reorderMsg.bind(this, chat.chatroomid)}
+                  />
+                </Link>
+              );
+            }) :
+
+            <div className="smallmessages-nofriends">
+              Add friends to chat
+            </div> :
+          null
+        }
       </div>
     );
   }

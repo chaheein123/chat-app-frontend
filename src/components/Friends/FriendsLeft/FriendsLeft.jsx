@@ -36,8 +36,6 @@ class FriendsLeft extends React.Component {
       }
     });
 
-    // this.socket = io("http://localhost:5000/friendsIo");
-
     FriendsAPI.allOtherUsers(this);
   };
 
@@ -79,8 +77,6 @@ class FriendsLeft extends React.Component {
   };
 
   acceptRequest = (useremail, index) => {
-
-    // this.socket.emit("acceptFriends", useremail);
 
     if (index >= 0) {
 
@@ -154,6 +150,7 @@ class FriendsLeft extends React.Component {
                   theid={this.props.location.pathname.split("/")[2]}
                   useremail={user.useremail}
                   username={user.username}
+                  imgUrl={user.imgurl}
                   sentRequest={this.state.requestSentUsers.has(user.useremail)}
                   receivedRequest={this.state.requestReceivedUsers.has(
                     user.useremail
@@ -183,11 +180,13 @@ class FriendsLeft extends React.Component {
                     >
                       <Tooltip title="Add" placement="top" arrow>
                         <div
-                          className="friends-recommend-pending-img"
+                          className="friends-recommend-pending-img-wrapper"
                           onClick={
                             FriendsAPI.sendRequest.bind(this, user.useremail, this.props.location.pathname.split("/")[2], index)
                           }
-                        />
+                        >
+                          <img src={user.imgurl} className="friends-recommend-pending-img" />
+                        </div>
                       </Tooltip>
                       <div className="friends-recommend-pending-texts">
                         {user.username ? (
@@ -234,10 +233,14 @@ class FriendsLeft extends React.Component {
                     className="friends-recommend-pending-each"
                     key={user.useremail}
                   >
-                    <div
-                      className="friends-recommend-pending-img"
-                      onClick={this.acceptRequest.bind(this, user.useremail, index)}
-                    />
+                    <Tooltip title="Add" placement="top" arrow>
+                      <div
+                        className="friends-recommend-pending-img-wrapper"
+                        onClick={this.acceptRequest.bind(this, user.useremail, index)}
+                      >
+                        <img src={user.imgurl} className="friends-recommend-pending-img" />
+                      </div>
+                    </Tooltip>
                     <div className="friends-recommend-pending-texts">
                       {user.username ? (
                         <p>

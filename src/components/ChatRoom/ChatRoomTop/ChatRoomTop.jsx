@@ -7,7 +7,9 @@ export const ChatRoomTop = (props) => {
     <div className="ChatRoomTop">
       {
         props.chatters ?
-          <div>
+          <div
+            className="chatroomtop-inside"
+          >
             {props.chatters.map(chatter =>
               <div
                 key={chatter.useremail}

@@ -1,7 +1,7 @@
 
 .ChatRoomMsgs {
   position: relative;
-  border: 1px black solid;
+  box-shadow: 0 0 2px black;
   flex: 5;
   overflow: scroll;
 
@@ -14,7 +14,14 @@
       height: 45px;
       width: 45px;
       border-radius: 100px;
-      border: 1px black solid;
+      box-shadow: 0px 0px 4px rgb(83, 83, 83);
+
+      .msgs-chatter-portrait-img{
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+
+      }
     }
 
     .msgs-chatter-namecontent-wrapper {
@@ -71,9 +78,14 @@
       height: 45px;
       width: 45px;
       border-radius: 100px;
-      box-shadow: 0 0 1px black;
-      background-image: url("../../../assets/portrait/userImg.png");
-      background-size: cover;
+      box-shadow: 0px 0px 4px rgb(83, 83, 83);
+      
+      .msgs-own-portrait-img {
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+      }
+
     }
 
     .msgs-own-namecontent-wrapper {

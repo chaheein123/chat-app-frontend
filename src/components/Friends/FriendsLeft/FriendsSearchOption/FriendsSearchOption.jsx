@@ -9,7 +9,8 @@ class FriendsSearchOption extends React.Component {
     this.state = {
       sentRequest: this.props.sentRequest,
       receivedRequest: this.props.receivedRequest,
-      isFriends: this.props.isFriends
+      isFriends: this.props.isFriends,
+      imgUrl: this.props.imgUrl
     };
   };
 
@@ -18,6 +19,7 @@ class FriendsSearchOption extends React.Component {
       sentRequest: nextProps.sentRequest,
       receivedRequest: nextProps.receivedRequest,
       isFriends: nextProps.isFriends,
+      imgUrl: nextProps.imgUrl,
     })
   }
 
@@ -29,7 +31,8 @@ class FriendsSearchOption extends React.Component {
       >
         <div className="search-option-wrapper">
 
-          <div className="search-option-img">
+          <div className="search-option-img-wrapper">
+            <img src={this.state.imgUrl} className="search-option-img" />
           </div>
 
           <div className="search-option-username">

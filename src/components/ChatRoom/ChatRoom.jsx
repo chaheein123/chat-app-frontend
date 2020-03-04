@@ -79,7 +79,6 @@ class ChatRoom extends React.Component {
           chatters={this.state.chatters}
           chatroomId={this.state.msgId}
           ownId={this.state.ownId}
-          theSocket={this.socket}
         />
       </div>
     );

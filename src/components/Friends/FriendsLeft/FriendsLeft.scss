@@ -59,17 +59,21 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        // position: relative;
 
-        .friends-recommend-pending-img {
+        .friends-recommend-pending-img-wrapper {
           position: relative;
-          cursor: pointer;
           width: 55px;
           height: 55px;
           border-radius: 100px;
-          // background-image: url("../../../assets/portrait/userImg.png");
-          background-size: cover;
-          box-shadow: 0 0 2px rgba(0, 0, 0, 0.774);
+          box-shadow: 1px 1px 3px rgba(105, 105, 105, 0.774);
+
+          .friends-recommend-pending-img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: 100%;
+
+          }
         }
 
         .friends-recommend-pending-texts {

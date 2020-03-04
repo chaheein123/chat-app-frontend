@@ -66,7 +66,9 @@ class FriendsRight extends React.Component {
                           className="Applinks"
                           to={`/user/${this.props.match.params.id}/message/${user.chatroomid}`}
                         >
-                          <div className="friendsright-each-img" />
+                          <div className="friendsright-each-img-wrapper">
+                            <img src={user.imgurl} className="friendsright-each-img" />
+                          </div>
                         </Link>
 
                         <div className="friendsright-name">

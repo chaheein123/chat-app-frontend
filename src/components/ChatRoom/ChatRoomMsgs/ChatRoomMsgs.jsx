@@ -26,6 +26,10 @@ export const ChatRoomMsgs = (props) => {
                     <div
                       className="msgs-chatter-portrait"
                     >
+                      <img
+                        className="msgs-chatter-portrait-img"
+                        src={message.imgurl}
+                      />
                     </div>
                     <div
                       className="msgs-chatter-namecontent-wrapper"
@@ -59,6 +63,7 @@ export const ChatRoomMsgs = (props) => {
                     <div
                       className="msgs-own-portrait"
                     >
+                      <img src={message.imgurl} className="msgs-own-portrait-img" />
                     </div>
                   </div>
               }
