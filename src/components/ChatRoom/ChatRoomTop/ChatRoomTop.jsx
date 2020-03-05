@@ -26,8 +26,4 @@ export const ChatRoomTop = (props) => {
       }
     </div>
   )
-
-
-
-
 };

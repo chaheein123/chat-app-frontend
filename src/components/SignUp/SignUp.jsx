@@ -23,11 +23,20 @@ class SignUp extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     Authenticate.signup(this);
+  };
+
+  enterSubmit = event => {
+    if (event.keyCode == 13) {
+      this.handleSubmit(event)
+    }
   }
-  
+
   render() {
     return (
-      <div className="SignIn-SignUp">
+      <div
+        className="SignIn-SignUp"
+        onKeyDown={this.enterSubmit}
+      >
         <div className="SignIn-SignUp-wrapper">
           <h1>Sign Up</h1>
           <form autoComplete="off">

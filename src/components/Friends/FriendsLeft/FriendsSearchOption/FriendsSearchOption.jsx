@@ -10,7 +10,7 @@ class FriendsSearchOption extends React.Component {
       sentRequest: this.props.sentRequest,
       receivedRequest: this.props.receivedRequest,
       isFriends: this.props.isFriends,
-      imgUrl: this.props.imgUrl
+      imgUrl: this.props.imgUrl,
     };
   };
 
@@ -123,6 +123,7 @@ class FriendsSearchOption extends React.Component {
                 this.state.isFriends ?
                   <div
                     className="search-option-friend clickstay"
+                    onClick={this.props.goChat.bind(null, this.props.theid, this.props.userId)}
                   >
                     <p className="clickstay">Click to message</p>
                   </div>

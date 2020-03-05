@@ -2,6 +2,7 @@ import React from "react";
 import io from "socket.io-client";
 import FriendsSearchOption from "./FriendsSearchOption/FriendsSearchOption";
 import FriendsAPI from "../../../services/FriendsAPI";
+import MessagesAPI from "../../../services/MessagesAPI";
 
 import "./FriendsLeft.scss";
 import Tooltip from '@material-ui/core/Tooltip';
@@ -35,13 +36,8 @@ class FriendsLeft extends React.Component {
         });
       }
     });
-
     FriendsAPI.allOtherUsers(this);
   };
-
-  componentWillUnmount() {
-    // this.socket.disconnect();
-  }
 
   sendRequest = (useremail) => {
 
@@ -108,7 +104,16 @@ class FriendsLeft extends React.Component {
           })
         })
     }
-  }
+  };
+
+  goChat = (ownId, userId) => {
+    MessagesAPI
+      .getChatId(ownId, userId)
+      .then(response => {
+        let chatroomId = response.data;
+        this.props.history.push(`/user/${ownId}/message/${chatroomId}`);
+      })
+  };
 
   render() {
     let filteredUsers = [];
@@ -159,6 +164,8 @@ class FriendsLeft extends React.Component {
                   sendRequest={this.sendRequest.bind(this, user.useremail)}
                   cancelRequest={this.cancelRequest.bind(this, user.useremail)}
                   acceptRequest={this.acceptRequest.bind(this, user.useremail)}
+                  goChat={this.goChat}
+                  userId={user.id}
                 />
               ))}
             </div>
