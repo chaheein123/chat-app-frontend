@@ -71,6 +71,12 @@ class MessagesAPI {
     this.setState({
       unreadMsgs: 0
     })
+  };
+
+  static async getChatId(ownId, userId) {
+    return await
+      axios
+        .get(`http://localhost:5000/chats/${ownId}/${userId}`)
   }
 };
 
