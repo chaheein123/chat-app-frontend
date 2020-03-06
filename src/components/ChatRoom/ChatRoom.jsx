@@ -24,7 +24,7 @@ class ChatRoom extends React.Component {
   };
 
   componentDidMount() {
-    this.socket = io("http://localhost:5000");
+    this.socket = io(process.env.API_URL);
     this.socket.on("chatroomIdRequest", () => {
       this.socket.emit("sendingChatroomId", this.state.msgId)
     });
@@ -49,7 +49,7 @@ class ChatRoom extends React.Component {
         () => {
           MessagesAPI.chatroom(this);
           this.socket.disconnect();
-          this.socket = io("http://localhost:5000");
+          this.socket = io(process.env.API_URL);
           this.socket.on("chatroomIdRequest", () => {
             this.socket.emit("sendingChatroomId", this.state.msgId)
           });

@@ -48,7 +48,7 @@ class SmallMessage extends React.Component {
     };
 
     // Sockets
-    this.socket = io("http://localhost:5000");
+    this.socket = io(process.env.API_URL);
     this.socket.on("chatroomIdRequest", () => {
       this.socket.emit("sendingChatroomId", this.state.id)
     });

@@ -1,128 +1,127 @@
-import axios from "../utils/httpClient";
+import axios from '../utils/httpClient';
 
 class FriendsAPI {
-
   static findAllUsers() {
-    let userid = this.props.location.pathname.split("/")[2];
-    let usersPromise = new Promise((resolve, reject) => {
+    const userid = this.props.location.pathname.split('/')[2];
+    const usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          "http://localhost:5000/friends/findusers", {
-          usertoken: localStorage.getItem("userToken"),
-          userid
-        }
+          `${process.env.API_URL}/friends/findusers`, {
+          usertoken: localStorage.getItem('userToken'),
+          userid,
+        },
         )
         .then(
           (response) => {
             resolve(response);
-          }
+          },
         )
         .catch(
           (error) => {
             reject();
-          }
-        )
+          },
+        );
     });
 
     usersPromise
       .then(
         (response) => {
-          let requestSentUsers = new Set();
-          for (let user of response["data"]["requestSentUsers"]) {
-            requestSentUsers.add(user.useremail)
-          };
+          const requestSentUsers = new Set();
+          for (const user of response.data.requestSentUsers) {
+            requestSentUsers.add(user.useremail);
+          }
 
-          let requestReceivedUsers = new Set();
-          for (let user of response["data"]["requestReceivedUsers"]) {
-            requestReceivedUsers.add(user.useremail)
-          };
+          const requestReceivedUsers = new Set();
+          for (const user of response.data.requestReceivedUsers) {
+            requestReceivedUsers.add(user.useremail);
+          }
 
-          let friends = new Set();
-          for (let user of response["data"]["friends"]) {
-            friends.add(user.useremail)
-          };
+          const friends = new Set();
+          for (const user of response.data.friends) {
+            friends.add(user.useremail);
+          }
 
           this.setState({
-            users: response["data"]["allusers"],
-            filteredUsers: response["data"]["allusers"],
+            users: response.data.allusers,
+            filteredUsers: response.data.allusers,
             requestSentUsers,
             requestReceivedUsers,
-            friends
-          })
-        }
+            friends,
+          });
+        },
       )
       .catch(
         (error) => {
-          this.props.history.push("/");
-        }
-      )
-  };
+          this.props.history.push('/');
+        },
+      );
+  }
 
   static async sendRequest(friendemail, userid, index) {
     if (index >= 0) {
-      let recommendedUsers = [...this.state.recommendedUsers];
+      const recommendedUsers = [...this.state.recommendedUsers];
       recommendedUsers.splice(index, 1);
       await this.setState({
-        recommendedUsers
-      })
+        recommendedUsers,
+      });
     }
 
     return await axios
       .post(
-        "http://localhost:5000/friends/addfriends", {
-        usertoken: localStorage.getItem("userToken"),
+        `${process.env.API_URL}/friends/addfriends`, {
+        usertoken: localStorage.getItem('userToken'),
         friendemail,
-        userid
-      })
+        userid,
+      },
+      );
   }
 
   static async cancelRequest(friendemail, userid) {
     return axios
       .delete(
-        "http://localhost:5000/friends/cancelrequest", {
+        `${process.env.API_URL}/friends/cancelrequest`, {
         data: {
-          usertoken: localStorage.getItem("userToken"),
+          usertoken: localStorage.getItem('userToken'),
           friendemail,
-          userid
-        }
-      })
+          userid,
+        },
+      },
+      );
   }
 
   static async acceptRequest(friendemail, userid) {
-
     return await axios
       .put(
-        "http://localhost:5000/friends/acceptrequest", {
-        usertoken: localStorage.getItem("userToken"),
+        `${process.env.API_URL}/friends/acceptrequest`, {
+        usertoken: localStorage.getItem('userToken'),
         friendemail,
-        userid
-      });
-
-  };
+        userid,
+      },
+      );
+  }
 
   static allOtherUsers(THIS) {
-    let userid = THIS.props.location.pathname.split("/")[2];
+    const userid = THIS.props.location.pathname.split('/')[2];
     axios
-      .get(`http://localhost:5000/friends/${userid}/allOtherUsers`)
-      .then(response => {
-
+      .get(`${process.env.API_URL}/friends/${userid}/allOtherUsers`)
+      .then((response) => {
         THIS.setState({
           recommendedUsers: response.data.recommendedUsers,
-          pendingUsers: response.data.pendingUsers
-        })
-      })
-  };
+          pendingUsers: response.data.pendingUsers,
+        });
+      });
+  }
 
   static async findAllFriends(ownId) {
-    let allFriends = await axios
-      .get("http://localhost:5000/friends/allFriends", {
+    const allFriends = await axios
+      .get(`${process.env.API_URL}/friends/allFriends`, {
         params: {
           ownId,
-          userToken: localStorage.getItem("userToken")
-        }
+          userToken: localStorage.getItem('userToken'),
+        },
       });
-    return allFriends
-  };
-};
+    return allFriends;
+  }
+}
 
 export default FriendsAPI;

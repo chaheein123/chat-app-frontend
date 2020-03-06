@@ -1,27 +1,25 @@
-import axios from "../utils/httpClient";
+import axios from '../utils/httpClient';
 
 class ImageAPI {
-
   static async sendImg(imgUrl, ownId) {
-
     return await axios
       .post(
-        "http://localhost:5000/portrait/saveImg",
+        `${process.env.API_URL}/portrait/saveImg`,
         {
           imgUrl,
-          ownId
-        }
-      )
-  };
+          ownId,
+        },
+      );
+  }
 
   static async getImg(ownId) {
     return await axios
-      .get("http://localhost:5000/portrait/getImg", {
+      .get(`${process.env.API_URL}/portrait/getImg`, {
         params: {
-          ownId
-        }
-      })
+          ownId,
+        },
+      });
   }
-};
+}
 
 export default ImageAPI;
