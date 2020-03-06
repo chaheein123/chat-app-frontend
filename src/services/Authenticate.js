@@ -15,7 +15,7 @@ class Authenticate {
 
     axios
       .post(
-        `${process.env.API_URL}/auth/authenticate`, {
+        `${process.env.REACT_APP_API_URL}/auth/authenticate`, {
         userToken: localStorage.userToken,
         userid,
       },
@@ -33,7 +33,7 @@ class Authenticate {
   static login(THIS, email, pw) {
     axios
       .post(
-        `${process.env.API_URL}/auth/login`, {
+        `${process.env.REACT_APP_API_URL}/auth/login`, {
         email,
         pw,
       },
@@ -98,7 +98,7 @@ class Authenticate {
         (response) => {
           axios
             .post(
-              `${process.env.API_URL}/auth/signup`, {
+              `${process.env.REACT_APP_API_URL}/auth/signup`, {
               email: THIS.state.email,
               pw: THIS.state.pw,
             },

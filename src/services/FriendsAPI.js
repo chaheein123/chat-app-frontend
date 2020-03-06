@@ -6,7 +6,7 @@ class FriendsAPI {
     const usersPromise = new Promise((resolve, reject) => {
       axios
         .post(
-          `${process.env.API_URL}/friends/findusers`, {
+          `${process.env.REACT_APP_API_URL}/friends/findusers`, {
           usertoken: localStorage.getItem('userToken'),
           userid,
         },
@@ -68,7 +68,7 @@ class FriendsAPI {
 
     return await axios
       .post(
-        `${process.env.API_URL}/friends/addfriends`, {
+        `${process.env.REACT_APP_API_URL}/friends/addfriends`, {
         usertoken: localStorage.getItem('userToken'),
         friendemail,
         userid,
@@ -79,7 +79,7 @@ class FriendsAPI {
   static async cancelRequest(friendemail, userid) {
     return axios
       .delete(
-        `${process.env.API_URL}/friends/cancelrequest`, {
+        `${process.env.REACT_APP_API_URL}/friends/cancelrequest`, {
         data: {
           usertoken: localStorage.getItem('userToken'),
           friendemail,
@@ -92,7 +92,7 @@ class FriendsAPI {
   static async acceptRequest(friendemail, userid) {
     return await axios
       .put(
-        `${process.env.API_URL}/friends/acceptrequest`, {
+        `${process.env.REACT_APP_API_URL}/friends/acceptrequest`, {
         usertoken: localStorage.getItem('userToken'),
         friendemail,
         userid,
@@ -103,7 +103,7 @@ class FriendsAPI {
   static allOtherUsers(THIS) {
     const userid = THIS.props.location.pathname.split('/')[2];
     axios
-      .get(`${process.env.API_URL}/friends/${userid}/allOtherUsers`)
+      .get(`${process.env.REACT_APP_API_URL}/friends/${userid}/allOtherUsers`)
       .then((response) => {
         THIS.setState({
           recommendedUsers: response.data.recommendedUsers,
@@ -114,7 +114,7 @@ class FriendsAPI {
 
   static async findAllFriends(ownId) {
     const allFriends = await axios
-      .get(`${process.env.API_URL}/friends/allFriends`, {
+      .get(`${process.env.REACT_APP_API_URL}/friends/allFriends`, {
         params: {
           ownId,
           userToken: localStorage.getItem('userToken'),

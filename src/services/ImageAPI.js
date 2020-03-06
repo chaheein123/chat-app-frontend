@@ -4,7 +4,7 @@ class ImageAPI {
   static async sendImg(imgUrl, ownId) {
     return await axios
       .post(
-        `${process.env.API_URL}/portrait/saveImg`,
+        `${process.env.REACT_APP_API_URL}/portrait/saveImg`,
         {
           imgUrl,
           ownId,
@@ -14,7 +14,7 @@ class ImageAPI {
 
   static async getImg(ownId) {
     return await axios
-      .get(`${process.env.API_URL}/portrait/getImg`, {
+      .get(`${process.env.REACT_APP_API_URL}/portrait/getImg`, {
         params: {
           ownId,
         },

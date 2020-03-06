@@ -18,7 +18,7 @@ class FriendsRight extends React.Component {
 
   componentDidMount() {
 
-    this.socket = io(`${process.env.API_URL}/friendsIo`);
+    this.socket = io(`${process.env.REACT_APP_API_URL}/friendsIo`);
     this.socket.on("requestIdFromServer", () => {
       this.socket.emit("idToServer", this.props.match.params.id);
     });

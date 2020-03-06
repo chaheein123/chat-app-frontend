@@ -35,7 +35,7 @@ class Message extends React.Component {
   };
 
   componentDidMount() {
-    this.socket = io(process.env.API_URL);
+    this.socket = io(process.env.REACT_APP_API_URL);
     this.socket.on("chatroomIdRequest", () => {
       this.socket.emit("sendingChatroomId", this.props.chat.chatroomid)
     });

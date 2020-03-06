@@ -4,7 +4,7 @@ class MessagesAPI {
   static allRecentMessages(userid, THIS) {
     const chatPromise = new Promise((resolve, reject) => {
       axios
-        .get(`${process.env.API_URL}/chats/allchats`, {
+        .get(`${process.env.REACT_APP_API_URL}/chats/allchats`, {
           params: {
             usertoken: localStorage.getItem('userToken'),
             ownId: userid,
@@ -26,7 +26,7 @@ class MessagesAPI {
   static chatroom(THIS) {
     const chatPromise = new Promise((resolve, reject) => {
       axios
-        .get(`${process.env.API_URL}/chats/${THIS.state.ownId}/chatroom/${THIS.state.msgId}`, {
+        .get(`${process.env.REACT_APP_API_URL}/chats/${THIS.state.ownId}/chatroom/${THIS.state.msgId}`, {
           params: {
             usertoken: localStorage.getItem('userToken'),
           },
@@ -48,7 +48,7 @@ class MessagesAPI {
   static chatroomMessage(ownId, chatroomId, msg, THIS) {
     axios
       .post(
-        '${process.env.API_URL}/chats/sentmsg',
+        '${process.env.REACT_APP_API_URL}/chats/sentmsg',
         {
           ownId,
           chatroomId,
@@ -62,11 +62,11 @@ class MessagesAPI {
 
   static async updateMsgRead(msgId, ownId) {
     return await axios
-      .get(`${process.env.API_URL}/chats/chatroomId/${msgId}/ownId/${ownId}`);
+      .get(`${process.env.REACT_APP_API_URL}/chats/chatroomId/${msgId}/ownId/${ownId}`);
   }
 
   static async readMsg(msgId, ownId) {
-    await axios.put(`${process.env.API_URL}/chats/chatroomId/${msgId}/ownId/${ownId}`);
+    await axios.put(`${process.env.REACT_APP_API_URL}/chats/chatroomId/${msgId}/ownId/${ownId}`);
     this.setState({
       unreadMsgs: 0,
     });
@@ -75,7 +75,7 @@ class MessagesAPI {
   static async getChatId(ownId, userId) {
     return await
       axios
-        .get(`${process.env.API_URL}/chats/${ownId}/${userId}`);
+        .get(`${process.env.REACT_APP_API_URL}/chats/${ownId}/${userId}`);
   }
 }
 
