@@ -106,10 +106,10 @@
       display: none;
     };
 
-    .main-navbar2 {
-      display: block;
+    // .main-navbar2 {
+    //   display: block;
 
-    };
+    // };
 
     .Landing-background-pic {
       height: 100vh;
@@ -119,5 +119,19 @@
   };
   
 };
+
+// @media only screen and (max-width: 640px){
+
+//   .main-navbar {
+//     // min-height: 3400px;
+//     display: none;
+//   };
+
+//   .main-navbar2 {
+//     // display: none;
+//     background-color: yellow;
+//   }
+
+// }
 
 
