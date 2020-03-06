@@ -48,7 +48,7 @@ class MessagesAPI {
   static chatroomMessage(ownId, chatroomId, msg, THIS) {
     axios
       .post(
-        '${process.env.REACT_APP_API_URL}/chats/sentmsg',
+        `${process.env.REACT_APP_API_URL}/chats/sentmsg`,
         {
           ownId,
           chatroomId,
