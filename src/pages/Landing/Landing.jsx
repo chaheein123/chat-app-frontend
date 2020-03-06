@@ -171,7 +171,7 @@ class Landing extends React.Component {
                                                 </div>
                                                 <div className="div-profile-pic">
                                                     <p>
-                                                        DJ is an engineer at Palo Alto Networks. He was responsible for developing the back end of this app in Python. He loves using React as well. He used socket.io in this app in the backend. DJ likes to play with his baby boy in his free time. He sometimes play Starcraft. His favorite food is pizza.
+                                                        DJ is a software engineer at Palo Alto Networks. He was responsible for developing the back end of this app in Node Js. He loves using React as well. He used socket.io in this app in the backend. DJ likes to play with his baby boy in his free time. He sometimes play Starcraft. His favorite food is pizza.
                                             </p>
                                                 </div>
                                             </div>
